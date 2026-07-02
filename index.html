@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>새사람 프로젝트</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header>
+    <div class="header-top">
+      <h1>🧑 새사람 프로젝트</h1>
+      <div class="header-icons">
+        <button id="tip-btn" class="profile-icon-btn">💡</button>
+        <button id="profile-btn" class="profile-icon-btn">👤</button>
+      </div>
+    </div>
+    <p id="today-date"></p>
+  </header>
+
+  <nav class="day-tabs">
+    <button class="day-tab" data-day="1">Day 1<br><span>가슴/삼두</span></button>
+    <button class="day-tab" data-day="2">Day 2<br><span>등/이두</span></button>
+    <button class="day-tab" data-day="3">Day 3<br><span>하체</span></button>
+    <button class="day-tab" data-day="4">Day 4<br><span>어깨/팔</span></button>
+  </nav>
+
+  <div class="mode-toggle">
+    <button class="mode-tab" data-mode="gym">🏋️ 기구 운동</button>
+    <button class="mode-tab" data-mode="bodyweight">🤸 맨몸 운동</button>
+  </div>
+
+  <button id="rest-day-btn" class="secondary-btn">오늘은 휴식일이야 💤</button>
+
+  <section class="condition-select">
+    <p class="condition-label">오늘 컨디션은?</p>
+    <div class="condition-tabs">
+      <button class="condition-tab" data-condition="1">1<br><span>안좋음</span></button>
+      <button class="condition-tab" data-condition="2">2<br><span>보통</span></button>
+      <button class="condition-tab" data-condition="3">3<br><span>좋음</span></button>
+    </div>
+    <p id="condition-note" class="condition-note"></p>
+  </section>
+
+  <div id="editing-banner" class="editing-banner">
+    <span id="editing-banner-text"></span>
+    <button id="cancel-edit-btn">취소</button>
+  </div>
+
+  <main id="routine-view"></main>
+
+  <button id="add-exercise-btn" class="secondary-btn">+ 운동 추가</button>
+  <button id="save-log-btn" class="primary-btn">오늘 기록 저장</button>
+
+  <section id="history-section">
+    <div class="calendar-header">
+      <button id="prev-month" class="cal-nav-btn">‹</button>
+      <h2 id="calendar-title">운동 기록</h2>
+      <button id="next-month" class="cal-nav-btn">›</button>
+    </div>
+
+    <div class="calendar-legend">
+      <span><i class="dot dot-gym"></i>기구 운동</span>
+      <span><i class="dot dot-bw"></i>맨몸 운동</span>
+      <span><i class="dot dot-rest"></i>휴식</span>
+    </div>
+
+    <div class="calendar-weekdays">
+      <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+    </div>
+
+    <div id="calendar-grid" class="calendar-grid"></div>
+
+    <div id="day-detail" class="day-detail"></div>
+  </section>
+</div>
+
+<div id="exercise-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <input type="text" id="exercise-search" placeholder="운동 이름 검색 (예: 벤치)" autocomplete="off">
+      <button id="close-modal-btn" class="modal-close">✕</button>
+    </div>
+    <div id="exercise-list" class="modal-list"></div>
+  </div>
+</div>
+
+<div id="profile-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">내 프로필</h3>
+      <button id="close-profile-btn" class="modal-close">✕</button>
+    </div>
+    <div class="profile-form">
+      <label>이름</label>
+      <input type="text" id="profile-name" placeholder="이름">
+
+      <div class="profile-row">
+        <div>
+          <label>키 (cm)</label>
+          <input type="number" id="profile-height" placeholder="183">
+        </div>
+        <div>
+          <label>몸무게 (kg)</label>
+          <input type="number" id="profile-weight" placeholder="80">
+        </div>
+      </div>
+
+      <button id="save-profile-btn" class="primary-btn">저장</button>
+
+      <div id="profile-result" class="profile-result"></div>
+    </div>
+  </div>
+</div>
+
+<div id="tip-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">💡 Tip</h3>
+      <button id="close-tip-btn" class="modal-close">✕</button>
+    </div>
+    <div class="tip-list">
+      <div class="tip-item">
+        <span class="tip-num">1</span>
+        <span>프로필을 클릭해서 본인의 정보를 입력하고 운동 기록을 관리해주세요.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-num">2</span>
+        <span>3~4일 운동 후에는 반드시 하루 휴식해주세요.</span>
+      </div>
+      <div class="tip-item">
+        <span class="tip-num">3</span>
+        <span>운동만큼 수면과 식사도 중요해요. 잘 자고 잘 먹어야 근육이 자랍니다.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
