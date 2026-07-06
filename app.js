@@ -52,6 +52,19 @@ const ROUTINES = {
 const STORAGE_KEY = "monster-project-logs";
 const BASEWEIGHT_KEY = "monster-project-baseweights";
 
+// ===== 날짜 키 생성 (로컬 시간 기준 — toISOString()은 UTC라 자정~오전9시 기록이 전날로 밀리는 버그가 있어 이걸 사용) =====
+function getLocalDateKey(date) {
+  const d = date || new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function getLocalYearMonth(date) {
+  return getLocalDateKey(date).slice(0, 7);
+}
+
 // ===== 시작 기준 무게 (183cm/80kg 복귀 중급자 기준, 첫 실행시 1회만 채워짐) =====
 const DEFAULT_BASE_WEIGHTS = {
   // Day 1 — 가슴/삼두
@@ -88,13 +101,34 @@ const PROFILE_KEY = "monster-project-profile";
 
 // ===== BMI 7단계 x 운동량 3단계 칭호 시스템 =====
 const BMI_TIERS = [
-  { max: 18, emoji: "💀", base: "스켈레톤", mid: "좀비파이터", high: "본마스터" },
-  { max: 19.5, emoji: "🐟", base: "육수용 멸치", mid: "건멸치", high: "멸치들의 왕" },
-  { max: 21, emoji: "🥢", base: "홀쭉이", mid: "젓가락전사", high: "황금젓가락킹" },
-  { max: 23, emoji: "⚖️", base: "정상인", mid: "밸런스마스터", high: "밸런스갓" },
-  { max: 25, emoji: "🍚", base: "통통이", mid: "묵직맨", high: "든든국밥킹" },
-  { max: 27, emoji: "🐗", base: "돼지", mid: "돼지전사", high: "아이언보어" },
-  { max: Infinity, emoji: "🐷", base: "뚱돼지", mid: "운동한돼지", high: "운동많이한 돼지" }
+  { max: 18,
+    base: { title: "스켈레톤", emoji: "💀" },
+    mid: { title: "좀비파이터", emoji: "🧟" },
+    high: { title: "본마스터", emoji: "☠️" } },
+  { max: 19.5,
+    base: { title: "육수용 멸치", emoji: "🐟" },
+    mid: { title: "건멸치", emoji: "🍤" },
+    high: { title: "멸치들의 왕", emoji: "🐋" } },
+  { max: 21,
+    base: { title: "홀쭉이", emoji: "🥢" },
+    mid: { title: "젓가락전사", emoji: "🤺" },
+    high: { title: "황금젓가락킹", emoji: "👑" } },
+  { max: 23,
+    base: { title: "정상인", emoji: "⚖️" },
+    mid: { title: "밸런스마스터", emoji: "🧘" },
+    high: { title: "밸런스갓", emoji: "🔱" } },
+  { max: 25,
+    base: { title: "통통이", emoji: "🍚" },
+    mid: { title: "묵직맨", emoji: "💪" },
+    high: { title: "든든국밥킹", emoji: "🍲" } },
+  { max: 27,
+    base: { title: "돼지", emoji: "🐖" },
+    mid: { title: "돼지전사", emoji: "🐗" },
+    high: { title: "아이언보어", emoji: "🦾" } },
+  { max: Infinity,
+    base: { title: "뚱돼지", emoji: "🐷" },
+    mid: { title: "운동한돼지", emoji: "🏋️" },
+    high: { title: "운동많이한 돼지", emoji: "🏆" } }
 ];
 
 function getBMITier(bmi) {
@@ -109,7 +143,7 @@ function getWorkoutLevel(count) {
 
 function getMonthlyWorkoutCount() {
   const logs = getLogs();
-  const ym = new Date().toISOString().slice(0, 7);
+  const ym = getLocalYearMonth();
   return Object.keys(logs).filter(k => k.startsWith(ym) && logs[k].day !== "rest").length;
 }
 
@@ -300,19 +334,19 @@ function getMasterList() {
 const CONDITION_CONFIG = {
   1: {
     label: "컨디션 안좋음",
-    note: "무게 10~20% 낮추고 자세에 집중해. 세트 수도 살짝 줄였어.",
+    note: "무게 10~20% 낮추고 자세에 집중해보세요. 세트 수도 살짝 줄였어요.",
     setAdjust: -1,
     weightHint: "평소 대비 80~90%"
   },
   2: {
     label: "컨디션 보통",
-    note: "평소 루틴 그대로 진행하면 돼.",
+    note: "평소 루틴 그대로 진행하면 돼요.",
     setAdjust: 0,
     weightHint: "평소 무게"
   },
   3: {
     label: "컨디션 좋음",
-    note: "오늘 컨디션 최고! 무게 살짝 올려서 도전해봐.",
+    note: "오늘 컨디션 최고예요! 무게 살짝 올려서 도전해보세요.",
     setAdjust: 0,
     weightHint: "평소 대비 +2.5~5kg 시도"
   }
@@ -321,8 +355,98 @@ const CONDITION_CONFIG = {
 let currentDay = 1;
 let currentCondition = 2;
 let currentMode = "gym";
+let currentType = "gym";
 let currentExercises = [];
 let editingDateKey = null;
+let openExerciseIndex = null;
+let heroActive = false;
+let workoutStartTime = null;
+let heroIndex = 0;
+let timerIntervalId = null;
+let restEndTime = null;
+let restIntervalId = null;
+
+// ===== 진행 중 세션 영속화 (앱 리로드에도 세션 유지) =====
+const SESSION_KEY = "monster-project-active-session";
+
+function persistActiveSession() {
+  if (!heroActive) return;
+  const snapshot = {
+    startTime: workoutStartTime,
+    heroIndex: heroIndex,
+    day: currentDay,
+    condition: currentCondition,
+    mode: currentMode,
+    exercises: currentExercises
+  };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(snapshot));
+}
+
+function clearActiveSession() {
+  localStorage.removeItem(SESSION_KEY);
+}
+
+function restoreActiveSession() {
+  let saved = null;
+  try {
+    saved = JSON.parse(localStorage.getItem(SESSION_KEY));
+  } catch (e) {
+    saved = null;
+  }
+  if (!saved || !saved.startTime || !Array.isArray(saved.exercises)) return false;
+
+  currentDay = saved.day || 1;
+  currentCondition = saved.condition || 2;
+  currentMode = saved.mode || "gym";
+  currentType = currentMode;
+  currentExercises = saved.exercises;
+  heroIndex = saved.heroIndex || 0;
+  workoutStartTime = saved.startTime;
+  heroActive = true;
+
+  document.querySelectorAll(".type-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.type === currentType);
+  });
+  document.querySelectorAll(".day-tab").forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.day) === currentDay);
+  });
+  document.querySelectorAll(".condition-tab").forEach(btn => {
+    btn.classList.toggle("active", parseInt(btn.dataset.condition) === currentCondition);
+  });
+  document.getElementById("condition-note").textContent = CONDITION_CONFIG[currentCondition].note;
+  document.getElementById("rest-only-group").classList.remove("show");
+  document.getElementById("workout-detail-group").classList.add("show");
+
+  document.getElementById("workout-setup-view").style.display = "none";
+  document.querySelector(".type-select").style.display = "none";
+  document.getElementById("hero-session").classList.add("active");
+
+  updateHeroTimerDisplay();
+  timerIntervalId = setInterval(updateHeroTimerDisplay, 1000);
+  renderHeroSession();
+  switchScreen("screen-workout");
+  showToast("진행 중이던 운동 세션을 복원했어요 💪");
+  return true;
+}
+
+// ===== 목표 텍스트에서 세트 수 / 추천 반복수 파싱 =====
+function parseTargetSetCount(target) {
+  const match = target.match(/^(\d+)세트/);
+  return match ? parseInt(match[1]) : null;
+}
+
+function parseSuggestedReps(target) {
+  const match = target.match(/(\d+)(?:~\d+)?\s*회/);
+  return match ? match[1] : "";
+}
+
+// ===== 무게 크기에 따른 증감 단위 (작으면 1kg, 중간 2.5kg, 크면 5kg) =====
+function getWeightStep(weight) {
+  const w = parseFloat(weight) || 0;
+  if (w < 20) return 1;
+  if (w < 50) return 2.5;
+  return 5;
+}
 
 // ===== 기준 무게 관리 =====
 function getBaseWeights() {
@@ -364,7 +488,7 @@ function computeAutoBaseWeights(bodyweight) {
 
 function promptSetBaseWeight(name, idx) {
   const current = getBaseWeight(name);
-  const input = prompt(`${name}의 기준 무게를 kg로 입력해줘:`, current !== null ? current : "");
+  const input = prompt(`${name}의 기준 무게를 kg로 입력해주세요:`, current !== null ? current : "");
   if (input === null || input.trim() === "") return;
   const num = parseFloat(input);
   if (isNaN(num)) return;
@@ -387,9 +511,26 @@ function adjustTarget(target, setAdjust) {
   return newSets + match[2];
 }
 
+const THEME_KEY = "monster-project-theme";
+
+function getTheme() {
+  return localStorage.getItem(THEME_KEY) || "dark";
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem(THEME_KEY, theme);
+  document.getElementById("theme-toggle-btn").textContent = theme === "dark" ? "🌙" : "☀️";
+}
+
+function toggleTheme() {
+  applyTheme(getTheme() === "dark" ? "light" : "dark");
+}
+
 // ===== 초기화 =====
 function init() {
   seedDefaultBaseWeights();
+  applyTheme(getTheme());
 
   const today = new Date();
   const dateStr = today.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long" });
@@ -403,12 +544,14 @@ function init() {
     btn.addEventListener("click", () => selectCondition(parseInt(btn.dataset.condition)));
   });
 
-  document.querySelectorAll(".mode-tab").forEach(btn => {
-    btn.addEventListener("click", () => selectMode(btn.dataset.mode));
+  document.querySelectorAll(".type-tab").forEach(btn => {
+    btn.addEventListener("click", () => selectType(btn.dataset.type));
   });
 
   document.getElementById("add-exercise-btn").addEventListener("click", openExerciseModal);
   document.getElementById("save-log-btn").addEventListener("click", saveLog);
+  document.getElementById("start-workout-btn").addEventListener("click", startWorkoutSession);
+  document.getElementById("finish-workout-btn").addEventListener("click", finishWorkoutSession);
   document.getElementById("rest-day-btn").addEventListener("click", saveRestDay);
   document.getElementById("close-modal-btn").addEventListener("click", closeExerciseModal);
   document.getElementById("cancel-edit-btn").addEventListener("click", cancelEditing);
@@ -425,20 +568,65 @@ function init() {
 
   document.getElementById("tip-btn").addEventListener("click", openTipModal);
   document.getElementById("close-tip-btn").addEventListener("click", closeTipModal);
+  document.getElementById("theme-toggle-btn").addEventListener("click", toggleTheme);
 
-  selectMode("gym");
+  document.getElementById("export-data-btn").addEventListener("click", exportData);
+  document.getElementById("import-data-btn").addEventListener("click", () => {
+    document.getElementById("import-file-input").click();
+  });
+  document.getElementById("import-file-input").addEventListener("change", (e) => {
+    if (e.target.files && e.target.files[0]) {
+      importData(e.target.files[0]);
+      e.target.value = "";
+    }
+  });
+
+  document.querySelectorAll(".nav-tab").forEach(btn => {
+    btn.addEventListener("click", () => switchScreen(btn.dataset.screen));
+  });
+
+  document.getElementById("history-profile-summary").addEventListener("click", openProfileModal);
+
+  selectType("gym");
   selectCondition(2);
   initCalendarNav();
+  switchScreen("screen-history");
   renderHistory();
+
+  restoreActiveSession();
 }
 
-// ===== 모드 선택 (기구 / 맨몸) =====
-function selectMode(mode) {
-  currentMode = mode;
-  document.querySelectorAll(".mode-tab").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.mode === mode);
+// ===== 하단 탭 화면 전환 =====
+function switchScreen(screenId) {
+  document.querySelectorAll(".screen").forEach(el => {
+    el.classList.toggle("active", el.id === screenId);
   });
-  selectDay(currentDay);
+  document.querySelectorAll(".nav-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.screen === screenId);
+  });
+}
+
+// ===== 타입 선택 (기구 / 맨몸 / 휴식) =====
+function selectType(type) {
+  if (heroActive) return;
+
+  currentType = type;
+  document.querySelectorAll(".type-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.type === type);
+  });
+
+  const restGroup = document.getElementById("rest-only-group");
+  const detailGroup = document.getElementById("workout-detail-group");
+
+  if (type === "rest") {
+    restGroup.classList.add("show");
+    detailGroup.classList.remove("show");
+  } else {
+    restGroup.classList.remove("show");
+    detailGroup.classList.add("show");
+    currentMode = type;
+    selectDay(currentDay);
+  }
 }
 
 // ===== 컨디션 선택 =====
@@ -468,117 +656,158 @@ function selectDay(day) {
   const setAdjust = CONDITION_CONFIG[currentCondition].setAdjust;
   const base = getRoutines()[day].exercises.map(ex => {
     const baseWeight = getBaseWeight(ex.name);
+    const adjustedTarget = adjustTarget(ex.target, setAdjust);
     return {
       name: ex.name,
       baseTarget: ex.target,
-      target: adjustTarget(ex.target, setAdjust),
+      target: adjustedTarget,
       checked: false,
       weight: baseWeight !== null ? baseWeight : "",
-      sets: "",
+      completedSets: [],
+      currentReps: parseSuggestedReps(adjustedTarget),
       custom: false
     };
   });
 
   currentExercises = base;
+  openExerciseIndex = null;
   renderExercises();
 }
 
-// ===== 운동 목록 렌더링 =====
+// ===== 운동 목록 렌더링 (아코디언 + 실시간 세트 로깅) =====
 function renderExercises() {
   const view = document.getElementById("routine-view");
   view.innerHTML = "";
 
+  const isBodyweight = currentMode === "bodyweight";
+
   currentExercises.forEach((ex, idx) => {
+    const isOpen = openExerciseIndex === idx;
+    const completedSets = ex.completedSets || [];
+    const targetSetCount = parseTargetSetCount(ex.target);
+
     const card = document.createElement("div");
-    card.className = "exercise-card";
+    card.className = "exercise-card" + (isOpen ? " open" : "");
 
-    const header = document.createElement("div");
-    header.className = "exercise-header";
-
-    const nameBlock = document.createElement("div");
-    nameBlock.innerHTML = `<div class="exercise-name">${idx + 1}. ${ex.name}</div><div class="exercise-target">${ex.target}</div>`;
+    // ---- 압축 행 (체크박스 + 이름 + 진행 배지, 탭하면 펼침) ----
+    const row = document.createElement("div");
+    row.className = "exercise-row";
 
     const checkBtn = document.createElement("button");
     checkBtn.className = "exercise-check" + (ex.checked ? " checked" : "");
-    checkBtn.addEventListener("click", () => {
+    checkBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
       currentExercises[idx].checked = !currentExercises[idx].checked;
       renderExercises();
     });
 
-    header.appendChild(nameBlock);
-    header.appendChild(checkBtn);
-    card.appendChild(header);
+    const nameSpan = document.createElement("div");
+    nameSpan.className = "exercise-name";
+    nameSpan.textContent = `${idx + 1}. ${ex.name}`;
 
-    const inputRow = document.createElement("div");
-    inputRow.className = "exercise-inputs";
+    row.appendChild(checkBtn);
+    row.appendChild(nameSpan);
 
-    const weightControl = document.createElement("div");
-    weightControl.className = "weight-control";
+    if (completedSets.length > 0) {
+      const badge = document.createElement("span");
+      badge.className = "set-progress-badge";
+      badge.textContent = targetSetCount ? `${completedSets.length}/${targetSetCount}` : `${completedSets.length}세트`;
+      row.appendChild(badge);
+    }
 
-    const baseWeight = getBaseWeight(ex.name);
-    const baseLine = document.createElement("div");
-    baseLine.className = "weight-base-line";
-    baseLine.innerHTML = `<span>${baseWeight !== null ? `기준무게 ${baseWeight}kg` : "기준무게 미설정"} · ${CONDITION_CONFIG[currentCondition].weightHint}</span>`;
-    const editBtn = document.createElement("button");
-    editBtn.className = "weight-edit-btn";
-    editBtn.textContent = "설정";
-    editBtn.addEventListener("click", () => promptSetBaseWeight(ex.name, idx));
-    baseLine.appendChild(editBtn);
-    weightControl.appendChild(baseLine);
+    const chevron = document.createElement("span");
+    chevron.className = "exercise-chevron";
+    chevron.textContent = "▸";
+    row.appendChild(chevron);
 
-    const adjustRow = document.createElement("div");
-    adjustRow.className = "weight-adjust-row";
-
-    const minusBtn = document.createElement("button");
-    minusBtn.className = "weight-adjust-btn";
-    minusBtn.textContent = "－2.5";
-    minusBtn.addEventListener("click", () => {
-      const cur = parseFloat(currentExercises[idx].weight) || 0;
-      currentExercises[idx].weight = Math.round((Math.max(0, cur - 2.5)) * 10) / 10;
+    row.addEventListener("click", () => {
+      openExerciseIndex = isOpen ? null : idx;
       renderExercises();
     });
 
-    const weightDisplay = document.createElement("div");
-    weightDisplay.className = "weight-display";
-    weightDisplay.textContent = ex.weight !== "" ? `${ex.weight} kg` : "무게 미입력";
+    card.appendChild(row);
 
-    const plusBtn = document.createElement("button");
-    plusBtn.className = "weight-adjust-btn";
-    plusBtn.textContent = "+2.5";
-    plusBtn.addEventListener("click", () => {
-      const cur = parseFloat(currentExercises[idx].weight) || 0;
-      currentExercises[idx].weight = Math.round((cur + 2.5) * 10) / 10;
-      renderExercises();
-    });
+    // ---- 펼쳐진 상세 (목표 + 기준무게 설정만 — 세트 기록은 "운동 시작" 후 진행) ----
+    if (isOpen) {
+      const detail = document.createElement("div");
+      detail.className = "exercise-detail";
 
-    adjustRow.appendChild(minusBtn);
-    adjustRow.appendChild(weightDisplay);
-    adjustRow.appendChild(plusBtn);
-    weightControl.appendChild(adjustRow);
+      const targetLine = document.createElement("div");
+      targetLine.className = "exercise-target";
+      targetLine.textContent = ex.target;
+      detail.appendChild(targetLine);
 
-    card.appendChild(weightControl);
+      if (!isBodyweight) {
+        const weightControl = document.createElement("div");
+        weightControl.className = "weight-control";
 
-    const setsInput = document.createElement("input");
-    setsInput.type = "text";
-    setsInput.placeholder = "세트 x 회";
-    setsInput.value = ex.sets;
-    setsInput.style.marginTop = "8px";
-    setsInput.addEventListener("input", (e) => {
-      currentExercises[idx].sets = e.target.value;
-    });
+        const baseWeight = getBaseWeight(ex.name);
+        const baseLine = document.createElement("div");
+        baseLine.className = "weight-base-line";
+        baseLine.innerHTML = `<span>${baseWeight !== null ? `기준무게 ${baseWeight}kg` : "기준무게 미설정"} · ${CONDITION_CONFIG[currentCondition].weightHint}</span>`;
+        const editBtn = document.createElement("button");
+        editBtn.className = "weight-edit-btn";
+        editBtn.textContent = "설정";
+        editBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          promptSetBaseWeight(ex.name, idx);
+        });
+        baseLine.appendChild(editBtn);
+        weightControl.appendChild(baseLine);
 
-    inputRow.appendChild(setsInput);
-    card.appendChild(inputRow);
+        const adjustRow = document.createElement("div");
+        adjustRow.className = "weight-adjust-row";
 
-    if (ex.custom) {
+        const step = getWeightStep(ex.weight);
+
+        const minusBtn = document.createElement("button");
+        minusBtn.className = "weight-adjust-btn";
+        minusBtn.textContent = `－${step}`;
+        minusBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const cur = parseFloat(currentExercises[idx].weight) || 0;
+          const s = getWeightStep(cur);
+          currentExercises[idx].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
+          renderExercises();
+        });
+
+        const weightDisplay = document.createElement("div");
+        weightDisplay.className = "weight-display";
+        weightDisplay.innerHTML = ex.weight !== ""
+          ? `<span class="num">${ex.weight}</span><span class="unit">kg</span>`
+          : `<span class="placeholder-text">무게 미입력</span>`;
+
+        const plusBtn = document.createElement("button");
+        plusBtn.className = "weight-adjust-btn";
+        plusBtn.textContent = `+${step}`;
+        plusBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const cur = parseFloat(currentExercises[idx].weight) || 0;
+          const s = getWeightStep(cur);
+          currentExercises[idx].weight = Math.round((cur + s) * 10) / 10;
+          renderExercises();
+        });
+
+        adjustRow.appendChild(minusBtn);
+        adjustRow.appendChild(weightDisplay);
+        adjustRow.appendChild(plusBtn);
+        weightControl.appendChild(adjustRow);
+
+        detail.appendChild(weightControl);
+      }
+
       const removeBtn = document.createElement("button");
       removeBtn.className = "remove-exercise";
-      removeBtn.textContent = "삭제";
-      removeBtn.addEventListener("click", () => {
+      removeBtn.textContent = ex.custom ? "운동 삭제" : "오늘 목록에서 제외";
+      removeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
         currentExercises.splice(idx, 1);
+        openExerciseIndex = null;
         renderExercises();
       });
-      card.appendChild(removeBtn);
+      detail.appendChild(removeBtn);
+
+      card.appendChild(detail);
     }
 
     view.appendChild(card);
@@ -606,7 +835,7 @@ function renderExerciseModalList(query) {
   const filtered = getMasterList().filter(ex => ex.name.toLowerCase().includes(q));
 
   if (filtered.length === 0) {
-    list.innerHTML = `<div class="modal-empty">검색 결과가 없어. 아래에서 직접 추가해봐.</div>`;
+    list.innerHTML = `<div class="modal-empty">검색 결과가 없어요. 아래에서 직접 추가해보세요.</div>`;
     const addDirectBtn = document.createElement("div");
     addDirectBtn.className = "modal-item";
     addDirectBtn.textContent = `"${query}" 직접 추가하기`;
@@ -642,18 +871,358 @@ function selectExerciseFromModal(name) {
     target: "직접 기록",
     checked: false,
     weight: baseWeight !== null ? baseWeight : "",
-    sets: "",
+    completedSets: [],
+    currentReps: "",
     custom: true
   });
 
   closeExerciseModal();
+  openExerciseIndex = currentExercises.length - 1;
   renderExercises();
 }
 
-// ===== 로그 저장 =====
-function saveLog() {
+// ===== 운동 시작 (히어로 세션) =====
+function startWorkoutSession() {
+  if (currentExercises.length === 0) {
+    alert("운동 목록이 비어있어요. 운동을 하나 이상 추가해주세요.");
+    return;
+  }
+
+  heroActive = true;
+  workoutStartTime = Date.now();
+  const firstUnchecked = currentExercises.findIndex(ex => !ex.checked);
+  heroIndex = firstUnchecked === -1 ? 0 : firstUnchecked;
+
+  document.getElementById("workout-setup-view").style.display = "none";
+  document.querySelector(".type-select").style.display = "none";
+  document.getElementById("hero-session").classList.add("active");
+
+  updateHeroTimerDisplay();
+  timerIntervalId = setInterval(updateHeroTimerDisplay, 1000);
+
+  persistActiveSession();
+  renderHeroSession();
+}
+
+function finishWorkoutSession() {
+  if (!confirm("운동을 종료하고 저장할까요?")) return;
+
+  const durationMinutes = Math.max(1, Math.round((Date.now() - workoutStartTime) / 60000));
+
+  clearInterval(timerIntervalId);
+  timerIntervalId = null;
+  stopRestTimer();
+  heroActive = false;
+  clearActiveSession();
+
+  document.getElementById("hero-session").classList.remove("active");
+  document.getElementById("workout-setup-view").style.display = "block";
+  document.querySelector(".type-select").style.display = "grid";
+
+  saveLog(durationMinutes);
+  selectDay(currentDay);
+  switchScreen("screen-history");
+}
+
+function formatElapsed(ms) {
+  const totalSec = Math.floor(ms / 1000);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  const pad = (n) => String(n).padStart(2, "0");
+  return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
+}
+
+function updateHeroTimerDisplay() {
+  const el = document.getElementById("hero-timer");
+  if (el && workoutStartTime) {
+    el.textContent = formatElapsed(Date.now() - workoutStartTime);
+  }
+}
+
+// ===== 히어로 세션 렌더링 (칩 스트립 + 큰 카드) =====
+// ===== 히어로 카드 좌우 스와이프로 운동 이동 =====
+let heroTouchStartX = null;
+
+function setupHeroSwipe() {
+  const card = document.getElementById("hero-card");
+  if (!card || card.dataset.swipeBound) return;
+  card.dataset.swipeBound = "true";
+
+  card.addEventListener("touchstart", (e) => {
+    heroTouchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  card.addEventListener("touchend", (e) => {
+    if (heroTouchStartX === null) return;
+    const deltaX = e.changedTouches[0].clientX - heroTouchStartX;
+    heroTouchStartX = null;
+
+    if (Math.abs(deltaX) < 50) return;
+
+    if (deltaX < 0 && heroIndex < currentExercises.length - 1) {
+      heroIndex++;
+      persistActiveSession();
+      renderHeroSession();
+    } else if (deltaX > 0 && heroIndex > 0) {
+      heroIndex--;
+      persistActiveSession();
+      renderHeroSession();
+    }
+  }, { passive: true });
+}
+
+function renderHeroSession() {
+  setupHeroSwipe();
+  const chipStrip = document.getElementById("hero-chip-strip");
+  chipStrip.innerHTML = "";
+
+  currentExercises.forEach((ex, idx) => {
+    const chip = document.createElement("div");
+    const isDone = (ex.completedSets || []).length > 0 || ex.checked;
+    chip.className = "chip" + (idx === heroIndex ? " current" : (isDone ? " done" : ""));
+    chip.textContent = `${idx + 1}. ${ex.name}`;
+    chip.addEventListener("click", () => {
+      heroIndex = idx;
+      persistActiveSession();
+      renderHeroSession();
+    });
+    chipStrip.appendChild(chip);
+
+    if (idx === heroIndex) {
+      requestAnimationFrame(() => {
+        chip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      });
+    }
+  });
+
+  const ex = currentExercises[heroIndex];
+  if (!ex) return;
+
+  const card = document.getElementById("hero-card");
+  card.innerHTML = "";
+
+  const isBodyweight = currentMode === "bodyweight";
+  const completedSets = ex.completedSets || [];
+  const targetSetCount = parseTargetSetCount(ex.target);
+  const denom = targetSetCount || Math.max(completedSets.length, 1);
+  const fraction = Math.min(1, completedSets.length / denom);
+
+  const countLabel = document.createElement("div");
+  countLabel.className = "hero-ex-count";
+  countLabel.textContent = `EXERCISE ${heroIndex + 1} / ${currentExercises.length}`;
+  card.appendChild(countLabel);
+
+  const nameEl = document.createElement("div");
+  nameEl.className = "hero-ex-name";
+  nameEl.textContent = ex.name;
+  card.appendChild(nameEl);
+
+  const targetEl = document.createElement("div");
+  targetEl.className = "hero-ex-target";
+  targetEl.textContent = ex.target;
+  card.appendChild(targetEl);
+
+  const lastRecord = getLastRecordForExercise(ex.name);
+  if (lastRecord) {
+    const lastEl = document.createElement("div");
+    lastEl.className = "hero-last-record";
+    lastEl.textContent = `지난 기록 · ${lastRecord.date.slice(5).replace("-", "/")} · ${lastRecord.text}`;
+    card.appendChild(lastEl);
+  }
+
+  const ringWrap = document.createElement("div");
+  ringWrap.className = "hero-ring-wrap";
+  const ring = document.createElement("div");
+  ring.className = "hero-ring";
+  const deg = Math.round(fraction * 360);
+  ring.style.background = `conic-gradient(var(--accent) 0deg ${deg}deg, var(--surface-2) ${deg}deg 360deg)`;
+  const ringInner = document.createElement("div");
+  ringInner.className = "hero-ring-inner";
+  if (isBodyweight) {
+    ringInner.innerHTML = `
+      <div><span class="hero-weight-num">${completedSets.length}</span><span class="hero-weight-unit"> / ${targetSetCount || "?"}</span></div>
+      <div class="hero-set-fraction">세트 완료</div>
+    `;
+  } else {
+    ringInner.innerHTML = `
+      <div><span class="hero-weight-num">${ex.weight !== "" ? ex.weight : "-"}</span><span class="hero-weight-unit"> kg</span></div>
+      <div class="hero-set-fraction">${completedSets.length} / ${targetSetCount || "?"} 세트</div>
+    `;
+  }
+  ring.appendChild(ringInner);
+  ringWrap.appendChild(ring);
+  card.appendChild(ringWrap);
+
+  const stepRow = document.createElement("div");
+  stepRow.className = "hero-step-row";
+
+  if (!isBodyweight) {
+    const step = getWeightStep(ex.weight);
+
+    const minusBtn = document.createElement("button");
+    minusBtn.className = "hero-step-btn";
+    minusBtn.textContent = `－${step}`;
+    minusBtn.addEventListener("click", () => {
+      const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
+      const s = getWeightStep(cur);
+      currentExercises[heroIndex].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
+      persistActiveSession();
+      renderHeroSession();
+    });
+    stepRow.appendChild(minusBtn);
+  }
+
+  const repsInput = document.createElement("input");
+  repsInput.type = "text";
+  repsInput.className = "hero-reps-input";
+  repsInput.placeholder = "반복수";
+  repsInput.value = ex.currentReps || "";
+  repsInput.addEventListener("input", (e) => {
+    currentExercises[heroIndex].currentReps = e.target.value;
+    persistActiveSession();
+  });
+  stepRow.appendChild(repsInput);
+
+  if (!isBodyweight) {
+    const step = getWeightStep(ex.weight);
+    const plusBtn = document.createElement("button");
+    plusBtn.className = "hero-step-btn";
+    plusBtn.textContent = `+${step}`;
+    plusBtn.addEventListener("click", () => {
+      const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
+      const s = getWeightStep(cur);
+      currentExercises[heroIndex].weight = Math.round((cur + s) * 10) / 10;
+      persistActiveSession();
+      renderHeroSession();
+    });
+    stepRow.appendChild(plusBtn);
+  }
+
+  card.appendChild(stepRow);
+
+  const completeBtn = document.createElement("button");
+  completeBtn.className = "hero-complete-btn";
+  completeBtn.textContent = `세트 완료 (${completedSets.length + 1})`;
+  completeBtn.addEventListener("click", () => {
+    const target = currentExercises[heroIndex];
+    const weightVal = target.weight !== "" ? target.weight : 0;
+    const repsVal = target.currentReps || "";
+    if (!target.completedSets) target.completedSets = [];
+    target.completedSets.push({ weight: weightVal, reps: repsVal });
+    target.checked = true;
+    persistActiveSession();
+    startRestTimer();
+    renderHeroSession();
+  });
+  card.appendChild(completeBtn);
+
+  const restPill = document.createElement("div");
+  restPill.id = "rest-timer-pill";
+  restPill.className = "rest-timer-pill";
+  restPill.style.display = restEndTime ? "flex" : "none";
+  restPill.addEventListener("click", () => {
+    stopRestTimer();
+  });
+  card.appendChild(restPill);
+  updateRestTimerDisplay();
+
+  if (completedSets.length > 0) {
+    const logList = document.createElement("div");
+    logList.className = "hero-set-log-list";
+    completedSets.forEach((s, sIdx) => {
+      const item = document.createElement("div");
+      item.className = "set-log-item";
+      item.innerHTML = `<span>${sIdx + 1}세트 · ${isBodyweight ? "" : s.weight + "kg × "}${s.reps || "-"}회</span>`;
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "set-log-remove";
+      removeBtn.textContent = "✕";
+      removeBtn.addEventListener("click", () => {
+        currentExercises[heroIndex].completedSets.splice(sIdx, 1);
+        if (currentExercises[heroIndex].completedSets.length === 0) {
+          currentExercises[heroIndex].checked = false;
+        }
+        persistActiveSession();
+        renderHeroSession();
+      });
+      item.appendChild(removeBtn);
+      logList.appendChild(item);
+    });
+    card.appendChild(logList);
+  }
+}
+
+// ===== 세트 간 휴식 타이머 (기본 90초, 탭하면 건너뛰기) =====
+const REST_SECONDS = 90;
+
+function startRestTimer() {
+  restEndTime = Date.now() + REST_SECONDS * 1000;
+  if (restIntervalId) clearInterval(restIntervalId);
+  restIntervalId = setInterval(updateRestTimerDisplay, 500);
+  updateRestTimerDisplay();
+}
+
+function stopRestTimer() {
+  restEndTime = null;
+  if (restIntervalId) {
+    clearInterval(restIntervalId);
+    restIntervalId = null;
+  }
+  const pill = document.getElementById("rest-timer-pill");
+  if (pill) pill.style.display = "none";
+}
+
+function updateRestTimerDisplay() {
+  const pill = document.getElementById("rest-timer-pill");
+  if (!pill) return;
+
+  if (!restEndTime) {
+    pill.style.display = "none";
+    return;
+  }
+
+  const remaining = restEndTime - Date.now();
+  if (remaining <= 0) {
+    stopRestTimer();
+    return;
+  }
+
+  const sec = Math.ceil(remaining / 1000);
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  pill.style.display = "flex";
+  pill.innerHTML = `💨 휴식 ${m}:${String(s).padStart(2, "0")} <span class="hint">탭하면 건너뛰기</span>`;
+}
+
+// ===== 해당 운동의 가장 최근 기록 조회 =====
+function getLastRecordForExercise(name) {
   const logs = getLogs();
-  const dateKey = editingDateKey || new Date().toISOString().slice(0, 10);
+  const todayKey = getLocalDateKey();
+  const dates = Object.keys(logs).filter(k => k !== todayKey).sort().reverse();
+
+  for (const dateKey of dates) {
+    const entry = logs[dateKey];
+    if (!entry || entry.day === "rest" || !Array.isArray(entry.exercises)) continue;
+    const match = entry.exercises.find(e => e.name === name);
+    if (match && Array.isArray(match.sets) && match.sets.length > 0) {
+      const best = match.sets[match.sets.length - 1];
+      const text = currentMode === "bodyweight"
+        ? `${best.reps || "-"}회 × ${match.sets.length}세트`
+        : `${best.weight}kg × ${best.reps || "-"}회`;
+      return { date: dateKey, text: text };
+    }
+  }
+  return null;
+}
+
+// ===== 로그 저장 =====
+function saveLog(explicitDurationMinutes) {
+  const logs = getLogs();
+  const dateKey = editingDateKey || getLocalDateKey();
+  const existing = logs[dateKey];
+  const durationMinutes = explicitDurationMinutes !== undefined
+    ? explicitDurationMinutes
+    : (existing ? existing.durationMinutes : undefined);
 
   logs[dateKey] = {
     day: currentDay,
@@ -661,11 +1230,12 @@ function saveLog() {
     mode: currentMode,
     condition: currentCondition,
     conditionLabel: CONDITION_CONFIG[currentCondition].label,
+    durationMinutes: durationMinutes,
     exercises: currentExercises.map(ex => ({
       name: ex.name,
-      checked: ex.checked,
+      checked: ex.checked || (ex.completedSets && ex.completedSets.length > 0),
       weight: ex.weight,
-      sets: ex.sets
+      sets: ex.completedSets || []
     })),
     timestamp: new Date().toISOString()
   };
@@ -696,9 +1266,12 @@ function loadEntryForEditing(dateKey, entry) {
   currentDay = entry.day;
   currentCondition = entry.condition || 2;
   currentMode = entry.mode || "gym";
+  currentType = currentMode;
 
-  document.querySelectorAll(".mode-tab").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.mode === currentMode);
+  document.getElementById("rest-only-group").classList.remove("show");
+  document.getElementById("workout-detail-group").classList.add("show");
+  document.querySelectorAll(".type-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.type === currentType);
   });
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.day) === currentDay);
@@ -712,29 +1285,43 @@ function loadEntryForEditing(dateKey, entry) {
 
   currentExercises = entry.exercises.map(ex => {
     const routineMatch = routines[currentDay].exercises.find(r => r.name === ex.name);
+    const restoredSets = Array.isArray(ex.sets) ? ex.sets : [];
+    const target = routineMatch ? routineMatch.target : "직접 기록";
+    const lastSet = restoredSets.length ? restoredSets[restoredSets.length - 1] : null;
     return {
       name: ex.name,
       baseTarget: routineMatch ? routineMatch.target : undefined,
-      target: routineMatch ? routineMatch.target : "직접 기록",
+      target: target,
       checked: ex.checked,
-      weight: ex.weight,
-      sets: ex.sets,
+      weight: lastSet ? lastSet.weight : ex.weight,
+      completedSets: restoredSets,
+      currentReps: lastSet ? String(lastSet.reps) : parseSuggestedReps(target),
       custom: !routineMatch
     };
   });
 
+  openExerciseIndex = null;
+  switchScreen("screen-workout");
+
   updateEditingBanner();
   renderExercises();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  scrollWorkoutScreenToTop();
 }
 
 // ===== 과거 빈 날짜에 새 기록 시작 =====
 function startNewEntryForDate(dateKey) {
   editingDateKey = dateKey;
+  currentDay = 1;
+  selectType("gym");
   selectCondition(2);
-  selectDay(1);
   updateEditingBanner();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  switchScreen("screen-workout");
+  scrollWorkoutScreenToTop();
+}
+
+function scrollWorkoutScreenToTop() {
+  const el = document.getElementById("screen-workout");
+  if (el) el.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function cancelEditing() {
@@ -748,21 +1335,21 @@ function updateEditingBanner() {
   const saveBtn = document.getElementById("save-log-btn");
   const restBtn = document.getElementById("rest-day-btn");
 
+  saveBtn.textContent = "기록 편집";
+
   if (editingDateKey) {
     document.getElementById("editing-banner-text").textContent = `${editingDateKey} 기록 편집 중`;
     banner.classList.add("show");
-    saveBtn.textContent = `${editingDateKey} 기록 저장`;
     restBtn.textContent = `${editingDateKey}를 휴식일로 기록 💤`;
   } else {
     banner.classList.remove("show");
-    saveBtn.textContent = "오늘 기록 저장";
     restBtn.textContent = "오늘은 휴식일이야 💤";
   }
 }
 
 // ===== 기록 삭제 =====
 function deleteLogEntry(dateKey) {
-  if (!confirm(`${dateKey} 기록을 삭제할까? 되돌릴 수 없어.`)) return;
+  if (!confirm(`${dateKey} 기록을 삭제할까요? 되돌릴 수 없어요.`)) return;
 
   const logs = getLogs();
   delete logs[dateKey];
@@ -780,7 +1367,7 @@ function deleteLogEntry(dateKey) {
 // ===== 휴식일 저장 =====
 function saveRestDay() {
   const logs = getLogs();
-  const dateKey = editingDateKey || new Date().toISOString().slice(0, 10);
+  const dateKey = editingDateKey || getLocalDateKey();
 
   logs[dateKey] = {
     day: "rest",
@@ -792,7 +1379,7 @@ function saveRestDay() {
   };
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
-  showToast(editingDateKey ? `${dateKey} 휴식일로 기록 완료` : "휴식일로 기록했어 💤");
+  showToast(editingDateKey ? `${dateKey} 휴식일로 기록 완료` : "휴식일로 기록했어요 💤");
 
   if (editingDateKey) {
     editingDateKey = null;
@@ -828,8 +1415,36 @@ function initCalendarNav() {
   });
 }
 
+// ===== 표시 중인 달의 통계 (운동 횟수 / 총 시간 / 휴식일) =====
+function renderMonthStats() {
+  const container = document.getElementById("month-stats");
+  if (!container) return;
+
+  const logs = getLogs();
+  const ym = `${calYear}-${String(calMonth + 1).padStart(2, "0")}`;
+  const monthKeys = Object.keys(logs).filter(k => k.startsWith(ym));
+
+  const workoutKeys = monthKeys.filter(k => logs[k].day !== "rest");
+  const restKeys = monthKeys.filter(k => logs[k].day === "rest");
+  const workoutCount = workoutKeys.length;
+  const totalMinutes = workoutKeys.reduce((sum, k) => sum + (logs[k].durationMinutes || 0), 0);
+
+  const timeText = totalMinutes >= 60
+    ? `${Math.floor(totalMinutes / 60)}시간 ${totalMinutes % 60}분`
+    : `${totalMinutes}분`;
+
+  container.innerHTML = `
+    <div class="stat-cell"><div class="stat-num">${workoutCount}회</div><div class="stat-label">운동</div></div>
+    <div class="stat-cell"><div class="stat-num">${timeText}</div><div class="stat-label">총 시간</div></div>
+    <div class="stat-cell"><div class="stat-num">😴 ${restKeys.length}일</div><div class="stat-label">휴식</div></div>
+  `;
+}
+
 // ===== 월별 캘린더 렌더링 =====
 function renderHistory() {
+  renderProfileSummaryCard();
+  renderMonthStats();
+
   const logs = getLogs();
   document.getElementById("calendar-title").textContent = `${calYear}년 ${calMonth + 1}월`;
 
@@ -838,7 +1453,7 @@ function renderHistory() {
 
   const firstDayOfWeek = new Date(calYear, calMonth, 1).getDay();
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const todayStr = getLocalDateKey();
 
   for (let i = 0; i < firstDayOfWeek; i++) {
     const empty = document.createElement("div");
@@ -876,12 +1491,21 @@ function renderHistory() {
   document.getElementById("day-detail").innerHTML = "";
 }
 
+// ===== 세트 기록 표시용 포맷 (배열/레거시 문자열 둘 다 처리) =====
+function formatSetsDetail(sets) {
+  if (Array.isArray(sets) && sets.length) {
+    return sets.map(s => `${s.weight}kg×${s.reps || "-"}`).join(", ");
+  }
+  if (typeof sets === "string" && sets) return sets;
+  return "";
+}
+
 // ===== 날짜 클릭 시 상세 기록 표시 =====
 function showDayDetail(dateKey, entry) {
   const detail = document.getElementById("day-detail");
 
   if (!entry) {
-    const todayStr = new Date().toISOString().slice(0, 10);
+    const todayStr = getLocalDateKey();
     const isFuture = dateKey > todayStr;
     detail.innerHTML = `
       <div class="history-entry">
@@ -900,7 +1524,7 @@ function showDayDetail(dateKey, entry) {
     detail.innerHTML = `
       <div class="history-entry">
         <div class="h-date">${dateKey} · 휴식일 💤</div>
-        <div class="h-summary">오늘은 쉬는 날이었어</div>
+        <div class="h-summary">오늘은 쉬는 날이었어요</div>
         <div class="detail-actions">
           <button class="delete-btn" id="detail-delete-btn">삭제</button>
         </div>
@@ -916,17 +1540,15 @@ function showDayDetail(dateKey, entry) {
   const exLines = entry.exercises.map((ex, i) => {
     const statusClass = ex.checked ? "done" : "missed";
     const mark = ex.checked ? "✓" : "✗";
-    const detailParts = [];
-    if (ex.weight) detailParts.push(`${ex.weight}kg`);
-    if (ex.sets) detailParts.push(ex.sets);
-    const detailStr = detailParts.length ? ` — ${detailParts.join(" / ")}` : "";
+    const setsDetail = formatSetsDetail(ex.sets);
+    const detailStr = setsDetail ? ` — ${setsDetail}` : (ex.weight ? ` — ${ex.weight}kg` : "");
     return `<div class="h-ex-line ${statusClass}"><span class="h-mark">${mark}</span><span class="h-ex-name">${i + 1}. ${ex.name}${detailStr}</span></div>`;
   }).join("");
 
   detail.innerHTML = `
     <div class="history-entry">
       <div class="h-date">${dateKey} · Day ${entry.day} (${entry.dayName})${entry.mode === "bodyweight" ? " 🤸 맨몸" : ""}</div>
-      <div class="h-summary">${doneCount}/${totalCount} 완료 · ${entry.conditionLabel || ""}</div>
+      <div class="h-summary">${doneCount}/${totalCount} 완료 · ${entry.conditionLabel || ""}${entry.durationMinutes ? ` · ⏱ ${entry.durationMinutes}분` : ""}</div>
       ${exLines}
       <div class="detail-actions">
         <button class="edit-btn" id="detail-edit-btn">수정하기</button>
@@ -937,6 +1559,111 @@ function showDayDetail(dateKey, entry) {
 
   document.getElementById("detail-edit-btn").addEventListener("click", () => loadEntryForEditing(dateKey, entry));
   document.getElementById("detail-delete-btn").addEventListener("click", () => deleteLogEntry(dateKey));
+}
+
+// ===== 칭호 카드 HTML 생성 (공용) =====
+function buildTitleCardHTML(bmi, workoutCount, displayName) {
+  const tier = getBMITier(bmi);
+  const level = getWorkoutLevel(workoutCount);
+  const levelData = tier[level];
+  const title = levelData.title;
+  const emoji = levelData.emoji;
+
+  let progressText, progressPct;
+  if (level === "base") {
+    const remaining = 8 - workoutCount;
+    progressText = `1차 전직까지 ${remaining}회 남음`;
+    progressPct = Math.min(100, (workoutCount / 8) * 100);
+  } else if (level === "mid") {
+    const remaining = 16 - workoutCount;
+    progressText = `1차 전직 완료 ✓ · 2차 전직까지 ${remaining}회 남음`;
+    progressPct = Math.min(100, ((workoutCount - 8) / 8) * 100);
+  } else {
+    progressText = `2차 전직 완료 ✓ · 최종 전직 달성 🎉`;
+    progressPct = 100;
+  }
+
+  return `
+    <div class="profile-title-card">
+      <div class="profile-title-emoji">${emoji}</div>
+      <div class="profile-title-name">${title}</div>
+      <div class="profile-title-stats">${displayName} · BMI ${bmi.toFixed(1)} · 이번 달 ${workoutCount}회 운동</div>
+      <div class="profile-progress-text">${progressText}</div>
+      <div class="profile-progress-bar-bg">
+        <div class="profile-progress-bar-fill" style="width:${progressPct}%;"></div>
+      </div>
+    </div>
+  `;
+}
+
+// ===== 기록 화면 상단 프로필 요약 카드 =====
+function renderProfileSummaryCard() {
+  const container = document.getElementById("history-profile-summary");
+  const profile = getProfile();
+
+  if (!profile || !profile.height || !profile.weight) {
+    container.innerHTML = `<div class="profile-summary-placeholder"><div class="big">👤</div>탭해서 프로필을 설정해주세요</div>`;
+    return;
+  }
+
+  const heightM = profile.height / 100;
+  const bmi = profile.weight / (heightM * heightM);
+  const workoutCount = getMonthlyWorkoutCount();
+  const displayName = profile.name ? `${profile.name}의 칭호` : "칭호";
+
+  container.innerHTML = buildTitleCardHTML(bmi, workoutCount, displayName);
+
+  if (window.twemoji) {
+    twemoji.parse(container, { folder: "svg", ext: ".svg" });
+  }
+}
+
+// ===== 데이터 백업 (내보내기 / 가져오기) =====
+function exportData() {
+  const payload = {
+    app: "monster-project",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    logs: getLogs(),
+    baseWeights: getBaseWeights(),
+    profile: getProfile()
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `새사람프로젝트_백업_${getLocalDateKey()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("백업 파일을 내려받았어요 📤");
+}
+
+function importData(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data || data.app !== "monster-project") {
+        alert("이 앱의 백업 파일이 아니에요.");
+        return;
+      }
+      if (!confirm("현재 데이터를 백업 파일 내용으로 덮어쓸까요? 되돌릴 수 없어요.")) return;
+
+      if (data.logs) localStorage.setItem(STORAGE_KEY, JSON.stringify(data.logs));
+      if (data.baseWeights) saveBaseWeights(data.baseWeights);
+      if (data.profile) saveProfileData(data.profile);
+
+      renderHistory();
+      showToast("데이터 복원 완료 ✓");
+      closeProfileModal();
+    } catch (err) {
+      alert("파일을 읽을 수 없어요. 올바른 백업 파일인지 확인해주세요.");
+    }
+  };
+  reader.readAsText(file);
 }
 
 // ===== 프로필 모달 =====
@@ -960,16 +1687,17 @@ function handleSaveProfile() {
   const weight = parseFloat(document.getElementById("profile-weight").value);
 
   if (!height || !weight || height <= 0 || weight <= 0) {
-    alert("키와 몸무게를 정확히 입력해줘.");
+    alert("키와 몸무게를 정확히 입력해주세요.");
     return;
   }
 
   saveProfileData({ name, height, weight });
   showToast("프로필 저장 완료");
   renderProfileResultFromInputs();
+  renderProfileSummaryCard();
   checkEasterEgg(name);
 
-  if (confirm(`체중(${weight}kg) 기준으로 각 운동의 기준무게도 자동으로 맞춰줄까?\n(직접 설정해둔 기존 값은 덮어써져)`)) {
+  if (confirm(`체중(${weight}kg) 기준으로 각 운동의 기준무게도 자동으로 맞춰줄까요?\n(직접 설정해둔 기존 값은 덮어써져요)`)) {
     const autoWeights = computeAutoBaseWeights(weight);
     const weights = getBaseWeights();
     Object.assign(weights, autoWeights);
@@ -996,37 +1724,15 @@ function renderProfileResultFromInputs() {
 
   const heightM = height / 100;
   const bmi = weight / (heightM * heightM);
-  const tier = getBMITier(bmi);
   const workoutCount = getMonthlyWorkoutCount();
-  const level = getWorkoutLevel(workoutCount);
-  const title = tier[level];
   const displayName = name ? `${name}의 칭호` : "칭호";
 
-  let progressText, progressPct;
-  if (level === "base") {
-    const remaining = 8 - workoutCount;
-    progressText = `1차 전직까지 ${remaining}회 남음`;
-    progressPct = Math.min(100, (workoutCount / 8) * 100);
-  } else if (level === "mid") {
-    const remaining = 16 - workoutCount;
-    progressText = `1차 전직 완료 ✓ · 2차 전직까지 ${remaining}회 남음`;
-    progressPct = Math.min(100, ((workoutCount - 8) / 8) * 100);
-  } else {
-    progressText = `2차 전직 완료 ✓ · 최종 전직 달성 🎉`;
-    progressPct = 100;
-  }
+  resultEl.innerHTML = buildTitleCardHTML(bmi, workoutCount, displayName) +
+    `<div class="profile-credit">아이콘: Twemoji (CC-BY 4.0)</div>`;
 
-  resultEl.innerHTML = `
-    <div class="profile-title-card">
-      <div class="profile-title-emoji">${tier.emoji}</div>
-      <div class="profile-title-name">${title}</div>
-      <div class="profile-title-stats">${displayName} · BMI ${bmi.toFixed(1)} · 이번 달 ${workoutCount}회 운동</div>
-      <div class="profile-progress-text">${progressText}</div>
-      <div class="profile-progress-bar-bg">
-        <div class="profile-progress-bar-fill" style="width:${progressPct}%;"></div>
-      </div>
-    </div>
-  `;
+  if (window.twemoji) {
+    twemoji.parse(resultEl, { folder: "svg", ext: ".svg" });
+  }
 }
 
 // ===== Tip 모달 =====
