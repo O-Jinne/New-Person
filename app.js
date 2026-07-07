@@ -328,29 +328,7 @@ function getMasterList() {
   return currentMode === "bodyweight" ? BODYWEIGHT_MASTER_EXERCISES : MASTER_EXERCISES;
 }
 
-const CONDITION_CONFIG = {
-  1: {
-    label: "컨디션 안좋음",
-    note: "무게 10~20% 낮추고 자세에 집중해보세요. 세트 수도 살짝 줄였어요.",
-    setAdjust: -1,
-    weightHint: "평소 대비 80~90%"
-  },
-  2: {
-    label: "컨디션 보통",
-    note: "평소 루틴 그대로 진행하면 돼요.",
-    setAdjust: 0,
-    weightHint: "평소 무게"
-  },
-  3: {
-    label: "컨디션 좋음",
-    note: "오늘 컨디션 최고예요! 무게 살짝 올려서 도전해보세요.",
-    setAdjust: 0,
-    weightHint: "평소 대비 +2.5~5kg 시도"
-  }
-};
-
 let currentDay = 1;
-let currentCondition = 2;
 let currentMode = "gym";
 let currentType = "gym";
 let currentExercises = [];
@@ -372,7 +350,6 @@ function persistActiveSession() {
     startTime: workoutStartTime,
     heroIndex: heroIndex,
     day: currentDay,
-    condition: currentCondition,
     mode: currentMode,
     exercises: currentExercises
   };
@@ -393,7 +370,6 @@ function restoreActiveSession() {
   if (!saved || !saved.startTime || !Array.isArray(saved.exercises)) return false;
 
   currentDay = saved.day || 1;
-  currentCondition = saved.condition || 2;
   currentMode = saved.mode || "gym";
   currentType = currentMode;
   currentExercises = saved.exercises;
@@ -407,10 +383,6 @@ function restoreActiveSession() {
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.day) === currentDay);
   });
-  document.querySelectorAll(".condition-tab").forEach(btn => {
-    btn.classList.toggle("active", parseInt(btn.dataset.condition) === currentCondition);
-  });
-  document.getElementById("condition-note").textContent = CONDITION_CONFIG[currentCondition].note;
   document.getElementById("day-routine-caption").textContent = `Day ${currentDay} · ${getRoutines()[currentDay].name}`;
   document.getElementById("rest-only-group").classList.remove("show");
   document.getElementById("workout-detail-group").classList.add("show");
@@ -499,16 +471,6 @@ function promptSetBaseWeight(name, idx) {
   renderExercises();
 }
 
-// ===== 목표 세트 텍스트에서 세트 수 조정 =====
-function adjustTarget(target, setAdjust) {
-  if (setAdjust === 0) return target;
-  const match = target.match(/^(\d+)(세트.*)$/);
-  if (!match) return target;
-  const originalSets = parseInt(match[1]);
-  const newSets = Math.max(2, originalSets + setAdjust);
-  return newSets + match[2];
-}
-
 const THEME_KEY = "monster-project-theme";
 
 function getTheme() {
@@ -536,10 +498,6 @@ function init() {
 
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.addEventListener("click", () => selectDay(parseInt(btn.dataset.day)));
-  });
-
-  document.querySelectorAll(".condition-tab").forEach(btn => {
-    btn.addEventListener("click", () => selectCondition(parseInt(btn.dataset.condition)));
   });
 
   document.querySelectorAll(".type-tab").forEach(btn => {
@@ -586,7 +544,6 @@ function init() {
   document.getElementById("history-profile-summary").addEventListener("click", openProfileModal);
 
   selectType("gym");
-  selectCondition(2);
   initCalendarNav();
   switchScreen("screen-history");
   renderHistory();
@@ -627,23 +584,6 @@ function selectType(type) {
   }
 }
 
-// ===== 컨디션 선택 =====
-function selectCondition(condition) {
-  currentCondition = condition;
-  document.querySelectorAll(".condition-tab").forEach(btn => {
-    btn.classList.toggle("active", parseInt(btn.dataset.condition) === condition);
-  });
-  document.getElementById("condition-note").textContent = CONDITION_CONFIG[condition].note;
-
-  const setAdjust = CONDITION_CONFIG[condition].setAdjust;
-  currentExercises.forEach(ex => {
-    if (!ex.custom && ex.baseTarget) {
-      ex.target = adjustTarget(ex.baseTarget, setAdjust);
-    }
-  });
-  renderExercises();
-}
-
 // ===== Day 선택 =====
 function selectDay(day) {
   currentDay = day;
@@ -656,18 +596,16 @@ function selectDay(day) {
     captionEl.textContent = `Day ${day} · ${getRoutines()[day].name}`;
   }
 
-  const setAdjust = CONDITION_CONFIG[currentCondition].setAdjust;
   const base = getRoutines()[day].exercises.map(ex => {
     const baseWeight = getBaseWeight(ex.name);
-    const adjustedTarget = adjustTarget(ex.target, setAdjust);
     return {
       name: ex.name,
       baseTarget: ex.target,
-      target: adjustedTarget,
+      target: ex.target,
       checked: false,
       weight: baseWeight !== null ? baseWeight : "",
       completedSets: [],
-      currentReps: parseSuggestedReps(adjustedTarget),
+      currentReps: parseSuggestedReps(ex.target),
       custom: false
     };
   });
@@ -747,7 +685,7 @@ function renderExercises() {
         const baseWeight = getBaseWeight(ex.name);
         const baseLine = document.createElement("div");
         baseLine.className = "weight-base-line";
-        baseLine.innerHTML = `<span>${baseWeight !== null ? `기준무게 ${baseWeight}kg` : "기준무게 미설정"} · ${CONDITION_CONFIG[currentCondition].weightHint}</span>`;
+        baseLine.innerHTML = `<span>${baseWeight !== null ? `기준무게 ${baseWeight}kg` : "기준무게 미설정"}</span>`;
         const editBtn = document.createElement("button");
         editBtn.className = "weight-edit-btn";
         editBtn.textContent = "설정";
@@ -1231,8 +1169,6 @@ function saveLog(explicitDurationMinutes) {
     day: currentDay,
     dayName: getRoutines()[currentDay].name,
     mode: currentMode,
-    condition: currentCondition,
-    conditionLabel: CONDITION_CONFIG[currentCondition].label,
     durationMinutes: durationMinutes,
     exercises: currentExercises.map(ex => ({
       name: ex.name,
@@ -1267,7 +1203,6 @@ function saveLog(explicitDurationMinutes) {
 function loadEntryForEditing(dateKey, entry) {
   editingDateKey = dateKey;
   currentDay = entry.day;
-  currentCondition = entry.condition || 2;
   currentMode = entry.mode || "gym";
   currentType = currentMode;
 
@@ -1279,10 +1214,6 @@ function loadEntryForEditing(dateKey, entry) {
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.day) === currentDay);
   });
-  document.querySelectorAll(".condition-tab").forEach(btn => {
-    btn.classList.toggle("active", parseInt(btn.dataset.condition) === currentCondition);
-  });
-  document.getElementById("condition-note").textContent = CONDITION_CONFIG[currentCondition].note;
   document.getElementById("day-routine-caption").textContent = `Day ${currentDay} · ${getRoutines()[currentDay].name}`;
 
   const routines = getRoutines();
@@ -1317,7 +1248,6 @@ function startNewEntryForDate(dateKey) {
   editingDateKey = dateKey;
   currentDay = 1;
   selectType("gym");
-  selectCondition(2);
   updateEditingBanner();
   switchScreen("screen-workout");
   scrollWorkoutScreenToTop();
@@ -1376,8 +1306,6 @@ function saveRestDay() {
   logs[dateKey] = {
     day: "rest",
     dayName: "휴식",
-    condition: null,
-    conditionLabel: "",
     exercises: [],
     timestamp: new Date().toISOString()
   };
@@ -1552,7 +1480,7 @@ function showDayDetail(dateKey, entry) {
   detail.innerHTML = `
     <div class="history-entry">
       <div class="h-date">${dateKey} · Day ${entry.day} (${entry.dayName})${entry.mode === "bodyweight" ? " 🤸 맨몸" : ""}</div>
-      <div class="h-summary">${doneCount}/${totalCount} 완료 · ${entry.conditionLabel || ""}${entry.durationMinutes ? ` · ⏱ ${entry.durationMinutes}분` : ""}</div>
+      <div class="h-summary">${doneCount}/${totalCount} 완료${entry.durationMinutes ? ` · ⏱ ${entry.durationMinutes}분` : ""}</div>
       ${exLines}
       <div class="detail-actions">
         <button class="edit-btn" id="detail-edit-btn">수정하기</button>
