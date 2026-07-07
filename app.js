@@ -16,7 +16,7 @@ const ROUTINES = {
     name: "등 + 이두",
     exercises: [
       { name: "랫풀다운", target: "5세트 x 6~8회" },
-      { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
+      { name: "바벨 벤트오버 로우", target: "3세트 x 8~10회" },
       { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
       { name: "바벨 컬", target: "4세트 x 8~10회" },
       { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
@@ -36,13 +36,13 @@ const ROUTINES = {
     ]
   },
   4: {
-    name: "어깨 + 팔",
+    name: "어깨 + 이두",
     exercises: [
       { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
       { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
       { name: "페이스풀", target: "3세트 x 15회" },
-      { name: "바벨컬+푸시다운 슈퍼세트", target: "4세트 x 10회" },
-      { name: "해머컬+오버헤드 익스텐션 슈퍼세트", target: "3세트 x 12회" },
+      { name: "바벨 컬", target: "4세트 x 8~10회" },
+      { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
       { name: "덤벨 컬 21s", target: "2세트" },
       { name: "스텝밀", target: "600스텝" }
     ]
@@ -92,8 +92,6 @@ const DEFAULT_BASE_WEIGHTS = {
   "덤벨 숄더 프레스": 12,
   "사이드 레터럴 레이즈": 6,
   "페이스풀": 15,
-  "바벨컬+푸시다운 슈퍼세트": 20,
-  "해머컬+오버헤드 익스텐션 슈퍼세트": 10,
   "덤벨 컬 21s": 8
 };
 
@@ -274,12 +272,11 @@ const BODYWEIGHT_ROUTINES = {
     ]
   },
   4: {
-    name: "어깨 + 팔 (맨몸)",
+    name: "어깨 + 이두 (맨몸)",
     exercises: [
       { name: "파이크 푸시업", target: "4세트 x 10~12회" },
       { name: "플랭크 숄더탭", target: "3세트 x 20회" },
       { name: "친업 (이두 집중)", target: "3세트 x 최대" },
-      { name: "딥스 (삼두 집중)", target: "3세트 x 12~15회" },
       { name: "파이크 홀드", target: "3세트 x 30초" },
       { name: "밴드/타올 컬", target: "3세트 x 15회" }
     ]
@@ -414,6 +411,7 @@ function restoreActiveSession() {
     btn.classList.toggle("active", parseInt(btn.dataset.condition) === currentCondition);
   });
   document.getElementById("condition-note").textContent = CONDITION_CONFIG[currentCondition].note;
+  document.getElementById("day-routine-caption").textContent = `Day ${currentDay} · ${getRoutines()[currentDay].name}`;
   document.getElementById("rest-only-group").classList.remove("show");
   document.getElementById("workout-detail-group").classList.add("show");
 
@@ -652,6 +650,11 @@ function selectDay(day) {
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.day) === day);
   });
+
+  const captionEl = document.getElementById("day-routine-caption");
+  if (captionEl) {
+    captionEl.textContent = `Day ${day} · ${getRoutines()[day].name}`;
+  }
 
   const setAdjust = CONDITION_CONFIG[currentCondition].setAdjust;
   const base = getRoutines()[day].exercises.map(ex => {
@@ -1280,6 +1283,7 @@ function loadEntryForEditing(dateKey, entry) {
     btn.classList.toggle("active", parseInt(btn.dataset.condition) === currentCondition);
   });
   document.getElementById("condition-note").textContent = CONDITION_CONFIG[currentCondition].note;
+  document.getElementById("day-routine-caption").textContent = `Day ${currentDay} · ${getRoutines()[currentDay].name}`;
 
   const routines = getRoutines();
 
@@ -1562,7 +1566,7 @@ function showDayDetail(dateKey, entry) {
 }
 
 // ===== 칭호 카드 HTML 생성 (공용) =====
-function buildTitleCardHTML(bmi, workoutCount, displayName) {
+function buildTitleCardHTML(bmi, workoutCount, displayName, compact) {
   const tier = getBMITier(bmi);
   const level = getWorkoutLevel(workoutCount);
   const levelData = tier[level];
@@ -1572,15 +1576,30 @@ function buildTitleCardHTML(bmi, workoutCount, displayName) {
   let progressText, progressPct;
   if (level === "base") {
     const remaining = 8 - workoutCount;
-    progressText = `1차 전직까지 ${remaining}회 남음`;
+    progressText = `1차 전직까지 ${remaining}회`;
     progressPct = Math.min(100, (workoutCount / 8) * 100);
   } else if (level === "mid") {
     const remaining = 16 - workoutCount;
-    progressText = `1차 전직 완료 ✓ · 2차 전직까지 ${remaining}회 남음`;
+    progressText = `2차 전직까지 ${remaining}회`;
     progressPct = Math.min(100, ((workoutCount - 8) / 8) * 100);
   } else {
-    progressText = `2차 전직 완료 ✓ · 최종 전직 달성 🎉`;
+    progressText = `최종 전직 달성 🎉`;
     progressPct = 100;
+  }
+
+  if (compact) {
+    return `
+      <div class="profile-title-card-compact">
+        <div class="compact-emoji">${emoji}</div>
+        <div class="compact-info">
+          <div class="compact-name">${title} · BMI ${bmi.toFixed(1)}</div>
+          <div class="compact-stats">이번 달 ${workoutCount}회 · ${progressText}</div>
+          <div class="compact-bar-bg">
+            <div class="compact-bar-fill" style="width:${progressPct}%;"></div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   return `
@@ -1596,7 +1615,7 @@ function buildTitleCardHTML(bmi, workoutCount, displayName) {
   `;
 }
 
-// ===== 기록 화면 상단 프로필 요약 카드 =====
+// ===== 기록 화면 상단 프로필 요약 카드 (압축형) =====
 function renderProfileSummaryCard() {
   const container = document.getElementById("history-profile-summary");
   const profile = getProfile();
@@ -1611,7 +1630,7 @@ function renderProfileSummaryCard() {
   const workoutCount = getMonthlyWorkoutCount();
   const displayName = profile.name ? `${profile.name}의 칭호` : "칭호";
 
-  container.innerHTML = buildTitleCardHTML(bmi, workoutCount, displayName);
+  container.innerHTML = buildTitleCardHTML(bmi, workoutCount, displayName, true);
 
   if (window.twemoji) {
     twemoji.parse(container, { folder: "svg", ext: ".svg" });

@@ -161,14 +161,10 @@ header p {
 }
 
 .history-top {
-  flex: 0 0 42%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 0;
+  flex: 0 0 auto;
+  padding: 10px 16px;
   border-bottom: 1px solid var(--divider);
   cursor: pointer;
-  overflow: hidden;
 }
 
 .history-bottom {
@@ -295,9 +291,24 @@ header p {
   gap: 8px;
 }
 
-.day-tabs { grid-template-columns: repeat(4, 1fr); margin-bottom: 10px; }
+.day-tabs { grid-template-columns: repeat(4, 1fr); }
 .type-select { grid-template-columns: repeat(3, 1fr); margin-bottom: 10px; }
 .condition-tabs { grid-template-columns: repeat(3, 1fr); }
+
+.day-condition-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.day-routine-caption {
+  font-size: 12px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  margin: 0 0 4px;
+  text-align: center;
+}
 
 .day-tab,
 .type-tab,
@@ -319,7 +330,6 @@ header p {
   padding: 4px;
 }
 
-.day-tab span,
 .type-tab span {
   display: block;
   font-size: 11px;
@@ -331,10 +341,6 @@ header p {
 .condition-tab.active {
   background: var(--accent);
   color: white;
-}
-
-.day-tab.active span {
-  color: var(--accent-ink);
 }
 
 /* ---- 시그니처: 기구 / 맨몸 / 휴식 (Bauhaus 원색 블록) ---- */
@@ -363,21 +369,18 @@ header p {
   display: block;
 }
 
-.condition-select {
-  background: var(--surface);
-  border-radius: var(--r-md);
-  padding: 14px;
-  margin-bottom: 12px;
-}
-
 .condition-tab {
   font-size: 24px;
+}
+
+.day-tab {
+  font-size: 20px;
 }
 
 .condition-note {
   font-size: 12px;
   color: var(--ink-dim);
-  margin: 10px 0 0;
+  margin: 0 0 10px;
   text-align: center;
 }
 
@@ -1223,6 +1226,58 @@ header p {
   margin-top: 16px;
 }
 
+.profile-title-card-compact {
+  background: var(--accent-deep);
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-title-card-compact .compact-emoji {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.profile-title-card-compact .compact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-title-card-compact .compact-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-title-card-compact .compact-stats {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 500;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-title-card-compact .compact-bar-bg {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  height: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.profile-title-card-compact .compact-bar-fill {
+  background: #fff;
+  height: 100%;
+  border-radius: 3px;
+}
+
 .profile-title-card {
   background: var(--accent-deep);
   border-radius: var(--r-lg);
@@ -1269,16 +1324,16 @@ header p {
 }
 
 .profile-summary-placeholder {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--ink-dim);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  padding: 0 20px;
 }
 
 .profile-summary-placeholder .big {
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: 22px;
 }
 
 .profile-progress-text {
