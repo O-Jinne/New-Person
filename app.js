@@ -410,13 +410,32 @@ function parseSuggestedReps(target) {
   return match ? match[1] : "";
 }
 
-// ===== 무게 크기에 따른 증감 단위 (작으면 1kg, 중간 2.5kg, 크면 5kg) =====
+// ===== 무게 증감 단위 (0.5kg 고정, 꾹 누르면 연속 증가) =====
 function getWeightStep(weight) {
-  const w = parseFloat(weight) || 0;
-  if (w < 20) return 1;
-  if (w < 50) return 2.5;
-  return 5;
+  return 0.5;
 }
+
+// ===== 버튼 꾹 누르면 연속 반복 실행 (첫 탭 즉시 1회 + 0.4초 후 0.09초 간격 반복) =====
+let activeHoldStop = null;
+
+function bindHoldRepeat(el, fn) {
+  const start = (e) => {
+    e.preventDefault();
+    if (activeHoldStop) activeHoldStop();
+    fn();
+    const timeoutId = setTimeout(() => {
+      const intervalId = setInterval(fn, 90);
+      activeHoldStop = () => { clearInterval(intervalId); activeHoldStop = null; };
+    }, 400);
+    activeHoldStop = () => { clearTimeout(timeoutId); activeHoldStop = null; };
+  };
+  el.addEventListener("touchstart", start, { passive: false });
+  el.addEventListener("mousedown", start);
+}
+
+document.addEventListener("touchend", () => { if (activeHoldStop) activeHoldStop(); });
+document.addEventListener("touchcancel", () => { if (activeHoldStop) activeHoldStop(); });
+document.addEventListener("mouseup", () => { if (activeHoldStop) activeHoldStop(); });
 
 // ===== 기준 무게 관리 =====
 function getBaseWeights() {
@@ -487,9 +506,30 @@ function toggleTheme() {
   applyTheme(getTheme() === "dark" ? "light" : "dark");
 }
 
+// ===== 이미 저장된 데이터 중 잘못된 durationMinutes 값 정리 (1회성 마이그레이션) =====
+function migrateCorruptedDurations() {
+  const logs = getLogs();
+  let changed = false;
+
+  Object.keys(logs).forEach(dateKey => {
+    const raw = logs[dateKey].durationMinutes;
+    if (raw === undefined) return;
+    const clean = toValidMinutes(raw);
+    if (clean !== raw) {
+      logs[dateKey].durationMinutes = clean;
+      changed = true;
+    }
+  });
+
+  if (changed) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(logs));
+  }
+}
+
 // ===== 초기화 =====
 function init() {
   seedDefaultBaseWeights();
+  migrateCorruptedDurations();
   applyTheme(getTheme());
 
   const today = new Date();
@@ -505,7 +545,7 @@ function init() {
   });
 
   document.getElementById("add-exercise-btn").addEventListener("click", openExerciseModal);
-  document.getElementById("save-log-btn").addEventListener("click", saveLog);
+  document.getElementById("save-log-btn").addEventListener("click", () => saveLog());
   document.getElementById("start-workout-btn").addEventListener("click", startWorkoutSession);
   document.getElementById("finish-workout-btn").addEventListener("click", finishWorkoutSession);
   document.getElementById("rest-day-btn").addEventListener("click", saveRestDay);
@@ -704,8 +744,8 @@ function renderExercises() {
         const minusBtn = document.createElement("button");
         minusBtn.className = "weight-adjust-btn";
         minusBtn.textContent = `－${step}`;
-        minusBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
+        minusBtn.addEventListener("click", (e) => e.stopPropagation());
+        bindHoldRepeat(minusBtn, () => {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
           const s = getWeightStep(cur);
           currentExercises[idx].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
@@ -721,8 +761,8 @@ function renderExercises() {
         const plusBtn = document.createElement("button");
         plusBtn.className = "weight-adjust-btn";
         plusBtn.textContent = `+${step}`;
-        plusBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
+        plusBtn.addEventListener("click", (e) => e.stopPropagation());
+        bindHoldRepeat(plusBtn, () => {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
           const s = getWeightStep(cur);
           currentExercises[idx].weight = Math.round((cur + s) * 10) / 10;
@@ -1004,7 +1044,7 @@ function renderHeroSession() {
     const minusBtn = document.createElement("button");
     minusBtn.className = "hero-step-btn";
     minusBtn.textContent = `－${step}`;
-    minusBtn.addEventListener("click", () => {
+    bindHoldRepeat(minusBtn, () => {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
       const s = getWeightStep(cur);
       currentExercises[heroIndex].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
@@ -1030,7 +1070,7 @@ function renderHeroSession() {
     const plusBtn = document.createElement("button");
     plusBtn.className = "hero-step-btn";
     plusBtn.textContent = `+${step}`;
-    plusBtn.addEventListener("click", () => {
+    bindHoldRepeat(plusBtn, () => {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
       const s = getWeightStep(cur);
       currentExercises[heroIndex].weight = Math.round((cur + s) * 10) / 10;
@@ -1156,14 +1196,21 @@ function getLastRecordForExercise(name) {
   return null;
 }
 
+// ===== 운동 시간 값 안전 검증 (잘못된 값이 들어와도 숫자 또는 undefined만 반환) =====
+function toValidMinutes(v) {
+  const n = Number(v);
+  return Number.isFinite(n) && n > 0 ? n : undefined;
+}
+
 // ===== 로그 저장 =====
 function saveLog(explicitDurationMinutes) {
   const logs = getLogs();
   const dateKey = editingDateKey || getLocalDateKey();
   const existing = logs[dateKey];
-  const durationMinutes = explicitDurationMinutes !== undefined
+  const rawDuration = explicitDurationMinutes !== undefined
     ? explicitDurationMinutes
     : (existing ? existing.durationMinutes : undefined);
+  const durationMinutes = toValidMinutes(rawDuration);
 
   logs[dateKey] = {
     day: currentDay,
@@ -1294,6 +1341,11 @@ function deleteLogEntry(dateKey) {
     updateEditingBanner();
   }
 
+  if (selectedCalendarDate === dateKey) {
+    selectedCalendarDate = null;
+    document.getElementById("day-detail").innerHTML = "";
+  }
+
   showToast("기록 삭제 완료");
   renderHistory();
 }
@@ -1333,6 +1385,7 @@ function getLogs() {
 // ===== 캘린더 상태 =====
 let calYear = new Date().getFullYear();
 let calMonth = new Date().getMonth(); // 0-indexed
+let selectedCalendarDate = null;
 
 function initCalendarNav() {
   document.getElementById("prev-month").addEventListener("click", () => {
@@ -1359,7 +1412,7 @@ function renderMonthStats() {
   const workoutKeys = monthKeys.filter(k => logs[k].day !== "rest");
   const restKeys = monthKeys.filter(k => logs[k].day === "rest");
   const workoutCount = workoutKeys.length;
-  const totalMinutes = workoutKeys.reduce((sum, k) => sum + (logs[k].durationMinutes || 0), 0);
+  const totalMinutes = workoutKeys.reduce((sum, k) => sum + (toValidMinutes(logs[k].durationMinutes) || 0), 0);
 
   const timeText = totalMinutes >= 60
     ? `${Math.floor(totalMinutes / 60)}시간 ${totalMinutes % 60}분`
@@ -1399,6 +1452,7 @@ function renderHistory() {
 
     const cell = document.createElement("div");
     cell.className = "calendar-day";
+    cell.dataset.datekey = dateKey;
     if (entry) {
       if (entry.day === "rest") {
         cell.classList.add("logged-rest");
@@ -1409,6 +1463,7 @@ function renderHistory() {
       }
     }
     if (dateKey === todayStr) cell.classList.add("today");
+    if (dateKey === selectedCalendarDate) cell.classList.add("selected");
 
     cell.innerHTML = `<span class="cal-day-num">${d}</span>`;
     if (entry) {
@@ -1420,7 +1475,9 @@ function renderHistory() {
     grid.appendChild(cell);
   }
 
-  document.getElementById("day-detail").innerHTML = "";
+  if (!selectedCalendarDate) {
+    document.getElementById("day-detail").innerHTML = "";
+  }
 }
 
 // ===== 세트 기록 표시용 포맷 (배열/레거시 문자열 둘 다 처리) =====
@@ -1434,6 +1491,11 @@ function formatSetsDetail(sets) {
 
 // ===== 날짜 클릭 시 상세 기록 표시 =====
 function showDayDetail(dateKey, entry) {
+  selectedCalendarDate = dateKey;
+  document.querySelectorAll(".calendar-day").forEach(c => {
+    c.classList.toggle("selected", c.dataset.datekey === dateKey);
+  });
+
   const detail = document.getElementById("day-detail");
 
   if (!entry) {
@@ -1480,7 +1542,7 @@ function showDayDetail(dateKey, entry) {
   detail.innerHTML = `
     <div class="history-entry">
       <div class="h-date">${dateKey} · Day ${entry.day} (${entry.dayName})${entry.mode === "bodyweight" ? " 🤸 맨몸" : ""}</div>
-      <div class="h-summary">${doneCount}/${totalCount} 완료${entry.durationMinutes ? ` · ⏱ ${entry.durationMinutes}분` : ""}</div>
+      <div class="h-summary">${doneCount}/${totalCount} 완료${toValidMinutes(entry.durationMinutes) ? ` · ⏱ ${toValidMinutes(entry.durationMinutes)}분` : ""}</div>
       ${exLines}
       <div class="detail-actions">
         <button class="edit-btn" id="detail-edit-btn">수정하기</button>
