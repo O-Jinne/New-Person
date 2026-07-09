@@ -429,13 +429,24 @@ function bindHoldRepeat(el, fn) {
     }, 400);
     activeHoldStop = () => { clearTimeout(timeoutId); activeHoldStop = null; };
   };
-  el.addEventListener("touchstart", start, { passive: false });
-  el.addEventListener("mousedown", start);
+  el.addEventListener("pointerdown", start);
 }
 
-document.addEventListener("touchend", () => { if (activeHoldStop) activeHoldStop(); });
-document.addEventListener("touchcancel", () => { if (activeHoldStop) activeHoldStop(); });
-document.addEventListener("mouseup", () => { if (activeHoldStop) activeHoldStop(); });
+document.addEventListener("pointerup", () => { if (activeHoldStop) activeHoldStop(); });
+document.addEventListener("pointercancel", () => { if (activeHoldStop) activeHoldStop(); });
+
+// ===== 전역 버튼 눌림 시각효과 (iOS Safari는 :active가 안정적이지 않아 JS로 처리) =====
+document.addEventListener("pointerdown", (e) => {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.add("pressed");
+});
+
+function clearPressedButtons() {
+  document.querySelectorAll("button.pressed").forEach(b => b.classList.remove("pressed"));
+}
+
+document.addEventListener("pointerup", clearPressedButtons);
+document.addEventListener("pointercancel", clearPressedButtons);
 
 // ===== 기준 무게 관리 =====
 function getBaseWeights() {
@@ -741,6 +752,17 @@ function renderExercises() {
 
         const step = getWeightStep(ex.weight);
 
+        const weightDisplay = document.createElement("div");
+        weightDisplay.className = "weight-display";
+
+        const renderWeightDisplay = () => {
+          const w = currentExercises[idx].weight;
+          weightDisplay.innerHTML = w !== ""
+            ? `<span class="num">${w}</span><span class="unit">kg</span>`
+            : `<span class="placeholder-text">무게 미입력</span>`;
+        };
+        renderWeightDisplay();
+
         const minusBtn = document.createElement("button");
         minusBtn.className = "weight-adjust-btn";
         minusBtn.textContent = `－${step}`;
@@ -749,14 +771,8 @@ function renderExercises() {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
           const s = getWeightStep(cur);
           currentExercises[idx].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
-          renderExercises();
+          renderWeightDisplay();
         });
-
-        const weightDisplay = document.createElement("div");
-        weightDisplay.className = "weight-display";
-        weightDisplay.innerHTML = ex.weight !== ""
-          ? `<span class="num">${ex.weight}</span><span class="unit">kg</span>`
-          : `<span class="placeholder-text">무게 미입력</span>`;
 
         const plusBtn = document.createElement("button");
         plusBtn.className = "weight-adjust-btn";
@@ -766,7 +782,7 @@ function renderExercises() {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
           const s = getWeightStep(cur);
           currentExercises[idx].weight = Math.round((cur + s) * 10) / 10;
-          renderExercises();
+          renderWeightDisplay();
         });
 
         adjustRow.appendChild(minusBtn);
@@ -1035,6 +1051,8 @@ function renderHeroSession() {
   ringWrap.appendChild(ring);
   card.appendChild(ringWrap);
 
+  const heroWeightNumEl = ringInner.querySelector(".hero-weight-num");
+
   const stepRow = document.createElement("div");
   stepRow.className = "hero-step-row";
 
@@ -1048,8 +1066,8 @@ function renderHeroSession() {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
       const s = getWeightStep(cur);
       currentExercises[heroIndex].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
+      if (heroWeightNumEl) heroWeightNumEl.textContent = currentExercises[heroIndex].weight;
       persistActiveSession();
-      renderHeroSession();
     });
     stepRow.appendChild(minusBtn);
   }
@@ -1074,8 +1092,8 @@ function renderHeroSession() {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
       const s = getWeightStep(cur);
       currentExercises[heroIndex].weight = Math.round((cur + s) * 10) / 10;
+      if (heroWeightNumEl) heroWeightNumEl.textContent = currentExercises[heroIndex].weight;
       persistActiveSession();
-      renderHeroSession();
     });
     stepRow.appendChild(plusBtn);
   }

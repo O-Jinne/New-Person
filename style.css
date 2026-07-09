@@ -60,9 +60,10 @@ button {
   transition: transform 0.12s ease, opacity 0.12s ease;
 }
 
-button:active {
+button:active,
+button.pressed {
   transform: scale(0.97);
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 /* 스크롤 가능한 모든 영역: 스크롤바가 생겨도 레이아웃이 흔들리지 않도록 */
