@@ -222,7 +222,7 @@ header p {
 
 .month-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   margin-bottom: 14px;
 }
@@ -1109,6 +1109,7 @@ header p {
   border-radius: var(--r-lg);
   max-width: 400px;
   max-height: 85vh;
+  overflow-y: auto;
   animation: modalPopIn 0.18s ease;
 }
 
@@ -1213,6 +1214,29 @@ header p {
 
 .profile-row > div {
   min-width: 0;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.segmented-btn {
+  background: var(--surface-2);
+  border: none;
+  border-radius: var(--r-sm);
+  color: var(--ink-dim);
+  padding: 12px 4px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segmented-btn.active {
+  background: var(--accent);
+  color: white;
 }
 
 .profile-result {

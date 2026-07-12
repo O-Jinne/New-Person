@@ -1,53 +1,295 @@
-// ===== 루틴 데이터 =====
-const ROUTINES = {
-  1: {
-    name: "가슴 + 삼두",
-    exercises: [
-      { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
-      { name: "덤벨 인클라인 프레스", target: "4세트 x 8~10회" },
-      { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
-      { name: "케이블 푸시다운", target: "4세트 x 10~12회" },
-      { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
-      { name: "덤벨 클로즈그립 프레스", target: "3세트 x 10~12회" },
-      { name: "스텝밀", target: "600스텝" }
-    ]
+// ===== 루틴 데이터: 성별(남/여) x 목표모드(벌크업/균형/감량) = 6가지 세트 =====
+// 균형 모드가 기존 기본 루틴, 벌크업은 저반복·고중량·낮은 유산소, 감량은 고반복·서킷형·높은 유산소로 변형
+const ROUTINES_MALE = {
+  balance: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
+        { name: "덤벨 인클라인 프레스", target: "4세트 x 8~10회" },
+        { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
+        { name: "케이블 푸시다운", target: "4세트 x 10~12회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
+        { name: "덤벨 클로즈그립 프레스", target: "3세트 x 10~12회" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "5세트 x 6~8회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 8~10회" },
+        { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
+        { name: "바벨 컬", target: "4세트 x 8~10회" },
+        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    },
+    3: {
+      name: "하체",
+      exercises: [
+        { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
+        { name: "레그프레스", target: "4세트 x 12~15회" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 8회 (좌우)" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
+        { name: "레그 익스텐션", target: "3세트 x 15회" },
+        { name: "카프레이즈", target: "4세트 x 15~20회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "4세트 x 8~10회" },
+        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "덤벨 컬 21s", target: "2세트" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    }
   },
-  2: {
-    name: "등 + 이두",
-    exercises: [
-      { name: "랫풀다운", target: "5세트 x 6~8회" },
-      { name: "바벨 벤트오버 로우", target: "3세트 x 8~10회" },
-      { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
-      { name: "바벨 컬", target: "4세트 x 8~10회" },
-      { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
-      { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
-      { name: "스텝밀", target: "600스텝" }
-    ]
+  bulk: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "5세트 x 4~6회" },
+        { name: "덤벨 인클라인 프레스", target: "4세트 x 6~8회" },
+        { name: "딥스", target: "4세트 x 8~10회" },
+        { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 클로즈그립 프레스", target: "3세트 x 8~10회" },
+        { name: "스텝밀", target: "300스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "5세트 x 4~6회" },
+        { name: "바벨 벤트오버 로우", target: "4세트 x 6~8회" },
+        { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
+        { name: "바벨 컬", target: "4세트 x 6~8회" },
+        { name: "덤벨 해머컬", target: "3세트 x 8~10회" },
+        { name: "스텝밀", target: "300스텝" }
+      ]
+    },
+    3: {
+      name: "하체",
+      exercises: [
+        { name: "헥스바 데드리프트", target: "5세트 x 4~6회" },
+        { name: "레그프레스", target: "4세트 x 8~10회" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
+        { name: "레그 익스텐션", target: "3세트 x 12회" },
+        { name: "카프레이즈", target: "4세트 x 12~15회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
+        { name: "사이드 레터럴 레이즈", target: "3세트 x 12~15회" },
+        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "4세트 x 6~8회" },
+        { name: "덤벨 해머컬", target: "3세트 x 8~10회" },
+        { name: "스텝밀", target: "300스텝" }
+      ]
+    }
   },
-  3: {
-    name: "하체",
-    exercises: [
-      { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
-      { name: "레그프레스", target: "4세트 x 12~15회" },
-      { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 8회 (좌우)" },
-      { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
-      { name: "레그 익스텐션", target: "3세트 x 15회" },
-      { name: "카프레이즈", target: "4세트 x 15~20회" }
-    ]
-  },
-  4: {
-    name: "어깨 + 이두",
-    exercises: [
-      { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-      { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
-      { name: "페이스풀", target: "3세트 x 15회" },
-      { name: "바벨 컬", target: "4세트 x 8~10회" },
-      { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
-      { name: "덤벨 컬 21s", target: "2세트" },
-      { name: "스텝밀", target: "600스텝" }
-    ]
+  cut: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "4세트 x 10~12회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 12~15회" },
+        { name: "머신/덤벨 플라이", target: "3세트 x 15회" },
+        { name: "케이블 푸시다운", target: "3세트 x 15회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15회" },
+        { name: "스텝밀", target: "900스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "4세트 x 10~12회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 12~15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
+        { name: "바벨 컬", target: "3세트 x 12~15회" },
+        { name: "덤벨 해머컬", target: "3세트 x 15회" },
+        { name: "스텝밀", target: "900스텝" }
+      ]
+    },
+    3: {
+      name: "하체",
+      exercises: [
+        { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
+        { name: "레그프레스", target: "4세트 x 15~20회" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
+        { name: "레그 익스텐션", target: "3세트 x 20회" },
+        { name: "카프레이즈", target: "4세트 x 20회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
+        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
+        { name: "스텝밀", target: "900스텝" }
+      ]
+    }
   }
 };
+
+// 여성용: 하체+힙(둔근) 비중을 늘리고, 힙 쓰러스트/케이블 킥백을 하체 데이에 추가
+const ROUTINES_FEMALE = {
+  balance: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 10~12회" },
+        { name: "머신/덤벨 플라이", target: "3세트 x 12~15회" },
+        { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 12~15회" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 10~12회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 10회 (좌우)" },
+        { name: "바벨 컬", target: "3세트 x 10~12회" },
+        { name: "덤벨 해머컬", target: "3세트 x 12~15회" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    },
+    3: {
+      name: "하체 + 힙",
+      exercises: [
+        { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
+        { name: "헥스바 데드리프트", target: "4세트 x 8~10회" },
+        { name: "레그프레스", target: "4세트 x 12~15회" },
+        { name: "케이블 킥백", target: "3세트 x 12~15회 (좌우)" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 15회" },
+        { name: "카프레이즈", target: "3세트 x 15~20회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "3세트 x 10~12회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "3세트 x 10~12회" },
+        { name: "덤벨 해머컬", target: "3세트 x 12~15회" },
+        { name: "스텝밀", target: "600스텝" }
+      ]
+    }
+  },
+  bulk: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
+        { name: "덤벨 인클라인 프레스", target: "4세트 x 8~10회" },
+        { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
+        { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
+        { name: "스텝밀", target: "400스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "5세트 x 6~8회" },
+        { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
+        { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
+        { name: "바벨 컬", target: "4세트 x 8~10회" },
+        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "스텝밀", target: "400스텝" }
+      ]
+    },
+    3: {
+      name: "하체 + 힙",
+      exercises: [
+        { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
+        { name: "헥스바 데드리프트", target: "5세트 x 6~8회" },
+        { name: "레그프레스", target: "4세트 x 8~10회" },
+        { name: "케이블 킥백", target: "3세트 x 10~12회 (좌우)" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 12회" },
+        { name: "카프레이즈", target: "4세트 x 12~15회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "4세트 x 8~10회" },
+        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "스텝밀", target: "400스텝" }
+      ]
+    }
+  },
+  cut: {
+    1: {
+      name: "가슴 + 삼두",
+      exercises: [
+        { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 15회" },
+        { name: "머신/덤벨 플라이", target: "3세트 x 15~20회" },
+        { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15~20회" },
+        { name: "스텝밀", target: "1000스텝" }
+      ]
+    },
+    2: {
+      name: "등 + 이두",
+      exercises: [
+        { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
+        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
+        { name: "스텝밀", target: "1000스텝" }
+      ]
+    },
+    3: {
+      name: "하체 + 힙",
+      exercises: [
+        { name: "힙 쓰러스트", target: "3세트 x 15회" },
+        { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
+        { name: "레그프레스", target: "3세트 x 15~20회" },
+        { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
+        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 20회" },
+        { name: "카프레이즈", target: "3세트 x 20회" }
+      ]
+    },
+    4: {
+      name: "어깨 + 이두",
+      exercises: [
+        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
+        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
+        { name: "스텝밀", target: "1000스텝" }
+      ]
+    }
+  }
+};
+
+const ROUTINE_SETS = { male: ROUTINES_MALE, female: ROUTINES_FEMALE };
 
 const STORAGE_KEY = "monster-project-logs";
 const BASEWEIGHT_KEY = "monster-project-baseweights";
@@ -66,7 +308,7 @@ function getLocalYearMonth(date) {
 }
 
 // ===== 시작 기준 무게 (183cm/80kg 복귀 중급자 기준, 첫 실행시 1회만 채워짐) =====
-const DEFAULT_BASE_WEIGHTS = {
+const DEFAULT_BASE_WEIGHTS_MALE = {
   // Day 1 — 가슴/삼두
   "바벨 벤치프레스": 40,
   "덤벨 인클라인 프레스": 16,
@@ -93,6 +335,37 @@ const DEFAULT_BASE_WEIGHTS = {
   "사이드 레터럴 레이즈": 6,
   "페이스풀": 15,
   "덤벨 컬 21s": 8
+};
+
+const DEFAULT_BASE_WEIGHTS_FEMALE = {
+  // Day 1 — 가슴/삼두
+  "바벨 벤치프레스": 20,
+  "덤벨 인클라인 프레스": 8,
+  "머신/덤벨 플라이": 6,
+  "케이블 푸시다운": 10,
+  "덤벨 오버헤드 익스텐션": 5,
+  "덤벨 클로즈그립 프레스": 7,
+  // Day 2 — 등/이두
+  "랫풀다운": 25,
+  "바벨 벤트오버 로우": 20,
+  "덤벨 원암 로우": 8,
+  "바벨 컬": 10,
+  "덤벨 해머컬": 5,
+  "덤벨 컨센트레이션 컬": 4,
+  // Day 3 — 하체/힙
+  "헥스바 데드리프트": 30,
+  "레그프레스": 45,
+  "덤벨 불가리안 스플릿 스쿼트": 6,
+  "케틀벨 고블릿 스쿼트": 10,
+  "레그 익스텐션": 14,
+  "카프레이즈": 30,
+  "힙 쓰러스트": 30,
+  "케이블 킥백": 4,
+  // Day 4 — 어깨/팔
+  "덤벨 숄더 프레스": 6,
+  "사이드 레터럴 레이즈": 3,
+  "페이스풀": 8,
+  "덤벨 컬 21s": 4
 };
 
 const PROFILE_KEY = "monster-project-profile";
@@ -227,6 +500,8 @@ const MASTER_EXERCISES = [
   { category: "하체", name: "레그 컬" },
   { category: "하체", name: "카프레이즈" },
   { category: "하체", name: "루마니안 데드리프트" },
+  { category: "하체", name: "힙 쓰러스트" },
+  { category: "하체", name: "케이블 킥백" },
   { category: "코어", name: "플랭크" },
   { category: "코어", name: "행잉 레그레이즈" },
   { category: "코어", name: "케이블 크런치" },
@@ -319,9 +594,20 @@ const BODYWEIGHT_MASTER_EXERCISES = [
   { category: "유산소", name: "제자리 뛰기" }
 ];
 
+function getGender() {
+  const p = getProfile();
+  return (p && p.gender) || "male";
+}
+
+function getGoalMode() {
+  const p = getProfile();
+  return (p && p.goalMode) || "balance";
+}
+
 // ===== 모드에 따라 루틴/마스터리스트 선택 =====
 function getRoutines() {
-  return currentMode === "bodyweight" ? BODYWEIGHT_ROUTINES : ROUTINES;
+  if (currentMode === "bodyweight") return BODYWEIGHT_ROUTINES;
+  return ROUTINE_SETS[getGender()][getGoalMode()];
 }
 
 function getMasterList() {
@@ -415,19 +701,43 @@ function getWeightStep(weight) {
   return 0.5;
 }
 
-// ===== 버튼 꾹 누르면 연속 반복 실행 (첫 탭 즉시 1회 + 0.4초 후 0.09초 간격 반복) =====
+// ===== 버튼 꾹 누르면 연속 반복 실행 + 오래 누를수록 가속 =====
+// 0~1.5초: 0.5kg씩, 0.1초 간격 / 1.5~3초: 1kg씩, 0.08초 간격 / 3초~: 2.5kg씩, 0.06초 간격
 let activeHoldStop = null;
+
+function getHoldStage(elapsedMs) {
+  if (elapsedMs < 1500) return { delay: 100, multiplier: 1 };
+  if (elapsedMs < 3000) return { delay: 80, multiplier: 2 };
+  return { delay: 60, multiplier: 5 };
+}
 
 function bindHoldRepeat(el, fn) {
   const start = (e) => {
     e.preventDefault();
     if (activeHoldStop) activeHoldStop();
-    fn();
-    const timeoutId = setTimeout(() => {
-      const intervalId = setInterval(fn, 90);
-      activeHoldStop = () => { clearInterval(intervalId); activeHoldStop = null; };
-    }, 400);
-    activeHoldStop = () => { clearTimeout(timeoutId); activeHoldStop = null; };
+
+    const startTime = Date.now();
+    let timeoutId = null;
+    let stopped = false;
+
+    fn(1);
+
+    const scheduleNext = () => {
+      const stage = getHoldStage(Date.now() - startTime);
+      timeoutId = setTimeout(() => {
+        if (stopped) return;
+        fn(stage.multiplier);
+        scheduleNext();
+      }, stage.delay);
+    };
+
+    const initialDelayId = setTimeout(scheduleNext, 400);
+    activeHoldStop = () => {
+      stopped = true;
+      clearTimeout(initialDelayId);
+      clearTimeout(timeoutId);
+      activeHoldStop = null;
+    };
   };
   el.addEventListener("pointerdown", start);
 }
@@ -467,19 +777,27 @@ function getBaseWeight(name) {
   return weights[name] !== undefined ? weights[name] : null;
 }
 
+function getDefaultBaseWeightsForGender() {
+  return getGender() === "female" ? DEFAULT_BASE_WEIGHTS_FEMALE : DEFAULT_BASE_WEIGHTS_MALE;
+}
+
 function seedDefaultBaseWeights() {
   const existing = localStorage.getItem(BASEWEIGHT_KEY);
   if (existing) return; // 이미 값이 있으면(직접 수정했든 아니든) 덮어쓰지 않음
-  saveBaseWeights({ ...DEFAULT_BASE_WEIGHTS });
+  saveBaseWeights({ ...getDefaultBaseWeightsForGender() });
 }
 
-// ===== 체중 기반 기준무게 자동 계산 (DEFAULT_BASE_WEIGHTS는 80kg 기준으로 잡은 값) =====
-const AUTO_WEIGHT_REFERENCE_BODYWEIGHT = 80;
+// ===== 체중 기반 기준무게 자동 계산 (남성표는 80kg, 여성표는 60kg 기준으로 잡은 값) =====
+const AUTO_WEIGHT_REFERENCE_BODYWEIGHT_MALE = 80;
+const AUTO_WEIGHT_REFERENCE_BODYWEIGHT_FEMALE = 60;
 
 function computeAutoBaseWeights(bodyweight) {
-  const scale = bodyweight / AUTO_WEIGHT_REFERENCE_BODYWEIGHT;
+  const isFemale = getGender() === "female";
+  const table = isFemale ? DEFAULT_BASE_WEIGHTS_FEMALE : DEFAULT_BASE_WEIGHTS_MALE;
+  const reference = isFemale ? AUTO_WEIGHT_REFERENCE_BODYWEIGHT_FEMALE : AUTO_WEIGHT_REFERENCE_BODYWEIGHT_MALE;
+  const scale = bodyweight / reference;
   const result = {};
-  Object.entries(DEFAULT_BASE_WEIGHTS).forEach(([name, val]) => {
+  Object.entries(table).forEach(([name, val]) => {
     const scaled = Math.max(0, Math.round((val * scale) / 2.5) * 2.5);
     result[name] = scaled;
   });
@@ -569,6 +887,20 @@ function init() {
   document.getElementById("profile-btn").addEventListener("click", openProfileModal);
   document.getElementById("close-profile-btn").addEventListener("click", closeProfileModal);
   document.getElementById("save-profile-btn").addEventListener("click", handleSaveProfile);
+
+  document.querySelectorAll("#gender-select .segmented-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#gender-select .segmented-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  document.querySelectorAll("#goalmode-select .segmented-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#goalmode-select .segmented-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
   ["profile-name", "profile-height", "profile-weight"].forEach(id => {
     document.getElementById(id).addEventListener("input", renderProfileResultFromInputs);
   });
@@ -767,9 +1099,9 @@ function renderExercises() {
         minusBtn.className = "weight-adjust-btn";
         minusBtn.textContent = `－${step}`;
         minusBtn.addEventListener("click", (e) => e.stopPropagation());
-        bindHoldRepeat(minusBtn, () => {
+        bindHoldRepeat(minusBtn, (multiplier) => {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
-          const s = getWeightStep(cur);
+          const s = getWeightStep(cur) * multiplier;
           currentExercises[idx].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
           renderWeightDisplay();
         });
@@ -778,9 +1110,9 @@ function renderExercises() {
         plusBtn.className = "weight-adjust-btn";
         plusBtn.textContent = `+${step}`;
         plusBtn.addEventListener("click", (e) => e.stopPropagation());
-        bindHoldRepeat(plusBtn, () => {
+        bindHoldRepeat(plusBtn, (multiplier) => {
           const cur = parseFloat(currentExercises[idx].weight) || 0;
-          const s = getWeightStep(cur);
+          const s = getWeightStep(cur) * multiplier;
           currentExercises[idx].weight = Math.round((cur + s) * 10) / 10;
           renderWeightDisplay();
         });
@@ -1062,9 +1394,9 @@ function renderHeroSession() {
     const minusBtn = document.createElement("button");
     minusBtn.className = "hero-step-btn";
     minusBtn.textContent = `－${step}`;
-    bindHoldRepeat(minusBtn, () => {
+    bindHoldRepeat(minusBtn, (multiplier) => {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
-      const s = getWeightStep(cur);
+      const s = getWeightStep(cur) * multiplier;
       currentExercises[heroIndex].weight = Math.round((Math.max(0, cur - s)) * 10) / 10;
       if (heroWeightNumEl) heroWeightNumEl.textContent = currentExercises[heroIndex].weight;
       persistActiveSession();
@@ -1088,9 +1420,9 @@ function renderHeroSession() {
     const plusBtn = document.createElement("button");
     plusBtn.className = "hero-step-btn";
     plusBtn.textContent = `+${step}`;
-    bindHoldRepeat(plusBtn, () => {
+    bindHoldRepeat(plusBtn, (multiplier) => {
       const cur = parseFloat(currentExercises[heroIndex].weight) || 0;
-      const s = getWeightStep(cur);
+      const s = getWeightStep(cur) * multiplier;
       currentExercises[heroIndex].weight = Math.round((cur + s) * 10) / 10;
       if (heroWeightNumEl) heroWeightNumEl.textContent = currentExercises[heroIndex].weight;
       persistActiveSession();
@@ -1430,15 +1762,9 @@ function renderMonthStats() {
   const workoutKeys = monthKeys.filter(k => logs[k].day !== "rest");
   const restKeys = monthKeys.filter(k => logs[k].day === "rest");
   const workoutCount = workoutKeys.length;
-  const totalMinutes = workoutKeys.reduce((sum, k) => sum + (toValidMinutes(logs[k].durationMinutes) || 0), 0);
-
-  const timeText = totalMinutes >= 60
-    ? `${Math.floor(totalMinutes / 60)}시간 ${totalMinutes % 60}분`
-    : `${totalMinutes}분`;
 
   container.innerHTML = `
     <div class="stat-cell"><div class="stat-num">${workoutCount}회</div><div class="stat-label">운동</div></div>
-    <div class="stat-cell"><div class="stat-num">${timeText}</div><div class="stat-label">총 시간</div></div>
     <div class="stat-cell"><div class="stat-num">😴 ${restKeys.length}일</div><div class="stat-label">휴식</div></div>
   `;
 }
@@ -1700,6 +2026,15 @@ function openProfileModal() {
   document.getElementById("profile-height").value = profile ? profile.height : "";
   document.getElementById("profile-weight").value = profile ? profile.weight : "";
 
+  const gender = getGender();
+  const goalMode = getGoalMode();
+  document.querySelectorAll("#gender-select .segmented-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.gender === gender);
+  });
+  document.querySelectorAll("#goalmode-select .segmented-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.goalmode === goalMode);
+  });
+
   document.getElementById("profile-modal").classList.add("open");
   renderProfileResultFromInputs();
 }
@@ -1718,22 +2053,39 @@ function handleSaveProfile() {
     return;
   }
 
-  saveProfileData({ name, height, weight });
+  const genderBtn = document.querySelector("#gender-select .segmented-btn.active");
+  const goalModeBtn = document.querySelector("#goalmode-select .segmented-btn.active");
+  const gender = genderBtn ? genderBtn.dataset.gender : "male";
+  const goalMode = goalModeBtn ? goalModeBtn.dataset.goalmode : "balance";
+
+  const previousProfile = getProfile();
+  const genderChanged = previousProfile && previousProfile.gender && previousProfile.gender !== gender;
+  const goalModeChanged = previousProfile && previousProfile.goalMode && previousProfile.goalMode !== goalMode;
+
+  saveProfileData({ name, height, weight, gender, goalMode });
   showToast("프로필 저장 완료");
   renderProfileResultFromInputs();
   renderProfileSummaryCard();
   checkEasterEgg(name);
 
-  if (confirm(`체중(${weight}kg) 기준으로 각 운동의 기준무게도 자동으로 맞춰줄까요?\n(직접 설정해둔 기존 값은 덮어써져요)`)) {
+  if (genderChanged) {
+    if (confirm(`성별을 바꾸셨네요. 체중(${weight}kg) 기준으로 ${gender === "female" ? "여성" : "남성"} 평균 기준무게로 다시 맞춰줄까요?\n(직접 설정해둔 기존 값은 덮어써져요)`)) {
+      const autoWeights = computeAutoBaseWeights(weight);
+      const weights = getBaseWeights();
+      Object.assign(weights, autoWeights);
+      saveBaseWeights(weights);
+      showToast("기준무게 자동 설정 완료 💪");
+    }
+  } else if (confirm(`체중(${weight}kg) 기준으로 각 운동의 기준무게도 자동으로 맞춰줄까요?\n(직접 설정해둔 기존 값은 덮어써져요)`)) {
     const autoWeights = computeAutoBaseWeights(weight);
     const weights = getBaseWeights();
     Object.assign(weights, autoWeights);
     saveBaseWeights(weights);
     showToast("기준무게 자동 설정 완료 💪");
+  }
 
-    if (!editingDateKey) {
-      selectDay(currentDay);
-    }
+  if (!editingDateKey && (genderChanged || goalModeChanged)) {
+    selectDay(currentDay);
   }
 }
 
