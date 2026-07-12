@@ -145,144 +145,123 @@ const ROUTINES_MALE = {
 };
 
 // 여성용: 하체+힙(둔근) 비중을 늘리고, 힙 쓰러스트/케이블 킥백을 하체 데이에 추가
+// ===== 여성 미용 특화 3분할 =====
+// Day 1: 하체+힙 (스쿼트계) / Day 2: 등+직각어깨+팔 / Day 3: 힙+코어+유산소
+// 목표: 잘록한 허리, 힙업, 승모 없는 직각 어깨, 자세교정
+// 가슴 계열(벤치/체스트프레스 등) 완전 제거
 const ROUTINES_FEMALE = {
   balance: {
     1: {
-      name: "가슴 + 삼두",
+      name: "하체 + 힙 (스쿼트계)",
       exercises: [
-        { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
-        { name: "덤벨 인클라인 프레스", target: "3세트 x 10~12회" },
-        { name: "머신/덤벨 플라이", target: "3세트 x 12~15회" },
-        { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "600스텝" }
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
+        { name: "레그프레스", target: "3세트 x 15회" },
+        { name: "힙 쓰러스트", target: "3세트 x 12회" },
+        { name: "덤벨 워킹 런지", target: "3세트 x 12회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 15회" },
+        { name: "스텝밀", target: "400스텝" }
       ]
     },
     2: {
-      name: "등 + 이두",
+      name: "등 + 직각어깨 + 팔",
       exercises: [
-        { name: "랫풀다운", target: "4세트 x 8~10회" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 10~12회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 10회 (좌우)" },
-        { name: "바벨 컬", target: "3세트 x 10~12회" },
-        { name: "덤벨 해머컬", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "600스텝" }
+        { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "케이블 시티드 로우", target: "3세트 x 12회" },
+        { name: "사이드 레터럴 레이즈", target: "3세트 x 15회" },
+        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "리어 델트 플라이", target: "3세트 x 15회" },
+        { name: "덤벨 컬", target: "3세트 x 12~15회" },
+        { name: "스텝밀", target: "400스텝" }
       ]
     },
     3: {
-      name: "하체 + 힙",
+      name: "힙 + 코어 + 유산소",
       exercises: [
-        { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
-        { name: "헥스바 데드리프트", target: "4세트 x 8~10회" },
-        { name: "레그프레스", target: "4세트 x 12~15회" },
-        { name: "케이블 킥백", target: "3세트 x 12~15회 (좌우)" },
-        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
-        { name: "레그 익스텐션", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "3세트 x 15~20회" }
-      ]
-    },
-    4: {
-      name: "어깨 + 이두",
-      exercises: [
-        { name: "덤벨 숄더 프레스", target: "3세트 x 10~12회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
-        { name: "페이스풀", target: "3세트 x 15회" },
-        { name: "바벨 컬", target: "3세트 x 10~12회" },
-        { name: "덤벨 해머컬", target: "3세트 x 12~15회" },
+        { name: "힙 쓰러스트", target: "4세트 x 12회" },
+        { name: "덤벨 루마니안 데드리프트", target: "3세트 x 12회" },
+        { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
+        { name: "케이블 힙 어브덕션", target: "3세트 x 20회 (좌우)" },
+        { name: "카프레이즈", target: "3세트 x 15회" },
+        { name: "러시안 트위스트", target: "3세트 x 20회" },
+        { name: "플랭크", target: "3세트 x 45초" },
+        { name: "데드버그", target: "3세트 x 10회 (좌우)" },
         { name: "스텝밀", target: "600스텝" }
       ]
     }
   },
   bulk: {
     1: {
-      name: "가슴 + 삼두",
+      name: "하체 + 힙 (스쿼트계)",
       exercises: [
-        { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
-        { name: "덤벨 인클라인 프레스", target: "4세트 x 8~10회" },
-        { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
-        { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "케틀벨 고블릿 스쿼트", target: "4세트 x 10회" },
+        { name: "레그프레스", target: "4세트 x 12회" },
+        { name: "힙 쓰러스트", target: "4세트 x 10회" },
+        { name: "덤벨 워킹 런지", target: "3세트 x 10회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 12회" },
+        { name: "스텝밀", target: "300스텝" }
       ]
     },
     2: {
-      name: "등 + 이두",
+      name: "등 + 직각어깨 + 팔",
       exercises: [
-        { name: "랫풀다운", target: "5세트 x 6~8회" },
-        { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
-        { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
-        { name: "바벨 컬", target: "4세트 x 8~10회" },
-        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "케이블 시티드 로우", target: "3세트 x 10~12회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12회" },
+        { name: "페이스풀", target: "3세트 x 12~15회" },
+        { name: "리어 델트 플라이", target: "3세트 x 12회" },
+        { name: "덤벨 컬", target: "3세트 x 10~12회" },
+        { name: "스텝밀", target: "300스텝" }
       ]
     },
     3: {
-      name: "하체 + 힙",
+      name: "힙 + 코어 + 유산소",
       exercises: [
-        { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
-        { name: "헥스바 데드리프트", target: "5세트 x 6~8회" },
-        { name: "레그프레스", target: "4세트 x 8~10회" },
-        { name: "케이블 킥백", target: "3세트 x 10~12회 (좌우)" },
-        { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
-        { name: "레그 익스텐션", target: "3세트 x 12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" }
-      ]
-    },
-    4: {
-      name: "어깨 + 이두",
-      exercises: [
-        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
-        { name: "페이스풀", target: "3세트 x 15회" },
-        { name: "바벨 컬", target: "4세트 x 8~10회" },
-        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "힙 쓰러스트", target: "5세트 x 8회" },
+        { name: "덤벨 루마니안 데드리프트", target: "4세트 x 10회" },
+        { name: "케이블 킥백", target: "3세트 x 12회 (좌우)" },
+        { name: "케이블 힙 어브덕션", target: "3세트 x 15회 (좌우)" },
+        { name: "카프레이즈", target: "3세트 x 12회" },
+        { name: "플랭크", target: "3세트 x 60초" },
+        { name: "데드버그", target: "3세트 x 10회 (좌우)" },
         { name: "스텝밀", target: "400스텝" }
       ]
     }
   },
   cut: {
     1: {
-      name: "가슴 + 삼두",
+      name: "하체 + 힙 (스쿼트계)",
       exercises: [
-        { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
-        { name: "덤벨 인클라인 프레스", target: "3세트 x 15회" },
-        { name: "머신/덤벨 플라이", target: "3세트 x 15~20회" },
-        { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "1000스텝" }
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 20회" },
+        { name: "레그프레스", target: "3세트 x 20회" },
+        { name: "힙 쓰러스트", target: "3세트 x 15회" },
+        { name: "덤벨 워킹 런지", target: "3세트 x 15회 (좌우)" },
+        { name: "레그 익스텐션", target: "3세트 x 20회" },
+        { name: "스텝밀", target: "900스텝" }
       ]
     },
     2: {
-      name: "등 + 이두",
+      name: "등 + 직각어깨 + 팔",
       exercises: [
-        { name: "랫풀다운", target: "3세트 x 12~15회" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
-        { name: "바벨 컬", target: "3세트 x 15회" },
-        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "1000스텝" }
+        { name: "랫풀다운", target: "3세트 x 15회" },
+        { name: "케이블 시티드 로우", target: "3세트 x 15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 20회" },
+        { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "리어 델트 플라이", target: "3세트 x 20회" },
+        { name: "덤벨 컬", target: "3세트 x 15회" },
+        { name: "스텝밀", target: "900스텝" }
       ]
     },
     3: {
-      name: "하체 + 힙",
+      name: "힙 + 코어 + 유산소",
       exercises: [
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
-        { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
-        { name: "레그프레스", target: "3세트 x 15~20회" },
-        { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
-        { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
-        { name: "레그 익스텐션", target: "3세트 x 20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" }
-      ]
-    },
-    4: {
-      name: "어깨 + 이두",
-      exercises: [
-        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
-        { name: "페이스풀", target: "3세트 x 20회" },
-        { name: "바벨 컬", target: "3세트 x 15회" },
-        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
+        { name: "덤벨 루마니안 데드리프트", target: "3세트 x 15회" },
+        { name: "케이블 킥백", target: "3세트 x 20회 (좌우)" },
+        { name: "케이블 힙 어브덕션", target: "3세트 x 25회 (좌우)" },
+        { name: "러시안 트위스트", target: "3세트 x 25회" },
+        { name: "마운틴 클라이머", target: "3세트 x 30초" },
+        { name: "플랭크", target: "3세트 x 45초" },
+        { name: "데드버그", target: "3세트 x 15회 (좌우)" },
         { name: "스텝밀", target: "1000스텝" }
       ]
     }
@@ -337,35 +316,29 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   "덤벨 컬 21s": 8
 };
 
+// 여성 미용 3분할 기준 (60kg 체중 기준)
+// 가슴 계열 완전 제거. 하체·힙·자세교정·직각어깨 위주 종목만 포함.
 const DEFAULT_BASE_WEIGHTS_FEMALE = {
-  // Day 1 — 가슴/삼두
-  "바벨 벤치프레스": 20,
-  "덤벨 인클라인 프레스": 8,
-  "머신/덤벨 플라이": 6,
-  "케이블 푸시다운": 10,
-  "덤벨 오버헤드 익스텐션": 5,
-  "덤벨 클로즈그립 프레스": 7,
-  // Day 2 — 등/이두
-  "랫풀다운": 25,
-  "바벨 벤트오버 로우": 20,
-  "덤벨 원암 로우": 8,
-  "바벨 컬": 10,
-  "덤벨 해머컬": 5,
-  "덤벨 컨센트레이션 컬": 4,
-  // Day 3 — 하체/힙
-  "헥스바 데드리프트": 30,
-  "레그프레스": 45,
-  "덤벨 불가리안 스플릿 스쿼트": 6,
+  // Day 1 — 하체 + 힙 (스쿼트계)
   "케틀벨 고블릿 스쿼트": 10,
-  "레그 익스텐션": 14,
-  "카프레이즈": 30,
+  "레그프레스": 45,
   "힙 쓰러스트": 30,
-  "케이블 킥백": 4,
-  // Day 4 — 어깨/팔
-  "덤벨 숄더 프레스": 6,
+  "덤벨 워킹 런지": 6,
+  "레그 익스텐션": 14,
+  // Day 2 — 등 + 직각어깨 + 팔
+  "랫풀다운": 25,
+  "케이블 시티드 로우": 15,
   "사이드 레터럴 레이즈": 3,
   "페이스풀": 8,
-  "덤벨 컬 21s": 4
+  "리어 델트 플라이": 4,
+  "덤벨 컬": 5,
+  // Day 3 — 힙 + 코어 + 유산소
+  "덤벨 루마니안 데드리프트": 12,
+  "케이블 킥백": 4,
+  "케이블 힙 어브덕션": 15,
+  "카프레이즈": 30,
+  "러시안 트위스트": 5
+  // 플랭크·데드버그·마운틴 클라이머·스텝밀은 맨몸/유산소라 기준무게 없음
 };
 
 const PROFILE_KEY = "monster-project-profile";
@@ -612,6 +585,21 @@ function getRoutines() {
 
 function getMasterList() {
   return currentMode === "bodyweight" ? BODYWEIGHT_MASTER_EXERCISES : MASTER_EXERCISES;
+}
+
+// 성별별 루틴 Day 개수에 맞춰 Day 탭을 동적으로 숨김/표시
+// 여성 3분할 → Day 4 탭 숨김. 남성 4분할 → 전부 표시.
+function updateDayTabsForGender() {
+  const routines = ROUTINE_SETS[getGender()][getGoalMode()];
+  const dayCount = Object.keys(routines).length;
+  document.querySelectorAll(".day-tab").forEach(btn => {
+    const dayNum = parseInt(btn.dataset.day);
+    btn.style.display = dayNum > dayCount ? "none" : "";
+  });
+  // 현재 선택된 Day가 유효 범위를 벗어나면 Day 1로 리셋
+  if (currentDay > dayCount) {
+    currentDay = 1;
+  }
 }
 
 let currentDay = 1;
@@ -963,12 +951,18 @@ function selectType(type) {
     restGroup.classList.remove("show");
     detailGroup.classList.add("show");
     currentMode = type;
+    updateDayTabsForGender();
     selectDay(currentDay);
   }
 }
 
 // ===== Day 선택 =====
 function selectDay(day) {
+  const routines = getRoutines();
+  // 존재하지 않는 Day 선택 시 Day 1로 fallback (여성 3분할에서 Day 4 방어)
+  if (!routines[day]) {
+    day = 1;
+  }
   currentDay = day;
   document.querySelectorAll(".day-tab").forEach(btn => {
     btn.classList.toggle("active", parseInt(btn.dataset.day) === day);
@@ -976,10 +970,10 @@ function selectDay(day) {
 
   const captionEl = document.getElementById("day-routine-caption");
   if (captionEl) {
-    captionEl.textContent = `Day ${day} · ${getRoutines()[day].name}`;
+    captionEl.textContent = `Day ${day} · ${routines[day].name}`;
   }
 
-  const base = getRoutines()[day].exercises.map(ex => {
+  const base = routines[day].exercises.map(ex => {
     const baseWeight = getBaseWeight(ex.name);
     return {
       name: ex.name,
@@ -2085,6 +2079,7 @@ function handleSaveProfile() {
   }
 
   if (!editingDateKey && (genderChanged || goalModeChanged)) {
+    updateDayTabsForGender();
     selectDay(currentDay);
   }
 }
