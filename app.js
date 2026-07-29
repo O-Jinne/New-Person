@@ -346,33 +346,33 @@ const PROFILE_KEY = "monster-project-profile";
 // ===== BMI 7단계 x 운동량 3단계 칭호 시스템 =====
 const BMI_TIERS = [
   { max: 18,
-    base: { title: "스켈레톤", emoji: "💀" },
-    mid: { title: "좀비파이터", emoji: "🧟" },
-    high: { title: "본마스터", emoji: "☠️" } },
+    base: { title: "루키", emoji: "🌱" },
+    mid: { title: "성장형", emoji: "📈" },
+    high: { title: "노력파", emoji: "⭐" } },
   { max: 19.5,
-    base: { title: "육수용 멸치", emoji: "🐟" },
-    mid: { title: "건멸치", emoji: "🍤" },
-    high: { title: "멸치들의 왕", emoji: "🐋" } },
+    base: { title: "라이트급", emoji: "🍃" },
+    mid: { title: "라이트 파이터", emoji: "🤺" },
+    high: { title: "라이트 챔피언", emoji: "🏅" } },
   { max: 21,
-    base: { title: "홀쭉이", emoji: "🥢" },
-    mid: { title: "젓가락전사", emoji: "🤺" },
-    high: { title: "황금젓가락킹", emoji: "👑" } },
+    base: { title: "슬림 타입", emoji: "🎯" },
+    mid: { title: "슬림 파이터", emoji: "💫" },
+    high: { title: "슬림 마스터", emoji: "👑" } },
   { max: 23,
-    base: { title: "정상인", emoji: "⚖️" },
-    mid: { title: "밸런스마스터", emoji: "🧘" },
-    high: { title: "밸런스갓", emoji: "🔱" } },
+    base: { title: "밸런스 타입", emoji: "⚖️" },
+    mid: { title: "밸런스 마스터", emoji: "🧘" },
+    high: { title: "밸런스 갓", emoji: "🔱" } },
   { max: 25,
-    base: { title: "통통이", emoji: "🍚" },
-    mid: { title: "묵직맨", emoji: "💪" },
-    high: { title: "든든국밥킹", emoji: "🍲" } },
+    base: { title: "볼륨 타입", emoji: "💪" },
+    mid: { title: "파워 빌더", emoji: "🔥" },
+    high: { title: "파워 마스터", emoji: "🏆" } },
   { max: 27,
-    base: { title: "돼지", emoji: "🐖" },
-    mid: { title: "돼지전사", emoji: "🐗" },
-    high: { title: "아이언보어", emoji: "🦾" } },
+    base: { title: "헤비급", emoji: "🛡️" },
+    mid: { title: "헤비 파이터", emoji: "⚔️" },
+    high: { title: "헤비 챔피언", emoji: "🦾" } },
   { max: Infinity,
-    base: { title: "뚱돼지", emoji: "🐷" },
-    mid: { title: "운동한돼지", emoji: "🏋️" },
-    high: { title: "운동많이한 돼지", emoji: "🏆" } }
+    base: { title: "챌린저", emoji: "🎖️" },
+    mid: { title: "다이나믹 챌린저", emoji: "🏋️" },
+    high: { title: "레전드 챌린저", emoji: "🏆" } }
 ];
 
 function getBMITier(bmi) {
@@ -402,32 +402,6 @@ function getProfile() {
 
 function saveProfileData(profile) {
   localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
-}
-
-// ===== 이스터에그 (특정 이름 최초 입력시 1회 문구) =====
-const EASTER_EGG_SEEN_KEY = "monster-project-easteregg-seen";
-const EASTER_EGGS = {
-  "임주호": "🐟 스켈레톤의 후손, 멸치들의 왕, 백골부대에서 개꿀빤 사람 임주호 환영합니다.",
-  "하진석": "🐷 돼지들의 왕, 뭘 믿고 맨날 살찌는지 모르겠는 사람, 원딜 잡고 딜꼴찌하는 하진석 환영합니다.",
-  "김병주": "🕵️ 아동복지관의 비밀 에이전트, 결혼 전에 살뺀다 해놓고 하나도 안뺀 김병주 환영합니다."
-};
-
-function checkEasterEgg(name) {
-  if (!name || !EASTER_EGGS[name]) return;
-
-  let seen = {};
-  try {
-    seen = JSON.parse(localStorage.getItem(EASTER_EGG_SEEN_KEY)) || {};
-  } catch (e) {
-    seen = {};
-  }
-
-  if (seen[name]) return;
-
-  seen[name] = true;
-  localStorage.setItem(EASTER_EGG_SEEN_KEY, JSON.stringify(seen));
-
-  setTimeout(() => alert(EASTER_EGGS[name]), 200);
 }
 
 // ===== 운동 검색용 마스터 리스트 =====
@@ -2060,7 +2034,6 @@ function handleSaveProfile() {
   showToast("프로필 저장 완료");
   renderProfileResultFromInputs();
   renderProfileSummaryCard();
-  checkEasterEgg(name);
 
   if (genderChanged) {
     if (confirm(`성별을 바꾸셨네요. 체중(${weight}kg) 기준으로 ${gender === "female" ? "여성" : "남성"} 평균 기준무게로 다시 맞춰줄까요?\n(직접 설정해둔 기존 값은 덮어써져요)`)) {
