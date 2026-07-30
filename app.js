@@ -286,7 +286,7 @@ function getLocalYearMonth(date) {
   return getLocalDateKey(date).slice(0, 7);
 }
 
-// ===== 시작 기준 무게 (183cm/80kg 복귀 중급자 기준, 첫 실행시 1회만 채워짐) =====
+// ===== 시작 기준 무게 (170cm/70kg 복귀 중급자 기준, 첫 실행시 1회만 채워짐) =====
 const DEFAULT_BASE_WEIGHTS_MALE = {
   // Day 1 — 가슴/삼두
   "바벨 벤치프레스": 40,
