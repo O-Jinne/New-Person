@@ -8,7 +8,7 @@ const ROUTINES_MALE = {
         { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
         { name: "덤벨 플랫 프레스", target: "4세트 x 8~10회" },
         { name: "덤벨 플라이", target: "3세트 x 10~12회" },
-        { name: "밴드 트라이셉 푸시다운", target: "4세트 x 10~12회" },
+        { name: "덤벨 킥백", target: "4세트 x 10~12회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
         { name: "덤벨 클로즈그립 프레스", target: "3세트 x 10~12회" },
         { name: "스텝밀", target: "600스텝" }
@@ -42,9 +42,9 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
-        { name: "밴드 페이스풀", target: "3세트 x 15회" },
+        { name: "덤벨 리어 델트 플라이", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 8~10회" },
-        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 킥백", target: "3세트 x 10~12회" },
         { name: "덤벨 컬 21s", target: "2세트" },
         { name: "스텝밀", target: "600스텝" }
       ]
@@ -57,7 +57,7 @@ const ROUTINES_MALE = {
         { name: "바벨 벤치프레스", target: "5세트 x 4~6회" },
         { name: "덤벨 플랫 프레스", target: "4세트 x 6~8회" },
         { name: "벤치 딥스", target: "4세트 x 8~10회" },
-        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 킥백", target: "3세트 x 10~12회" },
         { name: "덤벨 클로즈그립 프레스", target: "3세트 x 8~10회" },
         { name: "스텝밀", target: "300스텝" }
       ]
@@ -89,9 +89,9 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
         { name: "사이드 레터럴 레이즈", target: "3세트 x 12~15회" },
-        { name: "밴드 페이스풀", target: "3세트 x 15회" },
+        { name: "덤벨 리어 델트 플라이", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 6~8회" },
-        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 8~10회" },
+        { name: "벤치 딥스", target: "3세트 x 8~10회" },
         { name: "스텝밀", target: "300스텝" }
       ]
     }
@@ -103,7 +103,7 @@ const ROUTINES_MALE = {
         { name: "바벨 벤치프레스", target: "4세트 x 10~12회" },
         { name: "덤벨 플랫 프레스", target: "3세트 x 12~15회" },
         { name: "덤벨 플라이", target: "3세트 x 15회" },
-        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 15회" },
+        { name: "덤벨 킥백", target: "3세트 x 15회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15회" },
         { name: "스텝밀", target: "900스텝" }
       ]
@@ -135,16 +135,16 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
-        { name: "밴드 페이스풀", target: "3세트 x 20회" },
+        { name: "덤벨 리어 델트 플라이", target: "3세트 x 20회" },
         { name: "바벨 컬", target: "3세트 x 15회" },
-        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 15~20회" },
+        { name: "벤치 딥스", target: "3세트 x 15~20회" },
         { name: "스텝밀", target: "900스텝" }
       ]
     }
   }
 };
 
-// 여성용: 하체+힙(둔근) 비중을 늘리고, 힙 쓰러스트/케이블 킥백을 하체 데이에 추가
+// 여성용: 하체+힙(둔근) 비중을 늘리고, 힙 쓰러스트/맨몸 힙 익스텐션을 하체 데이에 추가
 // ===== 여성 미용 특화 3분할 =====
 // Day 1: 하체+힙 (스쿼트계) / Day 2: 등+직각어깨+팔 / Day 3: 힙+코어+유산소
 // 목표: 잘록한 허리, 힙업, 승모 없는 직각 어깨, 자세교정
@@ -168,7 +168,7 @@ const ROUTINES_FEMALE = {
         { name: "랫풀다운", target: "3세트 x 12~15회" },
         { name: "덤벨 벤트오버 로우", target: "3세트 x 12회" },
         { name: "사이드 레터럴 레이즈", target: "3세트 x 15회" },
-        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "덤벨 프론 Y레이즈", target: "3세트 x 15회" },
         { name: "리어 델트 플라이", target: "3세트 x 15회" },
         { name: "덤벨 컬", target: "3세트 x 12~15회" },
         { name: "스텝밀", target: "400스텝" }
@@ -179,8 +179,8 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "4세트 x 12회" },
         { name: "덤벨 루마니안 데드리프트", target: "3세트 x 12회" },
-        { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
-        { name: "케이블 힙 어브덕션", target: "3세트 x 20회 (좌우)" },
+        { name: "맨몸 힙 익스텐션", target: "3세트 x 15회 (좌우)" },
+        { name: "사이드 라잉 힙 어브덕션", target: "3세트 x 20회 (좌우)" },
         { name: "카프레이즈", target: "3세트 x 15회" },
         { name: "러시안 트위스트", target: "3세트 x 20회" },
         { name: "플랭크", target: "3세트 x 45초" },
@@ -207,7 +207,7 @@ const ROUTINES_FEMALE = {
         { name: "랫풀다운", target: "4세트 x 8~10회" },
         { name: "덤벨 벤트오버 로우", target: "3세트 x 10~12회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12회" },
-        { name: "페이스풀", target: "3세트 x 12~15회" },
+        { name: "덤벨 프론 Y레이즈", target: "3세트 x 12~15회" },
         { name: "리어 델트 플라이", target: "3세트 x 12회" },
         { name: "덤벨 컬", target: "3세트 x 10~12회" },
         { name: "스텝밀", target: "300스텝" }
@@ -218,8 +218,8 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "5세트 x 8회" },
         { name: "덤벨 루마니안 데드리프트", target: "4세트 x 10회" },
-        { name: "케이블 킥백", target: "3세트 x 12회 (좌우)" },
-        { name: "케이블 힙 어브덕션", target: "3세트 x 15회 (좌우)" },
+        { name: "맨몸 힙 익스텐션", target: "3세트 x 12회 (좌우)" },
+        { name: "사이드 라잉 힙 어브덕션", target: "3세트 x 15회 (좌우)" },
         { name: "카프레이즈", target: "3세트 x 12회" },
         { name: "플랭크", target: "3세트 x 60초" },
         { name: "데드버그", target: "3세트 x 10회 (좌우)" },
@@ -245,7 +245,7 @@ const ROUTINES_FEMALE = {
         { name: "랫풀다운", target: "3세트 x 15회" },
         { name: "덤벨 벤트오버 로우", target: "3세트 x 15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 20회" },
-        { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "덤벨 프론 Y레이즈", target: "3세트 x 20회" },
         { name: "리어 델트 플라이", target: "3세트 x 20회" },
         { name: "덤벨 컬", target: "3세트 x 15회" },
         { name: "스텝밀", target: "900스텝" }
@@ -256,8 +256,8 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
         { name: "덤벨 루마니안 데드리프트", target: "3세트 x 15회" },
-        { name: "케이블 킥백", target: "3세트 x 20회 (좌우)" },
-        { name: "케이블 힙 어브덕션", target: "3세트 x 25회 (좌우)" },
+        { name: "맨몸 힙 익스텐션", target: "3세트 x 20회 (좌우)" },
+        { name: "사이드 라잉 힙 어브덕션", target: "3세트 x 25회 (좌우)" },
         { name: "러시안 트위스트", target: "3세트 x 25회" },
         { name: "마운틴 클라이머", target: "3세트 x 30초" },
         { name: "플랭크", target: "3세트 x 45초" },
@@ -276,10 +276,7 @@ const EXERCISE_GUIDES = {
   // 가슴
   "바벨 벤치프레스": { target: "가슴, 삼두, 전면 어깨", how: "벤치에 누워 견갑을 모아 고정하고, 바를 가슴 중하단까지 내렸다가 밀어 올려요.", tip: "손목은 곧게, 팔꿈치는 45도 정도로 벌려야 어깨 부담이 적어요." },
   "덤벨 플랫 프레스": { target: "가슴, 삼두, 전면 어깨", how: "플랫 벤치에 누워 덤벨을 가슴 옆까지 내렸다가 위로 밀어 올려요.", tip: "바벨보다 가동범위가 커서 밑에서 살짝 스트레칭 느낌까지 내려도 좋아요." },
-  "덤벨 디클라인 프레스": { target: "가슴 하부, 삼두", how: "디클라인 벤치에 누워 덤벨을 가슴 하단까지 내렸다가 밀어 올려요.", tip: "발을 벤치 끝에 잘 고정하고 시작해요." },
   "덤벨 플라이": { target: "가슴 (스트레칭 자극)", how: "플랫 벤치에 누워 팔꿈치를 살짝 굽힌 채 양팔을 원을 그리듯 벌렸다 모아요.", tip: "팔꿈치를 너무 펴면 관절에 부담되니 살짝 굽힌 상태 유지." },
-  "덤벨 디클라인 플라이": { target: "가슴 하부", how: "디클라인 벤치에서 플라이 동작을 수행해요.", tip: "무게는 가볍게, 자극 위주로." },
-  "밴드 트라이셉 푸시다운": { target: "삼두", how: "밴드를 위쪽에 고정하고 팔꿈치를 몸통에 붙인 채 아래로 펴줘요.", tip: "팔꿈치가 앞뒤로 움직이지 않게 고정." },
   "덤벨 오버헤드 익스텐션": { target: "삼두 (장두 위주)", how: "덤벨을 양손으로 잡고 머리 위로 올린 뒤 팔꿈치만 굽혀 뒤로 내렸다 펴요.", tip: "팔꿈치가 벌어지지 않게 고정." },
   "덤벨 라잉 익스텐션": { target: "삼두", how: "벤치에 누워 덤벨을 이마 방향으로 내렸다가 펴요.", tip: "팔꿈치 위치 고정, 얼굴 쪽으로 너무 가깝게 내리지 않기." },
   "덤벨 클로즈그립 프레스": { target: "삼두, 가슴 안쪽", how: "벤치프레스보다 좁은 그립으로 덤벨을 몸 옆에 붙여 밀어 올려요.", tip: "손목이 꺾이지 않게 주의." },
@@ -292,9 +289,7 @@ const EXERCISE_GUIDES = {
   "덤벨 원암 로우": { target: "광배근, 이두", how: "벤치에 한 손·한 무릎을 대고 반대손 덤벨을 허리 쪽으로 당겨요.", tip: "몸통 회전 없이 순수하게 팔로만 당기기." },
   "바벨 컬": { target: "이두", how: "바벨을 어깨너비로 잡고 팔꿈치 고정한 채 컬 동작.", tip: "몸을 흔들어 반동 주지 않기." },
   "덤벨 컬": { target: "이두", how: "덤벨을 양손 또는 교대로 컬 동작.", tip: "손목을 살짝 바깥으로 돌리면(수피네이션) 자극이 더 잘 들어와요." },
-  "밴드 컬": { target: "이두", how: "밴드를 발로 밟고 팔꿈치 고정한 채 당겨 올려요.", tip: "밴드 장력이 일정하게 유지되도록 천천히." },
   "덤벨 해머컬": { target: "이두, 전완", how: "손바닥이 마주보는 그립으로 덤벨을 컬 동작.", tip: "전완근까지 같이 자극돼요." },
-  "밴드 해머컬": { target: "이두, 전완", how: "밴드를 해머그립(엄지 위)으로 잡고 컬 동작.", tip: "팔꿈치 고정 유지." },
   "덤벨 컨센트레이션 컬": { target: "이두 (고립)", how: "앉아서 팔꿈치를 허벅지에 고정하고 한 팔씩 컬.", tip: "천천히, 수축 지점에서 짜듯이 힘주기." },
   "덤벨 컬 21s": { target: "이두 (풀레인지 자극)", how: "하위 절반 7회 + 상위 절반 7회 + 풀 레인지 7회, 총 21회를 연속으로.", tip: "가벼운 무게로, 마지막 세트 마무리용." },
   "바벨 21s": { target: "이두", how: "바벨로 21s 방식(하위7+상위7+풀7) 수행.", tip: "펌핑 목적이라 무게는 평소보다 낮게." },
@@ -315,10 +310,7 @@ const EXERCISE_GUIDES = {
   "덤벨 숄더 프레스": { target: "어깨 전체", how: "덤벨을 어깨 높이에서 머리 위로 밀어 올려요.", tip: "허리가 과하게 꺾이지 않게 코어 긴장." },
   "덤벨 아놀드 프레스": { target: "어깨 전체 (회전 포함)", how: "손바닥이 몸 쪽을 향한 상태로 시작해 밀어 올리며 손바닥이 앞을 보게 회전.", tip: "회전 타이밍보다 부드러운 궤적이 중요." },
   "사이드 레터럴 레이즈": { target: "어깨 측면", how: "덤벨을 양옆으로 어깨 높이까지 들어올려요.", tip: "팔꿈치를 살짝 굽히고, 반동 없이 천천히." },
-  "밴드 레터럴 레이즈": { target: "어깨 측면", how: "밴드를 발로 밟고 옆으로 들어올려요.", tip: "밴드 장력이 최상단에서 최대가 되게." },
-  "밴드 페이스풀": { target: "후면 삼각근, 승모근 하부", how: "밴드를 눈높이에 고정하고 얼굴 쪽으로 당기며 팔꿈치를 벌려요.", tip: "직각어깨 만들기에 핵심적인 자세교정 운동." },
   "덤벨 리어 델트 플라이": { target: "후면 삼각근", how: "상체를 숙이고 덤벨을 양옆으로 들어올려요.", tip: "허리 말지 않고 등 평평하게 유지." },
-  "밴드 풀어파트": { target: "후면 삼각근, 등 상부", how: "밴드 양끝을 잡고 가슴 앞에서 양옆으로 벌려요.", tip: "가벼운 밴드로 워밍업이나 마무리용으로 좋아요." },
   // 코어/유산소
   "스텝밀": { target: "심폐지구력, 하체", how: "계단 오르듯 페달을 밟는 유산소 기구.", tip: "손잡이에 체중 싣지 말고 다리 힘으로 밟기." },
   "플랭크": { target: "코어 전체", how: "팔꿈치와 발끝으로 몸을 일직선으로 버텨요.", tip: "엉덩이가 뜨거나 처지지 않게 일직선 유지." },
@@ -328,10 +320,11 @@ const EXERCISE_GUIDES = {
   // 여성 루틴 전용
   "힙 쓰러스트": { target: "둔근", how: "어깨를 벤치에 대고 바벨/덤벨을 골반 위에 올린 뒤 엉덩이를 밀어 올려요.", tip: "정점에서 둔근을 짜듯이 1초 멈췄다 내려요." },
   "레그 익스텐션": { target: "대퇴사두", how: "머신에 앉아 무릎을 펴며 패드를 들어올려요.", tip: "무릎 관절이 아프면 무게를 낮추고 천천히." },
-  "페이스풀": { target: "후면 삼각근, 승모근 하부", how: "케이블/밴드를 눈높이에 고정하고 얼굴 쪽으로 당기며 팔꿈치를 벌려요.", tip: "직각어깨 만들기에 핵심적인 자세교정 운동." },
   "리어 델트 플라이": { target: "후면 삼각근", how: "상체를 숙이고 덤벨을 양옆으로 들어올려요.", tip: "허리 말지 않고 등 평평하게 유지." },
-  "케이블 킥백": { target: "둔근", how: "케이블을 발목에 걸고 다리를 뒤로 차올려요.", tip: "허리로 반동 주지 말고 둔근 힘으로." },
-  "케이블 힙 어브덕션": { target: "둔근, 중둔근", how: "케이블을 발목에 걸고 다리를 옆으로 벌려요.", tip: "상체 고정하고 다리만 움직이기." }
+  "덤벨 프론 Y레이즈": { target: "승모근 하부, 후면 삼각근", how: "벤치에 엎드리거나 바닥에 엎드려 가벼운 덤벨을 양팔 Y자 모양으로 들어올려요.", tip: "케이블 페이스풀의 맨몸/덤벨 대체 동작. 무게보다 견갑 모으는 느낌에 집중." },
+  "맨몸 힙 익스텐션": { target: "둔근", how: "네발기기 자세에서 한쪽 다리를 뒤로 곧게 뻗어 올려요.", tip: "허리로 반동 주지 말고 둔근 힘으로만 밀어 올리기." },
+  "덤벨 힙 익스텐션": { target: "둔근", how: "맨몸 힙 익스텐션과 동일하되 무릎 뒤에 덤벨을 끼워 저항을 추가해요.", tip: "덤벨이 떨어지지 않게 무릎을 살짝 굽혀 고정." },
+  "사이드 라잉 힙 어브덕션": { target: "둔근, 중둔근", how: "옆으로 누워 위쪽 다리를 천장 방향으로 들어올려요.", tip: "몸통이 앞뒤로 흔들리지 않게 고정하고 다리만 움직이기." },
 };
 
 // ===== 아이콘 헬퍼 (Lucide, ISC License 기반 — 동적 생성 요소용) =====
@@ -480,41 +473,33 @@ function renderBodyDiagramHTML(target) {
 // 아래 등록된 이름의 운동만 "운동 완료 후 다음 사이클"에 풀에서 랜덤 교체됨.
 // 각 배열의 첫 번째 항목이 오리지널이며, 매 사이클마다 배열 전체(오리지널 포함) 중 하나가 랜덤 선택됨.
 // ===== 보조 운동 로테이션 풀 (실제 보유 기구 기준) =====
-// 보유 기구: 바벨, 덤벨 랙, 케틀벨, 플랫/디클라인 벤치, 레그프레스, 랫풀다운+시티드로우 콤보머신, 저항밴드, 유산소 기구
-// 없는 기구: 스탠딩 케이블(풀리스택), 스미스머신, 레그익스텐션/레그컬 머신, 핵스쿼트, 티바로우, 프리처컬 벤치, 딥스 전용 스테이션
+// 보유 기구: 바벨, 덤벨 랙, 케틀벨, 플랫 벤치, 레그프레스, 레그 익스텐션 머신, 랫풀다운 머신, 유산소 기구
+// 없는 기구: 케이블(풀리스택), 저항밴드, 스미스머신, 레그컬 머신, 핵스쿼트, 인클라인/디클라인 벤치, 딥스 전용 스테이션
 const ROTATION_POOLS_MALE = {
-  // 가슴 보조
-  "덤벨 플랫 프레스": ["덤벨 플랫 프레스", "덤벨 디클라인 프레스"],
-  "덤벨 플라이": ["덤벨 플라이", "덤벨 디클라인 플라이"],
-  "밴드 트라이셉 푸시다운": ["밴드 트라이셉 푸시다운", "덤벨 킥백", "벤치 딥스"],
+  // 가슴 보조 (플랫 벤치만 있어서 인클라인/디클라인 옵션 없음 — 그대로 앵커)
   "덤벨 오버헤드 익스텐션": ["덤벨 오버헤드 익스텐션", "덤벨 라잉 익스텐션", "벤치 딥스"],
-  "덤벨 클로즈그립 프레스": ["덤벨 클로즈그립 프레스", "밴드 트라이셉 푸시다운", "벤치 딥스"],
-  "벤치 딥스": ["벤치 딥스", "밴드 트라이셉 푸시다운", "덤벨 킥백"],
+  "덤벨 클로즈그립 프레스": ["덤벨 클로즈그립 프레스", "벤치 딥스"],
+  "벤치 딥스": ["벤치 딥스", "덤벨 킥백"],
   // 등 보조
   "바벨 벤트오버 로우": ["바벨 벤트오버 로우", "덤벨 벤트오버 로우"],
   "덤벨 원암 로우": ["덤벨 원암 로우", "덤벨 벤트오버 로우"],
-  "바벨 컬": ["바벨 컬", "덤벨 컬", "밴드 컬"],
-  "덤벨 해머컬": ["덤벨 해머컬", "밴드 해머컬"],
-  "덤벨 컨센트레이션 컬": ["덤벨 컨센트레이션 컬", "밴드 컬"],
+  "바벨 컬": ["바벨 컬", "덤벨 컬"],
   "덤벨 컬 21s": ["덤벨 컬 21s", "바벨 21s"],
   // 하체 보조
   "덤벨 불가리안 스플릿 스쿼트": ["덤벨 불가리안 스플릿 스쿼트", "덤벨 워킹 런지", "덤벨 스텝업"],
   "케틀벨 고블릿 스쿼트": ["케틀벨 고블릿 스쿼트", "덤벨 고블릿 스쿼트", "덤벨 스모 스쿼트"],
   "덤벨 루마니안 데드리프트": ["덤벨 루마니안 데드리프트", "케틀벨 스윙", "바벨 루마니안 데드리프트"],
   // 어깨 보조
-  "덤벨 숄더 프레스": ["덤벨 숄더 프레스", "덤벨 아놀드 프레스"],
-  "사이드 레터럴 레이즈": ["사이드 레터럴 레이즈", "밴드 레터럴 레이즈"],
-  "밴드 페이스풀": ["밴드 페이스풀", "덤벨 리어 델트 플라이", "밴드 풀어파트"]
+  "덤벨 숄더 프레스": ["덤벨 숄더 프레스", "덤벨 아놀드 프레스"]
 };
 
 const ROTATION_POOLS_FEMALE = {
   "덤벨 워킹 런지": ["덤벨 워킹 런지", "덤벨 스텝업", "덤벨 스모 스쿼트"],
-  "레그 익스텐션": ["레그 익스텐션"], // 여성 루틴은 헬스장 무관 참고용, 별도 확인 전까지 유지
-  "사이드 레터럴 레이즈": ["사이드 레터럴 레이즈", "밴드 레터럴 레이즈"],
-  "페이스풀": ["밴드 페이스풀", "덤벨 리어 델트 플라이"],
-  "리어 델트 플라이": ["덤벨 리어 델트 플라이", "밴드 페이스풀"],
-  "덤벨 컬": ["덤벨 컬", "밴드 컬"],
-  "케이블 킥백": ["덤벨 킥백"],
+  "레그 익스텐션": ["레그 익스텐션"],
+  "덤벨 프론 Y레이즈": ["덤벨 프론 Y레이즈", "덤벨 리어 델트 플라이"],
+  "리어 델트 플라이": ["덤벨 리어 델트 플라이", "덤벨 프론 Y레이즈"],
+  "맨몸 힙 익스텐션": ["맨몸 힙 익스텐션", "덤벨 힙 익스텐션"],
+  "사이드 라잉 힙 어브덕션": ["사이드 라잉 힙 어브덕션"],
   "러시안 트위스트": ["러시안 트위스트", "마운틴 클라이머"]
 };
 
@@ -626,9 +611,7 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   // Day 1 — 가슴/삼두
   "바벨 벤치프레스": 40,
   "덤벨 플랫 프레스": 16,
-  "덤벨 디클라인 프레스": 16,
   "덤벨 플라이": 12,
-  "덤벨 디클라인 플라이": 12,
   "덤벨 오버헤드 익스텐션": 10,
   "덤벨 라잉 익스텐션": 10,
   "덤벨 클로즈그립 프레스": 14,
@@ -677,27 +660,21 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   "랫풀다운": 25,
   "덤벨 벤트오버 로우": 14,
   "사이드 레터럴 레이즈": 3,
-  "페이스풀": 8,
+  "덤벨 프론 Y레이즈": 3,
   "리어 델트 플라이": 4,
   "덤벨 컬": 5,
   // Day 3 — 힙 + 코어 + 유산소
   "덤벨 루마니안 데드리프트": 12,
-  "케이블 킥백": 4,
-  "케이블 힙 어브덕션": 15,
   "카프레이즈": 30,
   "러시안 트위스트": 5,
   // ===== 로테이션 풀 대체 종목 기준무게 =====
   "스텝업": 6,
   "덤벨 스모 스쿼트": 12,
-  "레그컬": 14,
-  "케이블 레터럴 레이즈": 3,
-  "벤트오버 레터럴 레이즈": 3,
-  "이지바 컬": 10,
-  "케이블 컬": 8,
-  "덤벨 킥백": 4,
   "덤벨 스텝업": 6,
-  "덤벨 리어 델트 플라이": 4
-  // 플랭크·데드버그·마운틴 클라이머·스텝밀은 맨몸/유산소라 기준무게 없음
+  "덤벨 리어 델트 플라이": 4,
+  "덤벨 힙 익스텐션": 4
+  // 플랭크·데드버그·마운틴 클라이머·스텝밀·맨몸 힙 익스텐션·사이드 라잉 힙 어브덕션은
+  // 맨몸/유산소라 기준무게 없음
 };
 
 const PROFILE_KEY = "monster-project-profile";
@@ -767,11 +744,9 @@ function saveProfileData(profile) {
 const MASTER_EXERCISES = [
   { category: "가슴", name: "바벨 벤치프레스" },
   { category: "가슴", name: "덤벨 인클라인 프레스" },
-  { category: "가슴", name: "덤벨 디클라인 프레스" },
   { category: "가슴", name: "머신 체스트 프레스" },
   { category: "가슴", name: "머신 플라이" },
   { category: "가슴", name: "덤벨 플라이" },
-  { category: "가슴", name: "케이블 크로스오버" },
   { category: "가슴", name: "딥스" },
   { category: "가슴", name: "덤벨 클로즈그립 프레스" },
   { category: "등", name: "랫풀다운" },
@@ -785,13 +760,11 @@ const MASTER_EXERCISES = [
   { category: "어깨", name: "프론트 레이즈" },
   { category: "어깨", name: "리어 델트 플라이" },
   { category: "어깨", name: "페이스풀" },
-  { category: "어깨", name: "케이블 숄더 프레스" },
   { category: "팔", name: "바벨 컬" },
   { category: "팔", name: "덤벨 컬" },
   { category: "팔", name: "덤벨 해머컬" },
   { category: "팔", name: "덤벨 컨센트레이션 컬" },
   { category: "팔", name: "덤벨 컬 21s" },
-  { category: "팔", name: "케이블 푸시다운" },
   { category: "팔", name: "덤벨 오버헤드 익스텐션" },
   { category: "팔", name: "스컬크러셔" },
   { category: "하체", name: "헥스바 데드리프트" },
@@ -806,10 +779,8 @@ const MASTER_EXERCISES = [
   { category: "하체", name: "카프레이즈" },
   { category: "하체", name: "루마니안 데드리프트" },
   { category: "하체", name: "힙 쓰러스트" },
-  { category: "하체", name: "케이블 킥백" },
   { category: "코어", name: "플랭크" },
   { category: "코어", name: "행잉 레그레이즈" },
-  { category: "코어", name: "케이블 크런치" },
   { category: "코어", name: "케틀벨 러시안 트위스트" },
   { category: "유산소", name: "스텝밀" },
   { category: "유산소", name: "트레드밀" },
@@ -882,7 +853,6 @@ const BODYWEIGHT_MASTER_EXERCISES = [
   { category: "팔", name: "딥스" },
   { category: "팔", name: "클로즈그립 푸시업" },
   { category: "팔", name: "타올 컬" },
-  { category: "팔", name: "밴드 컬" },
   { category: "하체", name: "맨몸 스쿼트" },
   { category: "하체", name: "런지" },
   { category: "하체", name: "불가리안 스플릿 스쿼트" },
@@ -2490,6 +2460,8 @@ function renderHistory() {
     grid.appendChild(empty);
   }
 
+  const dayCells = []; // roving tabindex / 화살표 키 네비게이션용 인덱스
+
   for (let d = 1; d <= daysInMonth; d++) {
     const dateKey = `${calYear}-${String(calMonth + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     const entry = logs[dateKey];
@@ -2519,7 +2491,7 @@ function renderHistory() {
       ? (entry.day === "rest" ? "휴식일 기록됨" : `${entry.day}일차 운동 기록됨`)
       : "기록 없음";
     cell.setAttribute("role", "button");
-    cell.setAttribute("tabindex", "0");
+    cell.setAttribute("tabindex", "-1"); // roving tabindex: 아래에서 대표 셀 하나만 0으로 설정
     cell.setAttribute("aria-label", `${calMonth + 1}월 ${d}일, ${statusLabel}`);
 
     const openDetail = () => showDayDetail(dateKey, entry);
@@ -2528,10 +2500,39 @@ function renderHistory() {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         openDetail();
+        return;
+      }
+
+      const moves = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 };
+      let targetIdx = null;
+      if (e.key in moves) {
+        targetIdx = dayCells.indexOf(cell) + moves[e.key];
+      } else if (e.key === "Home") {
+        targetIdx = 0;
+      } else if (e.key === "End") {
+        targetIdx = dayCells.length - 1;
+      }
+
+      if (targetIdx !== null && targetIdx >= 0 && targetIdx < dayCells.length) {
+        e.preventDefault();
+        const current = dayCells[dayCells.indexOf(cell)];
+        current.setAttribute("tabindex", "-1");
+        const next = dayCells[targetIdx];
+        next.setAttribute("tabindex", "0");
+        next.focus();
       }
     });
+
+    dayCells.push(cell);
     grid.appendChild(cell);
   }
+
+  // roving tabindex 시작점: 오늘 날짜 > 선택된 날짜 > 1일 순으로 우선순위
+  const initialFocusCell =
+    dayCells.find(c => c.dataset.datekey === todayStr) ||
+    dayCells.find(c => c.dataset.datekey === selectedCalendarDate) ||
+    dayCells[0];
+  if (initialFocusCell) initialFocusCell.setAttribute("tabindex", "0");
 
   if (!selectedCalendarDate) {
     document.getElementById("day-detail").innerHTML = "";
@@ -2865,19 +2866,25 @@ function closeExerciseInfoModal() {
 }
 
 // ===== 토스트 알림 =====
+let toastHideTimer = null;
+
 function showToast(msg) {
-  const existing = document.querySelector(".toast");
-  if (existing) existing.remove();
+  const toast = document.getElementById("toast-live-region");
+  if (!toast) return;
 
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.textContent = msg;
-  document.body.appendChild(toast);
+  clearTimeout(toastHideTimer);
+  toast.classList.remove("show");
 
-  requestAnimationFrame(() => toast.classList.add("show"));
-  setTimeout(() => {
+  // 같은 문구가 연속으로 뜨는 경우에도 스크린리더가 "변경"을 인식하도록
+  // 텍스트를 비웠다가 다음 프레임에 다시 채움
+  toast.textContent = "";
+  requestAnimationFrame(() => {
+    toast.textContent = msg;
+    toast.classList.add("show");
+  });
+
+  toastHideTimer = setTimeout(() => {
     toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300);
   }, 2000);
 }
 
