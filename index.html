@@ -42,12 +42,6 @@
           <button id="next-month" class="cal-nav-btn">›</button>
         </div>
 
-        <div class="calendar-legend">
-          <span><i class="dot dot-gym"></i>기구 운동</span>
-          <span><i class="dot dot-bw"></i>맨몸 운동</span>
-          <span><i class="dot dot-rest"></i>휴식</span>
-        </div>
-
         <div class="calendar-weekdays">
           <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
         </div>
@@ -82,6 +76,7 @@
 
           <div id="editing-banner" class="editing-banner">
             <span id="editing-banner-text"></span>
+            <button id="fill-all-btn" class="fill-all-btn">전체 빠른 채우기</button>
             <button id="cancel-edit-btn">취소</button>
           </div>
 
@@ -199,6 +194,16 @@
         <span>운동만큼 수면과 식사도 중요해요. 잘 자고 잘 먹어야 근육이 자랍니다.</span>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="exercise-info-modal" class="modal-overlay center">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="exercise-info-title">운동 설명</h3>
+      <button id="close-exercise-info-btn" class="modal-close">✕</button>
+    </div>
+    <div id="exercise-info-body" class="exercise-info-body"></div>
   </div>
 </div>
 

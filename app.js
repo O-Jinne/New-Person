@@ -6,9 +6,9 @@ const ROUTINES_MALE = {
       name: "가슴 + 삼두",
       exercises: [
         { name: "바벨 벤치프레스", target: "5세트 x 6~8회" },
-        { name: "덤벨 인클라인 프레스", target: "4세트 x 8~10회" },
-        { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
-        { name: "케이블 푸시다운", target: "4세트 x 10~12회" },
+        { name: "덤벨 플랫 프레스", target: "4세트 x 8~10회" },
+        { name: "덤벨 플라이", target: "3세트 x 10~12회" },
+        { name: "밴드 트라이셉 푸시다운", target: "4세트 x 10~12회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
         { name: "덤벨 클로즈그립 프레스", target: "3세트 x 10~12회" },
         { name: "스텝밀", target: "600스텝" }
@@ -29,11 +29,11 @@ const ROUTINES_MALE = {
     3: {
       name: "하체",
       exercises: [
-        { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
+        { name: "바벨 데드리프트", target: "4세트 x 10~12회" },
         { name: "레그프레스", target: "4세트 x 12~15회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 8회 (좌우)" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
-        { name: "레그 익스텐션", target: "3세트 x 15회" },
+        { name: "덤벨 루마니안 데드리프트", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "4세트 x 15~20회" }
       ]
     },
@@ -42,7 +42,7 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
-        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "밴드 페이스풀", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 8~10회" },
         { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
         { name: "덤벨 컬 21s", target: "2세트" },
@@ -55,9 +55,9 @@ const ROUTINES_MALE = {
       name: "가슴 + 삼두",
       exercises: [
         { name: "바벨 벤치프레스", target: "5세트 x 4~6회" },
-        { name: "덤벨 인클라인 프레스", target: "4세트 x 6~8회" },
-        { name: "딥스", target: "4세트 x 8~10회" },
-        { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 플랫 프레스", target: "4세트 x 6~8회" },
+        { name: "벤치 딥스", target: "4세트 x 8~10회" },
+        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 10~12회" },
         { name: "덤벨 클로즈그립 프레스", target: "3세트 x 8~10회" },
         { name: "스텝밀", target: "300스텝" }
       ]
@@ -76,11 +76,11 @@ const ROUTINES_MALE = {
     3: {
       name: "하체",
       exercises: [
-        { name: "헥스바 데드리프트", target: "5세트 x 4~6회" },
+        { name: "바벨 데드리프트", target: "5세트 x 4~6회" },
         { name: "레그프레스", target: "4세트 x 8~10회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
-        { name: "레그 익스텐션", target: "3세트 x 12회" },
+        { name: "덤벨 루마니안 데드리프트", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" }
       ]
     },
@@ -89,7 +89,7 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
         { name: "사이드 레터럴 레이즈", target: "3세트 x 12~15회" },
-        { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "밴드 페이스풀", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 6~8회" },
         { name: "덤벨 해머컬", target: "3세트 x 8~10회" },
         { name: "스텝밀", target: "300스텝" }
@@ -101,9 +101,9 @@ const ROUTINES_MALE = {
       name: "가슴 + 삼두",
       exercises: [
         { name: "바벨 벤치프레스", target: "4세트 x 10~12회" },
-        { name: "덤벨 인클라인 프레스", target: "3세트 x 12~15회" },
-        { name: "머신/덤벨 플라이", target: "3세트 x 15회" },
-        { name: "케이블 푸시다운", target: "3세트 x 15회" },
+        { name: "덤벨 플랫 프레스", target: "3세트 x 12~15회" },
+        { name: "덤벨 플라이", target: "3세트 x 15회" },
+        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 15회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15회" },
         { name: "스텝밀", target: "900스텝" }
       ]
@@ -122,11 +122,11 @@ const ROUTINES_MALE = {
     3: {
       name: "하체",
       exercises: [
-        { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
+        { name: "바벨 데드리프트", target: "3세트 x 12~15회" },
         { name: "레그프레스", target: "4세트 x 15~20회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
-        { name: "레그 익스텐션", target: "3세트 x 20회" },
+        { name: "덤벨 루마니안 데드리프트", target: "3세트 x 20회" },
         { name: "카프레이즈", target: "4세트 x 20회" }
       ]
     },
@@ -135,7 +135,7 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
-        { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "밴드 페이스풀", target: "3세트 x 20회" },
         { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
         { name: "스텝밀", target: "900스텝" }
@@ -270,6 +270,305 @@ const ROUTINES_FEMALE = {
 
 const ROUTINE_SETS = { male: ROUTINES_MALE, female: ROUTINES_FEMALE };
 
+// ===== 운동 설명 데이터베이스 =====
+// target: 주요 타겟 부위 / how: 수행 방법 / tip: 자세·안전 팁
+const EXERCISE_GUIDES = {
+  // 가슴
+  "바벨 벤치프레스": { target: "가슴, 삼두, 전면 어깨", how: "벤치에 누워 견갑을 모아 고정하고, 바를 가슴 중하단까지 내렸다가 밀어 올려요.", tip: "손목은 곧게, 팔꿈치는 45도 정도로 벌려야 어깨 부담이 적어요." },
+  "덤벨 플랫 프레스": { target: "가슴, 삼두, 전면 어깨", how: "플랫 벤치에 누워 덤벨을 가슴 옆까지 내렸다가 위로 밀어 올려요.", tip: "바벨보다 가동범위가 커서 밑에서 살짝 스트레칭 느낌까지 내려도 좋아요." },
+  "덤벨 디클라인 프레스": { target: "가슴 하부, 삼두", how: "디클라인 벤치에 누워 덤벨을 가슴 하단까지 내렸다가 밀어 올려요.", tip: "발을 벤치 끝에 잘 고정하고 시작해요." },
+  "덤벨 플라이": { target: "가슴 (스트레칭 자극)", how: "플랫 벤치에 누워 팔꿈치를 살짝 굽힌 채 양팔을 원을 그리듯 벌렸다 모아요.", tip: "팔꿈치를 너무 펴면 관절에 부담되니 살짝 굽힌 상태 유지." },
+  "덤벨 디클라인 플라이": { target: "가슴 하부", how: "디클라인 벤치에서 플라이 동작을 수행해요.", tip: "무게는 가볍게, 자극 위주로." },
+  "밴드 트라이셉 푸시다운": { target: "삼두", how: "밴드를 위쪽에 고정하고 팔꿈치를 몸통에 붙인 채 아래로 펴줘요.", tip: "팔꿈치가 앞뒤로 움직이지 않게 고정." },
+  "덤벨 오버헤드 익스텐션": { target: "삼두 (장두 위주)", how: "덤벨을 양손으로 잡고 머리 위로 올린 뒤 팔꿈치만 굽혀 뒤로 내렸다 펴요.", tip: "팔꿈치가 벌어지지 않게 고정." },
+  "덤벨 라잉 익스텐션": { target: "삼두", how: "벤치에 누워 덤벨을 이마 방향으로 내렸다가 펴요.", tip: "팔꿈치 위치 고정, 얼굴 쪽으로 너무 가깝게 내리지 않기." },
+  "덤벨 클로즈그립 프레스": { target: "삼두, 가슴 안쪽", how: "벤치프레스보다 좁은 그립으로 덤벨을 몸 옆에 붙여 밀어 올려요.", tip: "손목이 꺾이지 않게 주의." },
+  "벤치 딥스": { target: "삼두, 가슴 하부", how: "벤치에 손을 짚고 엉덩이를 내렸다 올려요. 발은 바닥이나 다른 벤치에.", tip: "어깨가 안 좋으면 너무 깊게 내려가지 않기." },
+  "덤벨 킥백": { target: "삼두", how: "상체를 숙이고 팔꿈치를 몸통에 고정한 채 덤벨을 뒤로 펴요.", tip: "팔꿈치 각도 고정이 핵심, 무게보다 자극에 집중." },
+  // 등
+  "랫풀다운": { target: "광배근, 이두", how: "바를 어깨너비보다 살짝 넓게 잡고 가슴 쪽으로 당겨요.", tip: "상체를 너무 뒤로 젖히지 말고 광배로 당기는 느낌." },
+  "바벨 벤트오버 로우": { target: "등 전체, 이두", how: "상체를 45도 정도 숙이고 바벨을 배꼽 쪽으로 당겨요.", tip: "허리는 곧게 펴고 코어에 힘을 줘야 부상 예방." },
+  "덤벨 벤트오버 로우": { target: "등 전체, 이두", how: "상체를 숙이고 양손 덤벨을 허리 쪽으로 동시에 당겨요.", tip: "허리 중립 유지가 제일 중요." },
+  "덤벨 원암 로우": { target: "광배근, 이두", how: "벤치에 한 손·한 무릎을 대고 반대손 덤벨을 허리 쪽으로 당겨요.", tip: "몸통 회전 없이 순수하게 팔로만 당기기." },
+  "케이블 시티드 로우": { target: "등 중앙, 이두", how: "머신에 앉아 손잡이를 배 쪽으로 당겨요.", tip: "등을 둥글게 말지 말고 가슴을 펴고 당기기." },
+  "바벨 컬": { target: "이두", how: "바벨을 어깨너비로 잡고 팔꿈치 고정한 채 컬 동작.", tip: "몸을 흔들어 반동 주지 않기." },
+  "덤벨 컬": { target: "이두", how: "덤벨을 양손 또는 교대로 컬 동작.", tip: "손목을 살짝 바깥으로 돌리면(수피네이션) 자극이 더 잘 들어와요." },
+  "밴드 컬": { target: "이두", how: "밴드를 발로 밟고 팔꿈치 고정한 채 당겨 올려요.", tip: "밴드 장력이 일정하게 유지되도록 천천히." },
+  "덤벨 해머컬": { target: "이두, 전완", how: "손바닥이 마주보는 그립으로 덤벨을 컬 동작.", tip: "전완근까지 같이 자극돼요." },
+  "밴드 해머컬": { target: "이두, 전완", how: "밴드를 해머그립(엄지 위)으로 잡고 컬 동작.", tip: "팔꿈치 고정 유지." },
+  "덤벨 컨센트레이션 컬": { target: "이두 (고립)", how: "앉아서 팔꿈치를 허벅지에 고정하고 한 팔씩 컬.", tip: "천천히, 수축 지점에서 짜듯이 힘주기." },
+  "덤벨 컬 21s": { target: "이두 (풀레인지 자극)", how: "하위 절반 7회 + 상위 절반 7회 + 풀 레인지 7회, 총 21회를 연속으로.", tip: "가벼운 무게로, 마지막 세트 마무리용." },
+  "바벨 21s": { target: "이두", how: "바벨로 21s 방식(하위7+상위7+풀7) 수행.", tip: "펌핑 목적이라 무게는 평소보다 낮게." },
+  // 하체
+  "바벨 데드리프트": { target: "둔근, 햄스트링, 등 전체", how: "바벨을 정강이 앞에 두고 허리를 곧게 편 채 바닥에서 들어올려요.", tip: "바가 몸에서 멀어지지 않게, 힙힌지로 시작." },
+  "레그프레스": { target: "대퇴사두, 둔근", how: "발판에 발을 어깨너비로 딛고 무릎이 90도 정도 될 때까지 내렸다 밀어요.", tip: "무릎이 안쪽으로 모이지 않게 주의." },
+  "덤벨 불가리안 스플릿 스쿼트": { target: "대퇴사두, 둔근 (편측)", how: "뒷발을 벤치에 올리고 앞다리로 스쿼트 동작.", tip: "상체를 살짝 숙이면 둔근에 더 자극이 가요." },
+  "덤벨 워킹 런지": { target: "대퇴사두, 둔근", how: "덤벨을 양손에 들고 앞으로 걸으며 런지 동작을 반복.", tip: "무릎이 발끝을 많이 넘지 않게." },
+  "덤벨 스텝업": { target: "대퇴사두, 둔근", how: "벤치나 박스에 한 발을 올리고 밀어 올라가요.", tip: "반대 발로 밀지 말고 올라가는 다리 힘으로." },
+  "케틀벨 고블릿 스쿼트": { target: "대퇴사두, 둔근, 코어", how: "케틀벨을 가슴 앞에 들고 스쿼트 동작.", tip: "가슴을 세우고 무릎과 발끝 방향 맞추기." },
+  "덤벨 고블릿 스쿼트": { target: "대퇴사두, 둔근, 코어", how: "덤벨 한쪽을 세워 양손으로 가슴 앞에 들고 스쿼트.", tip: "케틀벨 고블릿과 동일한 자세." },
+  "덤벨 스모 스쿼트": { target: "둔근, 내전근", how: "발을 넓게 벌리고 덤벨을 다리 사이로 늘어뜨린 채 스쿼트.", tip: "발끝을 바깥으로 살짝 돌리기." },
+  "덤벨 루마니안 데드리프트": { target: "햄스트링, 둔근", how: "무릎을 살짝만 굽히고 엉덩이를 뒤로 빼며 덤벨을 정강이 옆으로 내려요.", tip: "허리 말리지 않게, 햄스트링 스트레칭 느낌까지만." },
+  "바벨 루마니안 데드리프트": { target: "햄스트링, 둔근", how: "바벨로 RDL 동작. 무릎은 살짝만 굽히고 힙힌지.", tip: "바가 다리에서 멀어지지 않게 붙여서." },
+  "케틀벨 스윙": { target: "둔근, 햄스트링, 코어", how: "케틀벨을 다리 사이로 흔들었다가 힙 파워로 앞으로 스윙.", tip: "팔 힘이 아니라 골반 힘으로 튕기듯." },
+  "카프레이즈": { target: "종아리", how: "발끝으로 서서 뒤꿈치를 최대한 들었다 내려요.", tip: "레그프레스 발판에서 발끝만 걸치고 해도 좋아요." },
+  // 어깨
+  "덤벨 숄더 프레스": { target: "어깨 전체", how: "덤벨을 어깨 높이에서 머리 위로 밀어 올려요.", tip: "허리가 과하게 꺾이지 않게 코어 긴장." },
+  "덤벨 아놀드 프레스": { target: "어깨 전체 (회전 포함)", how: "손바닥이 몸 쪽을 향한 상태로 시작해 밀어 올리며 손바닥이 앞을 보게 회전.", tip: "회전 타이밍보다 부드러운 궤적이 중요." },
+  "사이드 레터럴 레이즈": { target: "어깨 측면", how: "덤벨을 양옆으로 어깨 높이까지 들어올려요.", tip: "팔꿈치를 살짝 굽히고, 반동 없이 천천히." },
+  "밴드 레터럴 레이즈": { target: "어깨 측면", how: "밴드를 발로 밟고 옆으로 들어올려요.", tip: "밴드 장력이 최상단에서 최대가 되게." },
+  "밴드 페이스풀": { target: "후면 삼각근, 승모근 하부", how: "밴드를 눈높이에 고정하고 얼굴 쪽으로 당기며 팔꿈치를 벌려요.", tip: "직각어깨 만들기에 핵심적인 자세교정 운동." },
+  "덤벨 리어 델트 플라이": { target: "후면 삼각근", how: "상체를 숙이고 덤벨을 양옆으로 들어올려요.", tip: "허리 말지 않고 등 평평하게 유지." },
+  "밴드 풀어파트": { target: "후면 삼각근, 등 상부", how: "밴드 양끝을 잡고 가슴 앞에서 양옆으로 벌려요.", tip: "가벼운 밴드로 워밍업이나 마무리용으로 좋아요." },
+  // 코어/유산소
+  "스텝밀": { target: "심폐지구력, 하체", how: "계단 오르듯 페달을 밟는 유산소 기구.", tip: "손잡이에 체중 싣지 말고 다리 힘으로 밟기." },
+  "플랭크": { target: "코어 전체", how: "팔꿈치와 발끝으로 몸을 일직선으로 버텨요.", tip: "엉덩이가 뜨거나 처지지 않게 일직선 유지." },
+  "데드버그": { target: "코어, 요추 안정성", how: "누워서 반대쪽 팔·다리를 동시에 뻗었다 제자리로.", tip: "허리가 바닥에서 뜨지 않게." },
+  "러시안 트위스트": { target: "복사근", how: "앉아서 상체를 살짝 젖히고 좌우로 회전.", tip: "허리보다 갈비뼈를 회전시키는 느낌." },
+  "마운틴 클라이머": { target: "코어, 심폐", how: "플랭크 자세에서 무릎을 번갈아 가슴 쪽으로 당겨요.", tip: "엉덩이가 너무 들리지 않게." }
+};
+
+function getExerciseGuide(name) {
+  return EXERCISE_GUIDES[name] || null;
+}
+
+// ===== 자극 부위 인체 다이어그램 (정면/후면 실루엣 + 부위별 하이라이트) =====
+// 공통 몸통/팔다리 베이스 실루엣 (정면·후면 동일 외곽선)
+const BODY_BASE_SHAPE = `
+  <ellipse cx="80" cy="24" rx="16" ry="20"/>
+  <rect x="73" y="41" width="14" height="12" rx="4"/>
+  <path d="M50,54 L110,54 Q128,54 127,72 L124,140 Q123,158 116,166 L112,178 Q112,182 108,182 L52,182 Q48,182 48,178 L44,166 Q37,158 36,140 L33,72 Q32,54 50,54 Z"/>
+  <rect x="10" y="62" width="17" height="60" rx="8.5"/>
+  <rect x="8" y="118" width="16" height="58" rx="8"/>
+  <rect x="133" y="62" width="17" height="60" rx="8.5"/>
+  <rect x="136" y="118" width="16" height="58" rx="8"/>
+  <path d="M50,182 C43,186 40,195 39,208 L37,278 L55,278 L58,215 L60,198 L74,198 L74,182 Z"/>
+  <path d="M110,182 C117,186 120,195 121,208 L123,278 L105,278 L102,215 L100,198 L86,198 L86,182 Z"/>
+  <rect x="35" y="276" width="21" height="66" rx="10"/>
+  <rect x="104" y="276" width="21" height="66" rx="10"/>
+  <ellipse cx="45" cy="352" rx="13" ry="9"/>
+  <ellipse cx="115" cy="352" rx="13" ry="9"/>
+`;
+
+// 정면에서 보이는 부위: 가슴, 전면삼각근, 이두, 전완, 복근/옆구리, 대퇴사두, 내전근, 종아리
+const BODY_FRONT_REGIONS = `
+  <ellipse class="muscle-region" data-region="front_delt" cx="24" cy="68" rx="11" ry="13"/>
+  <ellipse class="muscle-region" data-region="front_delt" cx="136" cy="68" rx="11" ry="13"/>
+  <rect class="muscle-region" data-region="forearm" x="9" y="122" width="14" height="48" rx="7"/>
+  <rect class="muscle-region" data-region="forearm" x="137" y="122" width="14" height="48" rx="7"/>
+  <path class="muscle-region" data-region="chest" d="M52,62 Q45,62 44,72 L45,92 Q46,100 56,100 L78,100 L78,64 L64,62 Z"/>
+  <path class="muscle-region" data-region="chest" d="M108,62 Q115,62 116,72 L115,92 Q114,100 104,100 L82,100 L82,64 L96,62 Z"/>
+  <rect class="muscle-region" data-region="biceps" x="11" y="80" width="15" height="38" rx="7"/>
+  <rect class="muscle-region" data-region="biceps" x="134" y="80" width="15" height="38" rx="7"/>
+  <rect class="muscle-region" data-region="abs" x="66" y="104" width="12" height="16" rx="3"/>
+  <rect class="muscle-region" data-region="abs" x="82" y="104" width="12" height="16" rx="3"/>
+  <rect class="muscle-region" data-region="abs" x="66" y="123" width="12" height="16" rx="3"/>
+  <rect class="muscle-region" data-region="abs" x="82" y="123" width="12" height="16" rx="3"/>
+  <rect class="muscle-region" data-region="abs" x="67" y="142" width="26" height="16" rx="3"/>
+  <path class="muscle-region" data-region="obliques" d="M50,108 Q47,130 52,158 L60,158 L58,108 Z"/>
+  <path class="muscle-region" data-region="obliques" d="M110,108 Q113,130 108,158 L100,158 L102,108 Z"/>
+  <path class="muscle-region" data-region="quads" d="M50,186 C45,192 42,200 41,212 L40,272 L56,272 L58,215 Z"/>
+  <path class="muscle-region" data-region="quads" d="M110,186 C115,192 118,200 119,212 L120,272 L104,272 L102,215 Z"/>
+  <path class="muscle-region" data-region="adductor" d="M60,198 L74,198 L72,240 L64,240 Z"/>
+  <path class="muscle-region" data-region="adductor" d="M86,198 L100,198 L96,240 L88,240 Z"/>
+  <rect class="muscle-region" data-region="calf" x="36" y="278" width="19" height="62" rx="9"/>
+  <rect class="muscle-region" data-region="calf" x="105" y="278" width="19" height="62" rx="9"/>
+`;
+
+// 후면에서 보이는 부위: 승모근하부, 후면삼각근, 광배근, 등중앙, 삼두, 전완, 둔근, 햄스트링, 종아리
+const BODY_BACK_REGIONS = `
+  <path class="muscle-region" data-region="traps" d="M66,56 L94,56 L100,78 L80,90 L60,78 Z"/>
+  <ellipse class="muscle-region" data-region="rear_delt" cx="24" cy="68" rx="11" ry="13"/>
+  <ellipse class="muscle-region" data-region="rear_delt" cx="136" cy="68" rx="11" ry="13"/>
+  <path class="muscle-region" data-region="lats" d="M42,80 Q36,110 44,150 L60,160 L58,84 Z"/>
+  <path class="muscle-region" data-region="lats" d="M118,80 Q124,110 116,150 L100,160 L102,84 Z"/>
+  <rect class="muscle-region" data-region="lats" x="66" y="100" width="28" height="70" rx="6"/>
+  <rect class="muscle-region" data-region="triceps" x="11" y="80" width="15" height="38" rx="7"/>
+  <rect class="muscle-region" data-region="triceps" x="134" y="80" width="15" height="38" rx="7"/>
+  <rect class="muscle-region" data-region="forearm" x="9" y="122" width="14" height="48" rx="7"/>
+  <rect class="muscle-region" data-region="forearm" x="137" y="122" width="14" height="48" rx="7"/>
+  <path class="muscle-region" data-region="glutes" d="M48,184 Q42,192 41,206 L44,216 L74,216 L74,184 Z"/>
+  <path class="muscle-region" data-region="glutes" d="M112,184 Q118,192 119,206 L116,216 L86,216 L86,184 Z"/>
+  <path class="muscle-region" data-region="hamstrings" d="M42,220 L58,220 L56,272 L42,272 Z"/>
+  <path class="muscle-region" data-region="hamstrings" d="M118,220 L102,220 L104,272 L118,272 Z"/>
+  <rect class="muscle-region" data-region="calf" x="36" y="278" width="19" height="62" rx="9"/>
+  <rect class="muscle-region" data-region="calf" x="105" y="278" width="19" height="62" rx="9"/>
+`;
+
+function buildBodySvg(regionsMarkup, label) {
+  return `
+    <svg viewBox="0 0 160 400" class="body-diagram-svg">
+      <g class="body-outline">${BODY_BASE_SHAPE}</g>
+      <g>${regionsMarkup}</g>
+    </svg>
+    <div class="body-diagram-label">${label}</div>
+  `;
+}
+
+// target 문자열의 한글 부위 키워드를 스캔해서 다이어그램 부위 id 목록으로 변환
+const MUSCLE_KEYWORD_MAP = [
+  ["전면 어깨", ["front_delt"]],
+  ["어깨 측면", ["front_delt", "rear_delt"]],
+  ["어깨 전체", ["front_delt", "rear_delt"]],
+  ["후면 삼각근", ["rear_delt"]],
+  ["승모근 하부", ["traps"]],
+  ["등 상부", ["traps", "lats"]],
+  ["등 전체", ["lats", "traps"]],
+  ["등 중앙", ["lats"]],
+  ["광배근", ["lats"]],
+  ["가슴", ["chest"]],
+  ["삼두", ["triceps"]],
+  ["이두", ["biceps"]],
+  ["전완", ["forearm"]],
+  ["둔근", ["glutes"]],
+  ["대퇴사두", ["quads"]],
+  ["햄스트링", ["hamstrings"]],
+  ["내전근", ["adductor"]],
+  ["종아리", ["calf"]],
+  ["하체", ["quads", "hamstrings", "calf", "glutes"]],
+  ["복사근", ["obliques"]],
+  ["코어", ["abs"]],
+  ["요추", ["abs"]]
+];
+
+function getRegionsForTarget(target) {
+  if (!target) return [];
+  const regions = new Set();
+  MUSCLE_KEYWORD_MAP.forEach(([keyword, ids]) => {
+    if (target.includes(keyword)) {
+      ids.forEach(id => regions.add(id));
+    }
+  });
+  return [...regions];
+}
+
+function renderBodyDiagramHTML(target) {
+  const regions = getRegionsForTarget(target);
+  if (regions.length === 0) return "";
+
+  const frontSvg = buildBodySvg(BODY_FRONT_REGIONS, "정면");
+  const backSvg = buildBodySvg(BODY_BACK_REGIONS, "후면");
+
+  return `
+    <div class="body-diagram-wrap" data-active-regions="${regions.join(",")}">
+      <div class="body-diagram-col">${frontSvg}</div>
+      <div class="body-diagram-col">${backSvg}</div>
+    </div>
+  `;
+}
+
+function activateBodyDiagramRegions(container) {
+  const wrap = container.querySelector(".body-diagram-wrap");
+  if (!wrap) return;
+  const activeRegions = (wrap.dataset.activeRegions || "").split(",").filter(Boolean);
+  wrap.querySelectorAll(".muscle-region").forEach(el => {
+    const region = el.dataset.region;
+    if (activeRegions.includes(region)) {
+      el.classList.add("active");
+    }
+  });
+}
+
+// ===== 보조 운동 로테이션 풀 =====
+// 벤치프레스/데드리프트/랫풀다운/레그프레스/힙쓰러스트/스텝밀 등 대체 불가 메인 운동은
+// 여기 등록하지 않음 → 자동으로 고정(앵커) 처리됨.
+// 아래 등록된 이름의 운동만 "운동 완료 후 다음 사이클"에 풀에서 랜덤 교체됨.
+// 각 배열의 첫 번째 항목이 오리지널이며, 매 사이클마다 배열 전체(오리지널 포함) 중 하나가 랜덤 선택됨.
+// ===== 보조 운동 로테이션 풀 (실제 보유 기구 기준) =====
+// 보유 기구: 바벨, 덤벨 랙, 케틀벨, 플랫/디클라인 벤치, 레그프레스, 랫풀다운+시티드로우 콤보머신, 저항밴드, 유산소 기구
+// 없는 기구: 스탠딩 케이블(풀리스택), 스미스머신, 레그익스텐션/레그컬 머신, 핵스쿼트, 티바로우, 프리처컬 벤치, 딥스 전용 스테이션
+const ROTATION_POOLS_MALE = {
+  // 가슴 보조
+  "덤벨 플랫 프레스": ["덤벨 플랫 프레스", "덤벨 디클라인 프레스"],
+  "덤벨 플라이": ["덤벨 플라이", "덤벨 디클라인 플라이"],
+  "밴드 트라이셉 푸시다운": ["밴드 트라이셉 푸시다운", "덤벨 킥백", "벤치 딥스"],
+  "덤벨 오버헤드 익스텐션": ["덤벨 오버헤드 익스텐션", "덤벨 라잉 익스텐션", "벤치 딥스"],
+  "덤벨 클로즈그립 프레스": ["덤벨 클로즈그립 프레스", "밴드 트라이셉 푸시다운", "벤치 딥스"],
+  "벤치 딥스": ["벤치 딥스", "밴드 트라이셉 푸시다운", "덤벨 킥백"],
+  // 등 보조
+  "바벨 벤트오버 로우": ["바벨 벤트오버 로우", "덤벨 벤트오버 로우", "케이블 시티드 로우"],
+  "덤벨 원암 로우": ["덤벨 원암 로우", "케이블 시티드 로우"],
+  "바벨 컬": ["바벨 컬", "덤벨 컬", "밴드 컬"],
+  "덤벨 해머컬": ["덤벨 해머컬", "밴드 해머컬"],
+  "덤벨 컨센트레이션 컬": ["덤벨 컨센트레이션 컬", "밴드 컬"],
+  "덤벨 컬 21s": ["덤벨 컬 21s", "바벨 21s"],
+  // 하체 보조
+  "덤벨 불가리안 스플릿 스쿼트": ["덤벨 불가리안 스플릿 스쿼트", "덤벨 워킹 런지", "덤벨 스텝업"],
+  "케틀벨 고블릿 스쿼트": ["케틀벨 고블릿 스쿼트", "덤벨 고블릿 스쿼트", "덤벨 스모 스쿼트"],
+  "덤벨 루마니안 데드리프트": ["덤벨 루마니안 데드리프트", "케틀벨 스윙", "바벨 루마니안 데드리프트"],
+  // 어깨 보조
+  "덤벨 숄더 프레스": ["덤벨 숄더 프레스", "덤벨 아놀드 프레스"],
+  "사이드 레터럴 레이즈": ["사이드 레터럴 레이즈", "밴드 레터럴 레이즈"],
+  "밴드 페이스풀": ["밴드 페이스풀", "덤벨 리어 델트 플라이", "밴드 풀어파트"]
+};
+
+const ROTATION_POOLS_FEMALE = {
+  "덤벨 워킹 런지": ["덤벨 워킹 런지", "덤벨 스텝업", "덤벨 스모 스쿼트"],
+  "레그 익스텐션": ["레그 익스텐션"], // 여성 루틴은 헬스장 무관 참고용, 별도 확인 전까지 유지
+  "케이블 시티드 로우": ["케이블 시티드 로우", "덤벨 벤트오버 로우"],
+  "사이드 레터럴 레이즈": ["사이드 레터럴 레이즈", "밴드 레터럴 레이즈"],
+  "페이스풀": ["밴드 페이스풀", "덤벨 리어 델트 플라이"],
+  "리어 델트 플라이": ["덤벨 리어 델트 플라이", "밴드 페이스풀"],
+  "덤벨 컬": ["덤벨 컬", "밴드 컬"],
+  "케이블 킥백": ["덤벨 킥백"],
+  "러시안 트위스트": ["러시안 트위스트", "마운틴 클라이머"]
+};
+
+function getRotationPools() {
+  return getGender() === "female" ? ROTATION_POOLS_FEMALE : ROTATION_POOLS_MALE;
+}
+
+// ===== 로테이션 상태 저장 (성별_모드_Day 별로 이번 사이클에 뽑힌 운동명을 기억) =====
+const ROTATION_STATE_KEY = "monster-project-rotation-state";
+
+function getRotationState() {
+  try {
+    const raw = localStorage.getItem(ROTATION_STATE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveRotationState(state) {
+  localStorage.setItem(ROTATION_STATE_KEY, JSON.stringify(state));
+}
+
+function getRotationCycleKey(day) {
+  return `${getGender()}_${getGoalMode()}_${day}`;
+}
+
+// 해당 Day의 운동 완료 후 호출 → 다음 방문 시 새로 랜덤 선택되도록 캐시 삭제
+function clearRotationForDay(day) {
+  const state = getRotationState();
+  delete state[getRotationCycleKey(day)];
+  saveRotationState(state);
+}
+
+// 이번 사이클에 쓸 운동명 맵 반환: { 원래이름: 이번에 뽑힌이름 }
+// 이미 이번 사이클에 뽑아둔 게 있으면 그대로 재사용(세션 중 안 바뀜), 없으면 새로 뽑아서 저장
+function getOrGenerateRotationPicks(day, exercises) {
+  const pools = getRotationPools();
+  const cycleKey = getRotationCycleKey(day);
+  const state = getRotationState();
+
+  if (state[cycleKey]) {
+    return state[cycleKey];
+  }
+
+  const picks = {};
+  exercises.forEach(ex => {
+    const pool = pools[ex.name];
+    if (pool && pool.length > 0) {
+      picks[ex.name] = pool[Math.floor(Math.random() * pool.length)];
+    }
+  });
+
+  state[cycleKey] = picks;
+  saveRotationState(state);
+  return picks;
+}
+
 const STORAGE_KEY = "monster-project-logs";
 const BASEWEIGHT_KEY = "monster-project-baseweights";
 
@@ -290,30 +589,44 @@ function getLocalYearMonth(date) {
 const DEFAULT_BASE_WEIGHTS_MALE = {
   // Day 1 — 가슴/삼두
   "바벨 벤치프레스": 40,
-  "덤벨 인클라인 프레스": 16,
-  "머신/덤벨 플라이": 12,
-  "케이블 푸시다운": 20,
+  "덤벨 플랫 프레스": 16,
+  "덤벨 디클라인 프레스": 16,
+  "덤벨 플라이": 12,
+  "덤벨 디클라인 플라이": 12,
   "덤벨 오버헤드 익스텐션": 10,
+  "덤벨 라잉 익스텐션": 10,
   "덤벨 클로즈그립 프레스": 14,
+  "덤벨 킥백": 6,
   // Day 2 — 등/이두
   "랫풀다운": 40,
   "바벨 벤트오버 로우": 40,
+  "덤벨 벤트오버 로우": 16,
   "덤벨 원암 로우": 16,
+  "케이블 시티드 로우": 35,
   "바벨 컬": 20,
+  "덤벨 컬": 10,
   "덤벨 해머컬": 10,
   "덤벨 컨센트레이션 컬": 8,
+  "덤벨 컬 21s": 8,
+  "바벨 21s": 15,
   // Day 3 — 하체
-  "헥스바 데드리프트": 40,
+  "바벨 데드리프트": 50,
   "레그프레스": 60,
   "덤벨 불가리안 스플릿 스쿼트": 10,
+  "덤벨 워킹 런지": 8,
+  "덤벨 스텝업": 10,
   "케틀벨 고블릿 스쿼트": 16,
-  "레그 익스텐션": 20,
+  "덤벨 고블릿 스쿼트": 16,
+  "덤벨 스모 스쿼트": 16,
+  "덤벨 루마니안 데드리프트": 20,
+  "바벨 루마니안 데드리프트": 40,
+  "케틀벨 스윙": 16,
   "카프레이즈": 40,
   // Day 4 — 어깨/팔
   "덤벨 숄더 프레스": 12,
+  "덤벨 아놀드 프레스": 10,
   "사이드 레터럴 레이즈": 6,
-  "페이스풀": 15,
-  "덤벨 컬 21s": 8
+  "덤벨 리어 델트 플라이": 6,
 };
 
 // 여성 미용 3분할 기준 (60kg 체중 기준)
@@ -337,7 +650,17 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   "케이블 킥백": 4,
   "케이블 힙 어브덕션": 15,
   "카프레이즈": 30,
-  "러시안 트위스트": 5
+  "러시안 트위스트": 5,
+  // ===== 로테이션 풀 대체 종목 기준무게 =====
+  "스텝업": 6,
+  "덤벨 스모 스쿼트": 12,
+  "레그컬": 14,
+  "티바 로우": 20,
+  "케이블 레터럴 레이즈": 3,
+  "벤트오버 레터럴 레이즈": 3,
+  "이지바 컬": 10,
+  "케이블 컬": 8,
+  "덤벨 킥백": 4
   // 플랭크·데드버그·마운틴 클라이머·스텝밀은 맨몸/유산소라 기준무게 없음
 };
 
@@ -653,6 +976,11 @@ function parseTargetSetCount(target) {
   return match ? parseInt(match[1]) : null;
 }
 
+// "N세트 x M회" 형식이 아닌 경우(예: 스텝밀 "600스텝") 세트 기반 빠른채우기 대상에서 제외
+function isSetBasedTarget(target) {
+  return parseTargetSetCount(target) !== null;
+}
+
 function parseSuggestedReps(target) {
   const match = target.match(/(\d+)(?:~\d+)?\s*회/);
   return match ? match[1] : "";
@@ -842,6 +1170,7 @@ function init() {
   document.getElementById("rest-day-btn").addEventListener("click", saveRestDay);
   document.getElementById("close-modal-btn").addEventListener("click", closeExerciseModal);
   document.getElementById("cancel-edit-btn").addEventListener("click", cancelEditing);
+  document.getElementById("fill-all-btn").addEventListener("click", fillAllExercisesQuick);
   document.getElementById("exercise-search").addEventListener("input", (e) => {
     renderExerciseModalList(e.target.value);
   });
@@ -869,6 +1198,7 @@ function init() {
 
   document.getElementById("tip-btn").addEventListener("click", openTipModal);
   document.getElementById("close-tip-btn").addEventListener("click", closeTipModal);
+  document.getElementById("close-exercise-info-btn").addEventListener("click", closeExerciseInfoModal);
   document.getElementById("theme-toggle-btn").addEventListener("click", toggleTheme);
 
   document.getElementById("export-data-btn").addEventListener("click", exportData);
@@ -947,10 +1277,13 @@ function selectDay(day) {
     captionEl.textContent = `Day ${day} · ${routines[day].name}`;
   }
 
+  const rotationPicks = currentMode === "bodyweight" ? {} : getOrGenerateRotationPicks(day, routines[day].exercises);
+
   const base = routines[day].exercises.map(ex => {
-    const baseWeight = getBaseWeight(ex.name);
+    const displayName = rotationPicks[ex.name] || ex.name;
+    const baseWeight = getBaseWeight(displayName);
     return {
-      name: ex.name,
+      name: displayName,
       baseTarget: ex.target,
       target: ex.target,
       checked: false,
@@ -997,8 +1330,17 @@ function renderExercises() {
     nameSpan.className = "exercise-name";
     nameSpan.textContent = `${idx + 1}. ${ex.name}`;
 
+    const infoBtn = document.createElement("button");
+    infoBtn.className = "exercise-info-btn";
+    infoBtn.textContent = "ⓘ";
+    infoBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openExerciseInfoModal(ex.name);
+    });
+
     row.appendChild(checkBtn);
     row.appendChild(nameSpan);
+    row.appendChild(infoBtn);
 
     if (completedSets.length > 0) {
       const badge = document.createElement("span");
@@ -1092,6 +1434,197 @@ function renderExercises() {
 
         detail.appendChild(weightControl);
       }
+
+      // ---- 이미 기록된 세트 인라인 수정/삭제 + 세트 추가 (타이머 없이 바로 편집) ----
+      const setsBlock = document.createElement("div");
+      setsBlock.className = "logged-sets-block";
+
+      // ---- 빠른 채우기 (놓친 날 기록을 세트 수 x 무게 x 횟수로 한 번에 채움) ----
+      // "N세트 x M회" 형식이 아닌 유산소 종목(스텝밀 등)은 세트 개념이 없어 이 UI를 표시하지 않음
+      if (isSetBasedTarget(ex.target)) {
+      const quickFill = document.createElement("div");
+      quickFill.className = "quick-fill-block";
+
+      const quickFillLabel = document.createElement("div");
+      quickFillLabel.className = "logged-sets-label";
+      quickFillLabel.textContent = "빠른 채우기 · 놓친 기록 한 번에 입력";
+      quickFill.appendChild(quickFillLabel);
+
+      const quickFillRow = document.createElement("div");
+      quickFillRow.className = "quick-fill-row";
+
+      const defaultSetCount = parseTargetSetCount(ex.target) || 3;
+      const defaultReps = parseSuggestedReps(ex.target) || "10";
+      const defaultWeight = ex.weight !== "" ? ex.weight : (getBaseWeight(ex.name) || 0);
+
+      const qfSetsInput = document.createElement("input");
+      qfSetsInput.type = "number";
+      qfSetsInput.inputMode = "numeric";
+      qfSetsInput.className = "quick-fill-input";
+      qfSetsInput.value = defaultSetCount;
+      qfSetsInput.addEventListener("click", (e) => e.stopPropagation());
+      quickFillRow.appendChild(qfSetsInput);
+
+      const qfSetsLabel = document.createElement("span");
+      qfSetsLabel.className = "quick-fill-unit";
+      qfSetsLabel.textContent = "세트 ×";
+      quickFillRow.appendChild(qfSetsLabel);
+
+      let qfWeightInput = null;
+      if (!isBodyweight) {
+        qfWeightInput = document.createElement("input");
+        qfWeightInput.type = "number";
+        qfWeightInput.inputMode = "decimal";
+        qfWeightInput.className = "quick-fill-input";
+        qfWeightInput.value = defaultWeight;
+        qfWeightInput.addEventListener("click", (e) => e.stopPropagation());
+        quickFillRow.appendChild(qfWeightInput);
+
+        const qfKgLabel = document.createElement("span");
+        qfKgLabel.className = "quick-fill-unit";
+        qfKgLabel.textContent = "kg ×";
+        quickFillRow.appendChild(qfKgLabel);
+      }
+
+      const qfRepsInput = document.createElement("input");
+      qfRepsInput.type = "number";
+      qfRepsInput.inputMode = "numeric";
+      qfRepsInput.className = "quick-fill-input";
+      qfRepsInput.value = defaultReps;
+      qfRepsInput.addEventListener("click", (e) => e.stopPropagation());
+      quickFillRow.appendChild(qfRepsInput);
+
+      const qfRepsLabel = document.createElement("span");
+      qfRepsLabel.className = "quick-fill-unit";
+      qfRepsLabel.textContent = "회";
+      quickFillRow.appendChild(qfRepsLabel);
+
+      quickFill.appendChild(quickFillRow);
+
+      const quickFillBtn = document.createElement("button");
+      quickFillBtn.className = "quick-fill-btn";
+      quickFillBtn.textContent = "한 번에 채우기";
+      quickFillBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const count = Math.max(1, parseInt(qfSetsInput.value) || 1);
+        const weightVal = qfWeightInput ? (parseFloat(qfWeightInput.value) || 0) : 0;
+        const repsVal = qfRepsInput.value || "";
+
+        const existing = currentExercises[idx].completedSets || [];
+        if (existing.length > 0 && !confirm(`이미 ${existing.length}개 세트가 있어요. 덮어쓸까요?`)) {
+          return;
+        }
+
+        const newSets = [];
+        for (let i = 0; i < count; i++) {
+          newSets.push({ weight: weightVal, reps: repsVal });
+        }
+        currentExercises[idx].completedSets = newSets;
+        currentExercises[idx].checked = true;
+        if (qfWeightInput) currentExercises[idx].weight = weightVal;
+        renderExercises();
+      });
+      quickFill.appendChild(quickFillBtn);
+
+      setsBlock.appendChild(quickFill);
+      }
+
+      const setsLabel = document.createElement("div");
+      setsLabel.className = "logged-sets-label";
+      setsLabel.textContent = "기록된 세트";
+      setsBlock.appendChild(setsLabel);
+
+      const setsList = document.createElement("div");
+      setsList.className = "logged-sets-list";
+
+      const renderSetsList = () => {
+        setsList.innerHTML = "";
+        const sets = currentExercises[idx].completedSets || [];
+
+        if (sets.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "logged-sets-empty";
+          empty.textContent = "기록된 세트 없음";
+          setsList.appendChild(empty);
+        }
+
+        sets.forEach((set, setIdx) => {
+          const setRow = document.createElement("div");
+          setRow.className = "logged-set-row";
+
+          const setNum = document.createElement("span");
+          setNum.className = "logged-set-num";
+          setNum.textContent = `${setIdx + 1}세트`;
+          setRow.appendChild(setNum);
+
+          if (!isBodyweight) {
+            const weightInput = document.createElement("input");
+            weightInput.type = "number";
+            weightInput.inputMode = "decimal";
+            weightInput.className = "logged-set-input";
+            weightInput.value = set.weight;
+            weightInput.addEventListener("click", (e) => e.stopPropagation());
+            weightInput.addEventListener("change", (e) => {
+              const v = parseFloat(e.target.value);
+              currentExercises[idx].completedSets[setIdx].weight = isNaN(v) ? 0 : v;
+            });
+            setRow.appendChild(weightInput);
+
+            const kgLabel = document.createElement("span");
+            kgLabel.className = "logged-set-unit";
+            kgLabel.textContent = "kg ×";
+            setRow.appendChild(kgLabel);
+          }
+
+          const repsInput = document.createElement("input");
+          repsInput.type = "number";
+          repsInput.inputMode = "numeric";
+          repsInput.className = "logged-set-input";
+          repsInput.value = set.reps;
+          repsInput.addEventListener("click", (e) => e.stopPropagation());
+          repsInput.addEventListener("change", (e) => {
+            currentExercises[idx].completedSets[setIdx].reps = e.target.value;
+          });
+          setRow.appendChild(repsInput);
+
+          const repsLabel = document.createElement("span");
+          repsLabel.className = "logged-set-unit";
+          repsLabel.textContent = "회";
+          setRow.appendChild(repsLabel);
+
+          const deleteSetBtn = document.createElement("button");
+          deleteSetBtn.className = "logged-set-delete";
+          deleteSetBtn.textContent = "✕";
+          deleteSetBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            currentExercises[idx].completedSets.splice(setIdx, 1);
+            renderExercises();
+          });
+          setRow.appendChild(deleteSetBtn);
+
+          setsList.appendChild(setRow);
+        });
+      };
+      renderSetsList();
+      setsBlock.appendChild(setsList);
+
+      const addSetBtn = document.createElement("button");
+      addSetBtn.className = "logged-set-add-btn";
+      addSetBtn.textContent = "+ 세트 추가";
+      addSetBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!currentExercises[idx].completedSets) currentExercises[idx].completedSets = [];
+        const lastSet = currentExercises[idx].completedSets.slice(-1)[0];
+        currentExercises[idx].completedSets.push({
+          weight: lastSet ? lastSet.weight : (currentExercises[idx].weight || 0),
+          reps: lastSet ? lastSet.reps : (currentExercises[idx].currentReps || "")
+        });
+        currentExercises[idx].checked = true;
+        renderExercises();
+      });
+      setsBlock.appendChild(addSetBtn);
+
+      detail.appendChild(setsBlock);
 
       const removeBtn = document.createElement("button");
       removeBtn.className = "remove-exercise";
@@ -1217,6 +1750,9 @@ function finishWorkoutSession() {
   document.querySelector(".type-select").style.display = "grid";
 
   saveLog(durationMinutes);
+  if (currentMode !== "bodyweight") {
+    clearRotationForDay(currentDay);
+  }
   selectDay(currentDay);
   switchScreen("screen-history");
 }
@@ -1310,10 +1846,24 @@ function renderHeroSession() {
   countLabel.textContent = `EXERCISE ${heroIndex + 1} / ${currentExercises.length}`;
   card.appendChild(countLabel);
 
+  const nameRow = document.createElement("div");
+  nameRow.className = "hero-ex-name-row";
+
   const nameEl = document.createElement("div");
   nameEl.className = "hero-ex-name";
   nameEl.textContent = ex.name;
-  card.appendChild(nameEl);
+
+  const heroInfoBtn = document.createElement("button");
+  heroInfoBtn.className = "exercise-info-btn hero-info-btn";
+  heroInfoBtn.textContent = "ⓘ";
+  heroInfoBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openExerciseInfoModal(ex.name);
+  });
+
+  nameRow.appendChild(nameEl);
+  nameRow.appendChild(heroInfoBtn);
+  card.appendChild(nameRow);
 
   const targetEl = document.createElement("div");
   targetEl.className = "hero-ex-target";
@@ -1629,6 +2179,43 @@ function cancelEditing() {
   selectDay(currentDay);
 }
 
+// ===== 놓친 날 전체를 루틴 목표(세트수·기준무게·목표횟수)로 한 번에 채우기 =====
+function fillAllExercisesQuick() {
+  const alreadyFilled = currentExercises.filter(ex => (ex.completedSets || []).length > 0);
+  if (alreadyFilled.length > 0) {
+    if (!confirm(`이미 ${alreadyFilled.length}개 운동에 기록이 있어요. 비어있는 운동만 채울까요?\n(취소하면 아무것도 바뀌지 않아요)`)) {
+      return;
+    }
+  }
+
+  const isBodyweight = currentMode === "bodyweight";
+
+  currentExercises.forEach(ex => {
+    if ((ex.completedSets || []).length > 0) return; // 이미 기록된 건 건드리지 않음
+
+    if (!isSetBasedTarget(ex.target)) {
+      // 스텝밀 등 "N세트 x M회" 형식이 아닌 유산소 종목은 체크만 표시, 가짜 세트는 만들지 않음
+      ex.checked = true;
+      return;
+    }
+
+    const count = parseTargetSetCount(ex.target) || 3;
+    const reps = parseSuggestedReps(ex.target) || "10";
+    const weight = isBodyweight ? 0 : (ex.weight !== "" ? ex.weight : (getBaseWeight(ex.name) || 0));
+
+    const sets = [];
+    for (let i = 0; i < count; i++) {
+      sets.push({ weight: weight, reps: reps });
+    }
+    ex.completedSets = sets;
+    ex.checked = true;
+    if (!isBodyweight) ex.weight = weight;
+  });
+
+  renderExercises();
+  showToast("루틴 목표대로 전체 채웠어요 · 필요하면 개별 수정 후 저장하세요");
+}
+
 function updateEditingBanner() {
   const banner = document.getElementById("editing-banner");
   const saveBtn = document.getElementById("save-log-btn");
@@ -1766,22 +2353,12 @@ function renderHistory() {
     cell.className = "calendar-day";
     cell.dataset.datekey = dateKey;
     if (entry) {
-      if (entry.day === "rest") {
-        cell.classList.add("logged-rest");
-      } else if (entry.mode === "bodyweight") {
-        cell.classList.add("logged-bw");
-      } else {
-        cell.classList.add("logged-gym");
-      }
+      cell.classList.add("logged");
     }
     if (dateKey === todayStr) cell.classList.add("today");
     if (dateKey === selectedCalendarDate) cell.classList.add("selected");
 
     cell.innerHTML = `<span class="cal-day-num">${d}</span>`;
-    if (entry) {
-      const label = entry.day === "rest" ? "휴식" : `D${entry.day}${entry.mode === "bodyweight" ? "🤸" : ""}`;
-      cell.innerHTML += `<span style="font-size:10px;">${label}</span>`;
-    }
 
     cell.addEventListener("click", () => showDayDetail(dateKey, entry));
     grid.appendChild(cell);
@@ -2089,6 +2666,34 @@ function openTipModal() {
 
 function closeTipModal() {
   document.getElementById("tip-modal").classList.remove("open");
+}
+
+// ===== 운동 설명 모달 =====
+function openExerciseInfoModal(name) {
+  const guide = getExerciseGuide(name);
+  document.getElementById("exercise-info-title").textContent = name;
+
+  const body = document.getElementById("exercise-info-body");
+  if (!guide) {
+    body.innerHTML = `<div class="placeholder-text">이 운동에 대한 설명이 아직 준비되지 않았어요.</div>`;
+  } else {
+    body.innerHTML = `
+      <div class="info-section-label">타겟 부위</div>
+      <div>${guide.target}</div>
+      ${renderBodyDiagramHTML(guide.target)}
+      <div class="info-section-label">방법</div>
+      <div>${guide.how}</div>
+      <div class="info-section-label">팁</div>
+      <div>${guide.tip}</div>
+    `;
+    activateBodyDiagramRegions(body);
+  }
+
+  document.getElementById("exercise-info-modal").classList.add("open");
+}
+
+function closeExerciseInfoModal() {
+  document.getElementById("exercise-info-modal").classList.remove("open");
 }
 
 // ===== 토스트 알림 =====
