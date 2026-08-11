@@ -334,6 +334,29 @@ const EXERCISE_GUIDES = {
   "케이블 힙 어브덕션": { target: "둔근, 중둔근", how: "케이블을 발목에 걸고 다리를 옆으로 벌려요.", tip: "상체 고정하고 다리만 움직이기." }
 };
 
+// ===== 아이콘 헬퍼 (Lucide, ISC License 기반 — 동적 생성 요소용) =====
+const ICON_SVG = {
+  info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+  x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  trash: '<path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>'
+};
+
+function makeIconSvg(name, extraClass) {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("class", "icon" + (extraClass ? " " + extraClass : ""));
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "2");
+  svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("stroke-linejoin", "round");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  svg.innerHTML = ICON_SVG[name] || "";
+  return svg;
+}
+
 function getExerciseGuide(name) {
   return EXERCISE_GUIDES[name] || null;
 }
@@ -1130,7 +1153,7 @@ function getTheme() {
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem(THEME_KEY, theme);
-  document.getElementById("theme-toggle-btn").textContent = theme === "dark" ? "🌙" : "☀️";
+  document.getElementById("theme-toggle-btn").dataset.iconState = theme;
 }
 
 function toggleTheme() {
@@ -1235,11 +1258,112 @@ function init() {
   initCalendarNav();
   switchScreen("screen-history");
   renderHistory();
+  initBottomSheetDrag();
 
   restoreActiveSession();
 }
 
 // ===== 하단 탭 화면 전환 =====
+// ===== 바텀시트 drag-to-dismiss (모든 모달 공통) =====
+// 핸들(sheet-handle)을 잡고 아래로 끌면 실시간으로 시트가 따라오고,
+// 손을 뗀 시점에 임계값(시트 높이의 28% 또는 120px) 이상이면 닫히고,
+// 그 이하면 부드럽게 원위치로 스냅백된다.
+// ===== 바디 스크롤 락 (iOS Safari는 overflow:hidden만으로는 고무줄 스크롤을 못 막아서
+// position:fixed로 body 자체를 고정하는 방식을 씀. 락 해제 시 원래 스크롤 위치로 복구) =====
+let scrollLockY = 0;
+let scrollLockCount = 0; // 여러 모달이 겹치는 극단적 상황을 대비한 카운터
+
+function lockBodyScroll() {
+  scrollLockCount++;
+  if (scrollLockCount > 1) return; // 이미 잠겨있으면 중복 적용 안 함
+  scrollLockY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollLockY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+
+function unlockBodyScroll() {
+  scrollLockCount = Math.max(0, scrollLockCount - 1);
+  if (scrollLockCount > 0) return; // 다른 모달이 아직 락을 쥐고 있으면 유지
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollLockY);
+}
+
+function initBottomSheetDrag() {
+  document.querySelectorAll(".modal-box").forEach(box => {
+    const handle = box.querySelector(".sheet-handle");
+    const overlay = box.closest(".modal-overlay");
+    if (!handle || !overlay) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let dragging = false;
+
+    const setDim = (ratio) => {
+      // ratio: 1 = 완전히 어두움(기본), 0 = 완전히 밝음(거의 닫힘)
+      overlay.style.background = `rgba(0,0,0,${(0.6 * ratio).toFixed(3)})`;
+    };
+
+    const onPointerDown = (e) => {
+      dragging = true;
+      startY = e.clientY;
+      currentY = 0;
+      box.classList.add("dragging");
+      lockBodyScroll();
+      try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+    };
+
+    const onPointerMove = (e) => {
+      if (!dragging) return;
+      e.preventDefault(); // 드래그 중 배경 페이지가 같이 밀리지 않도록
+      const delta = e.clientY - startY;
+      currentY = Math.max(0, delta); // 위로는 끌리지 않게 0에서 클램프
+      box.style.transform = `translateY(${currentY}px)`;
+      const sheetHeight = box.offsetHeight || 400;
+      setDim(Math.max(0, 1 - currentY / sheetHeight));
+    };
+
+    const finishDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      box.classList.remove("dragging");
+      unlockBodyScroll();
+
+      const sheetHeight = box.offsetHeight || 400;
+      const threshold = Math.min(120, sheetHeight * 0.28);
+
+      if (currentY > threshold) {
+        // 임계값 초과 → 화면 밖으로 마저 내려보내고 닫기
+        box.style.transition = "transform 0.22s cubic-bezier(0.4, 0, 1, 1)";
+        box.style.transform = `translateY(${sheetHeight}px)`;
+        overlay.style.background = "rgba(0,0,0,0)";
+        setTimeout(() => {
+          overlay.classList.remove("open");
+          box.style.transition = "";
+          box.style.transform = "";
+          overlay.style.background = "";
+        }, 220);
+      } else {
+        // 임계값 이하 → 원위치로 스냅백
+        box.style.transform = "";
+        overlay.style.background = "";
+      }
+      currentY = 0;
+    };
+
+    handle.addEventListener("pointerdown", onPointerDown);
+    handle.addEventListener("pointermove", onPointerMove, { passive: false });
+    handle.addEventListener("pointerup", finishDrag);
+    handle.addEventListener("pointercancel", finishDrag);
+  });
+}
+
 function switchScreen(screenId) {
   document.querySelectorAll(".screen").forEach(el => {
     el.classList.toggle("active", el.id === screenId);
@@ -1330,9 +1454,15 @@ function renderExercises() {
     // ---- 압축 행 (체크박스 + 이름 + 진행 배지, 탭하면 펼침) ----
     const row = document.createElement("div");
     row.className = "exercise-row";
+    row.setAttribute("role", "button");
+    row.setAttribute("tabindex", "0");
+    row.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    row.setAttribute("aria-label", `${ex.name} 상세 ${isOpen ? "접기" : "펼치기"}`);
 
     const checkBtn = document.createElement("button");
     checkBtn.className = "exercise-check" + (ex.checked ? " checked" : "");
+    checkBtn.setAttribute("aria-label", `${ex.name} 완료 표시`);
+    checkBtn.setAttribute("aria-pressed", ex.checked ? "true" : "false");
     checkBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       currentExercises[idx].checked = !currentExercises[idx].checked;
@@ -1345,7 +1475,8 @@ function renderExercises() {
 
     const infoBtn = document.createElement("button");
     infoBtn.className = "exercise-info-btn";
-    infoBtn.textContent = "ⓘ";
+    infoBtn.setAttribute("aria-label", `${ex.name} 운동 설명 보기`);
+    infoBtn.appendChild(makeIconSvg("info"));
     infoBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       openExerciseInfoModal(ex.name);
@@ -1370,6 +1501,14 @@ function renderExercises() {
     row.addEventListener("click", () => {
       openExerciseIndex = isOpen ? null : idx;
       renderExercises();
+    });
+
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openExerciseIndex = isOpen ? null : idx;
+        renderExercises();
+      }
     });
 
     card.appendChild(row);
@@ -1607,7 +1746,8 @@ function renderExercises() {
 
           const deleteSetBtn = document.createElement("button");
           deleteSetBtn.className = "logged-set-delete";
-          deleteSetBtn.textContent = "✕";
+          deleteSetBtn.setAttribute("aria-label", `${setIdx + 1}세트 삭제`);
+          deleteSetBtn.appendChild(makeIconSvg("x"));
           deleteSetBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             currentExercises[idx].completedSets.splice(setIdx, 1);
@@ -1828,10 +1968,20 @@ function renderHeroSession() {
     const isDone = (ex.completedSets || []).length > 0 || ex.checked;
     chip.className = "chip" + (idx === heroIndex ? " current" : (isDone ? " done" : ""));
     chip.textContent = `${idx + 1}. ${ex.name}`;
-    chip.addEventListener("click", () => {
+    chip.setAttribute("role", "button");
+    chip.setAttribute("tabindex", "0");
+    if (idx === heroIndex) chip.setAttribute("aria-current", "true");
+    const jumpToChip = () => {
       heroIndex = idx;
       persistActiveSession();
       renderHeroSession();
+    };
+    chip.addEventListener("click", jumpToChip);
+    chip.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        jumpToChip();
+      }
     });
     chipStrip.appendChild(chip);
 
@@ -1868,7 +2018,8 @@ function renderHeroSession() {
 
   const heroInfoBtn = document.createElement("button");
   heroInfoBtn.className = "exercise-info-btn hero-info-btn";
-  heroInfoBtn.textContent = "ⓘ";
+  heroInfoBtn.setAttribute("aria-label", `${ex.name} 운동 설명 보기`);
+  heroInfoBtn.appendChild(makeIconSvg("info"));
   heroInfoBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     openExerciseInfoModal(ex.name);
@@ -1998,7 +2149,8 @@ function renderHeroSession() {
       item.innerHTML = `<span>${sIdx + 1}세트 · ${isBodyweight ? "" : s.weight + "kg × "}${s.reps || "-"}회</span>`;
       const removeBtn = document.createElement("button");
       removeBtn.className = "set-log-remove";
-      removeBtn.textContent = "✕";
+      removeBtn.setAttribute("aria-label", `${sIdx + 1}세트 삭제`);
+      removeBtn.appendChild(makeIconSvg("x"));
       removeBtn.addEventListener("click", () => {
         currentExercises[heroIndex].completedSets.splice(sIdx, 1);
         if (currentExercises[heroIndex].completedSets.length === 0) {
@@ -2363,7 +2515,21 @@ function renderHistory() {
       cell.innerHTML += `<span style="font-size:10px;">${label}</span>`;
     }
 
-    cell.addEventListener("click", () => showDayDetail(dateKey, entry));
+    const statusLabel = entry
+      ? (entry.day === "rest" ? "휴식일 기록됨" : `${entry.day}일차 운동 기록됨`)
+      : "기록 없음";
+    cell.setAttribute("role", "button");
+    cell.setAttribute("tabindex", "0");
+    cell.setAttribute("aria-label", `${calMonth + 1}월 ${d}일, ${statusLabel}`);
+
+    const openDetail = () => showDayDetail(dateKey, entry);
+    cell.addEventListener("click", openDetail);
+    cell.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openDetail();
+      }
+    });
     grid.appendChild(cell);
   }
 
