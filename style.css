@@ -21,6 +21,8 @@
   --r-lg: 20px;
   --r-md: 14px;
   --r-sm: 10px;
+  --r-xs: 8px;
+  --r-pill: 999px;
 }
 
 :root[data-theme="light"] {
@@ -65,6 +67,19 @@ button, input {
   letter-spacing: inherit;
 }
 
+/* 포커스 상태가 전체 스타일시트에 하나도 없어서 브라우저 기본(파란 아웃라인)이 그대로 노출되던 문제 수정 */
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
 button {
   transition: transform 0.12s ease, opacity 0.12s ease;
 }
@@ -73,6 +88,29 @@ button:active,
 button.pressed {
   transform: scale(0.97);
   opacity: 0.85;
+}
+
+/* 클릭 가능한데 <button>이 아닌 요소들(칩, 캘린더 셀)에도
+   동일한 눌림 피드백을 줘서 인터랙션 느낌을 통일 */
+.chip,
+.calendar-day:not(.empty) {
+  transition: transform 0.12s ease, opacity 0.12s ease;
+  cursor: pointer;
+}
+
+.chip:active,
+.calendar-day:not(.empty):active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+/* 운동 카드 행은 폭이 넓어서 scale보다 배경 dim이 자연스러움 */
+.exercise-row {
+  transition: background-color 0.12s ease;
+}
+
+.exercise-row:active {
+  background-color: var(--divider);
 }
 
 /* 스크롤 가능한 모든 영역: 스크롤바가 생겨도 레이아웃이 흔들리지 않도록 */
@@ -220,33 +258,6 @@ header p {
   font-weight: 700;
 }
 
-.month-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.stat-cell {
-  background: var(--surface);
-  border-radius: var(--r-md);
-  padding: 12px 8px;
-  text-align: center;
-}
-
-.stat-cell .stat-num {
-  font-size: 19px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.stat-cell .stat-label {
-  font-size: 11px;
-  color: var(--ink-dim);
-  font-weight: 600;
-  margin-top: 2px;
-}
-
 .backup-row {
   display: flex;
   gap: 8px;
@@ -279,7 +290,7 @@ header p {
   gap: 8px;
   background: var(--accent);
   color: white;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   padding: 12px;
   font-size: 14px;
   font-weight: 800;
@@ -304,12 +315,37 @@ header p {
 .day-tabs { grid-template-columns: repeat(4, 1fr); margin-bottom: 8px; }
 .type-select { grid-template-columns: repeat(3, 1fr); margin-bottom: 10px; }
 
+.day-routine-caption-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 10px;
+}
+
 .day-routine-caption {
   font-size: 12px;
   color: var(--ink-dim);
   font-weight: 600;
-  margin: 0 0 10px;
+  margin: 0;
   text-align: center;
+}
+
+.reroll-btn {
+  background: var(--surface-2);
+  border: none;
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.reroll-btn:active {
+  background: var(--accent);
+  color: white;
 }
 
 .day-tab,
@@ -572,22 +608,17 @@ header p {
   height: auto;
 }
 
-.body-diagram-svg .body-outline {
+.body-diagram-svg .muscle-region {
   fill: var(--surface-2);
   stroke: var(--ink-faint);
-  stroke-width: 1;
-}
-
-.body-diagram-svg .muscle-region {
-  fill: var(--ink-faint);
-  fill-opacity: 0.3;
-  stroke: none;
-  transition: fill 0.2s, fill-opacity 0.2s;
+  stroke-width: 0.4;
+  stroke-linejoin: round;
+  transition: fill 0.2s;
 }
 
 .body-diagram-svg .muscle-region.active {
   fill: var(--accent);
-  fill-opacity: 0.9;
+  stroke: var(--accent-deep);
 }
 
 .body-diagram-label {
@@ -704,7 +735,7 @@ header p {
   min-width: 0;
   background: var(--surface);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--r-xs);
   padding: 8px 6px;
   font-size: 14px;
   font-weight: 700;
@@ -727,7 +758,7 @@ header p {
   cursor: pointer;
   width: 100%;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: var(--r-xs);
   margin-top: 10px;
 }
 
@@ -769,7 +800,7 @@ header p {
   min-width: 0;
   background: var(--surface-2);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--r-xs);
   padding: 8px 6px;
   font-size: 14px;
   font-weight: 700;
@@ -803,7 +834,7 @@ header p {
   cursor: pointer;
   width: 100%;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: var(--r-xs);
   margin-top: 10px;
 }
 
@@ -857,7 +888,7 @@ header p {
 .chip {
   flex-shrink: 0;
   padding: 9px 14px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   background: var(--surface);
   font-size: 12px;
   font-weight: 700;
@@ -984,7 +1015,7 @@ header p {
   flex: 1;
   background: var(--surface-2);
   border: none;
-  border-radius: 26px;
+  border-radius: var(--r-pill);
   text-align: center;
   font-size: 16px;
   font-weight: 700;
@@ -1001,7 +1032,7 @@ header p {
 .hero-complete-btn {
   width: 100%;
   height: 52px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   background: var(--success);
   color: white;
   border: none;
@@ -1022,7 +1053,7 @@ header p {
   color: var(--accent);
   background: rgba(15,90,80,0.15);
   padding: 3px 8px;
-  border-radius: 10px;
+  border-radius: var(--r-sm);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -1041,7 +1072,7 @@ header p {
   border-radius: var(--r-sm);
   color: var(--ink);
   padding: 14px 14px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   text-align: center;
   min-width: 0;
@@ -1184,7 +1215,9 @@ header p {
   cursor: default;
 }
 
-.calendar-day.logged { background: var(--accent); color: white; }
+.calendar-day.logged-gym { background: var(--accent); color: white; }
+.calendar-day.logged-bw { background: var(--bau-yellow); color: #14150F; }
+.calendar-day.logged-rest { background: var(--bau-red); color: white; }
 
 .calendar-day.today {
   outline: 2px solid var(--ink);
@@ -1268,7 +1301,7 @@ header p {
   background: var(--success);
   color: white;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: var(--r-lg);
   font-size: 14px;
   font-weight: 600;
   opacity: 0;

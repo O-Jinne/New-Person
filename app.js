@@ -44,7 +44,7 @@ const ROUTINES_MALE = {
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "밴드 페이스풀", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 8~10회" },
-        { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
+        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 10~12회" },
         { name: "덤벨 컬 21s", target: "2세트" },
         { name: "스텝밀", target: "600스텝" }
       ]
@@ -91,7 +91,7 @@ const ROUTINES_MALE = {
         { name: "사이드 레터럴 레이즈", target: "3세트 x 12~15회" },
         { name: "밴드 페이스풀", target: "3세트 x 15회" },
         { name: "바벨 컬", target: "4세트 x 6~8회" },
-        { name: "덤벨 해머컬", target: "3세트 x 8~10회" },
+        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 8~10회" },
         { name: "스텝밀", target: "300스텝" }
       ]
     }
@@ -137,7 +137,7 @@ const ROUTINES_MALE = {
         { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "밴드 페이스풀", target: "3세트 x 20회" },
         { name: "바벨 컬", target: "3세트 x 15회" },
-        { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
+        { name: "밴드 트라이셉 푸시다운", target: "3세트 x 15~20회" },
         { name: "스텝밀", target: "900스텝" }
       ]
     }
@@ -166,7 +166,7 @@ const ROUTINES_FEMALE = {
       name: "등 + 직각어깨 + 팔",
       exercises: [
         { name: "랫풀다운", target: "3세트 x 12~15회" },
-        { name: "케이블 시티드 로우", target: "3세트 x 12회" },
+        { name: "덤벨 벤트오버 로우", target: "3세트 x 12회" },
         { name: "사이드 레터럴 레이즈", target: "3세트 x 15회" },
         { name: "페이스풀", target: "3세트 x 15회" },
         { name: "리어 델트 플라이", target: "3세트 x 15회" },
@@ -205,7 +205,7 @@ const ROUTINES_FEMALE = {
       name: "등 + 직각어깨 + 팔",
       exercises: [
         { name: "랫풀다운", target: "4세트 x 8~10회" },
-        { name: "케이블 시티드 로우", target: "3세트 x 10~12회" },
+        { name: "덤벨 벤트오버 로우", target: "3세트 x 10~12회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12회" },
         { name: "페이스풀", target: "3세트 x 12~15회" },
         { name: "리어 델트 플라이", target: "3세트 x 12회" },
@@ -243,7 +243,7 @@ const ROUTINES_FEMALE = {
       name: "등 + 직각어깨 + 팔",
       exercises: [
         { name: "랫풀다운", target: "3세트 x 15회" },
-        { name: "케이블 시티드 로우", target: "3세트 x 15회" },
+        { name: "덤벨 벤트오버 로우", target: "3세트 x 15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 20회" },
         { name: "페이스풀", target: "3세트 x 20회" },
         { name: "리어 델트 플라이", target: "3세트 x 20회" },
@@ -290,7 +290,6 @@ const EXERCISE_GUIDES = {
   "바벨 벤트오버 로우": { target: "등 전체, 이두", how: "상체를 45도 정도 숙이고 바벨을 배꼽 쪽으로 당겨요.", tip: "허리는 곧게 펴고 코어에 힘을 줘야 부상 예방." },
   "덤벨 벤트오버 로우": { target: "등 전체, 이두", how: "상체를 숙이고 양손 덤벨을 허리 쪽으로 동시에 당겨요.", tip: "허리 중립 유지가 제일 중요." },
   "덤벨 원암 로우": { target: "광배근, 이두", how: "벤치에 한 손·한 무릎을 대고 반대손 덤벨을 허리 쪽으로 당겨요.", tip: "몸통 회전 없이 순수하게 팔로만 당기기." },
-  "케이블 시티드 로우": { target: "등 중앙, 이두", how: "머신에 앉아 손잡이를 배 쪽으로 당겨요.", tip: "등을 둥글게 말지 말고 가슴을 펴고 당기기." },
   "바벨 컬": { target: "이두", how: "바벨을 어깨너비로 잡고 팔꿈치 고정한 채 컬 동작.", tip: "몸을 흔들어 반동 주지 않기." },
   "덤벨 컬": { target: "이두", how: "덤벨을 양손 또는 교대로 컬 동작.", tip: "손목을 살짝 바깥으로 돌리면(수피네이션) 자극이 더 잘 들어와요." },
   "밴드 컬": { target: "이두", how: "밴드를 발로 밟고 팔꿈치 고정한 채 당겨 올려요.", tip: "밴드 장력이 일정하게 유지되도록 천천히." },
@@ -325,7 +324,14 @@ const EXERCISE_GUIDES = {
   "플랭크": { target: "코어 전체", how: "팔꿈치와 발끝으로 몸을 일직선으로 버텨요.", tip: "엉덩이가 뜨거나 처지지 않게 일직선 유지." },
   "데드버그": { target: "코어, 요추 안정성", how: "누워서 반대쪽 팔·다리를 동시에 뻗었다 제자리로.", tip: "허리가 바닥에서 뜨지 않게." },
   "러시안 트위스트": { target: "복사근", how: "앉아서 상체를 살짝 젖히고 좌우로 회전.", tip: "허리보다 갈비뼈를 회전시키는 느낌." },
-  "마운틴 클라이머": { target: "코어, 심폐", how: "플랭크 자세에서 무릎을 번갈아 가슴 쪽으로 당겨요.", tip: "엉덩이가 너무 들리지 않게." }
+  "마운틴 클라이머": { target: "코어, 심폐", how: "플랭크 자세에서 무릎을 번갈아 가슴 쪽으로 당겨요.", tip: "엉덩이가 너무 들리지 않게." },
+  // 여성 루틴 전용
+  "힙 쓰러스트": { target: "둔근", how: "어깨를 벤치에 대고 바벨/덤벨을 골반 위에 올린 뒤 엉덩이를 밀어 올려요.", tip: "정점에서 둔근을 짜듯이 1초 멈췄다 내려요." },
+  "레그 익스텐션": { target: "대퇴사두", how: "머신에 앉아 무릎을 펴며 패드를 들어올려요.", tip: "무릎 관절이 아프면 무게를 낮추고 천천히." },
+  "페이스풀": { target: "후면 삼각근, 승모근 하부", how: "케이블/밴드를 눈높이에 고정하고 얼굴 쪽으로 당기며 팔꿈치를 벌려요.", tip: "직각어깨 만들기에 핵심적인 자세교정 운동." },
+  "리어 델트 플라이": { target: "후면 삼각근", how: "상체를 숙이고 덤벨을 양옆으로 들어올려요.", tip: "허리 말지 않고 등 평평하게 유지." },
+  "케이블 킥백": { target: "둔근", how: "케이블을 발목에 걸고 다리를 뒤로 차올려요.", tip: "허리로 반동 주지 말고 둔근 힘으로." },
+  "케이블 힙 어브덕션": { target: "둔근, 중둔근", how: "케이블을 발목에 걸고 다리를 옆으로 벌려요.", tip: "상체 고정하고 다리만 움직이기." }
 };
 
 function getExerciseGuide(name) {
@@ -333,102 +339,90 @@ function getExerciseGuide(name) {
 }
 
 // ===== 자극 부위 인체 다이어그램 (정면/후면 실루엣 + 부위별 하이라이트) =====
-// 공통 몸통/팔다리 베이스 실루엣 (정면·후면 동일 외곽선)
-const BODY_BASE_SHAPE = `
-  <ellipse cx="80" cy="24" rx="16" ry="20"/>
-  <rect x="73" y="41" width="14" height="12" rx="4"/>
-  <path d="M50,54 L110,54 Q128,54 127,72 L124,140 Q123,158 116,166 L112,178 Q112,182 108,182 L52,182 Q48,182 48,178 L44,166 Q37,158 36,140 L33,72 Q32,54 50,54 Z"/>
-  <rect x="10" y="62" width="17" height="60" rx="8.5"/>
-  <rect x="8" y="118" width="16" height="58" rx="8"/>
-  <rect x="133" y="62" width="17" height="60" rx="8.5"/>
-  <rect x="136" y="118" width="16" height="58" rx="8"/>
-  <path d="M50,182 C43,186 40,195 39,208 L37,278 L55,278 L58,215 L60,198 L74,198 L74,182 Z"/>
-  <path d="M110,182 C117,186 120,195 121,208 L123,278 L105,278 L102,215 L100,198 L86,198 L86,182 Z"/>
-  <rect x="35" y="276" width="21" height="66" rx="10"/>
-  <rect x="104" y="276" width="21" height="66" rx="10"/>
-  <ellipse cx="45" cy="352" rx="13" ry="9"/>
-  <ellipse cx="115" cy="352" rx="13" ry="9"/>
-`;
+// 근육 폴리곤 데이터 출처: react-body-highlighter (MIT License)
+// https://github.com/giavinh79/react-body-highlighter — Copyright (c) 2020 GV79
+// 실제 해부학적 형태로 트레이싱된 폴리곤 좌표를 그대로 사용, viewBox 0 0 100 200 기준
+const ANTERIOR_MUSCLE_POLYGONS = {
+  "chest": ["51.8367347 41.6326531 51.0204082 55.1020408 57.9591837 57.9591837 67.755102 55.5102041 70.6122449 47.3469388 62.0408163 41.6326531 ", "29.7959184 46.5306122 31.4285714 55.5102041 40.8163265 57.9591837 48.1632653 55.1020408 47.755102 42.0408163 37.5510204 42.0408163"],
+  "obliques": ["68.5714286 63.2653061 67.3469388 57.1428571 58.7755102 59.5918367 60 64.0816327 60.4081633 83.2653061 65.7142857 78.7755102 66.5306122 69.7959184", "33.877551 78.3673469 33.0612245 71.8367347 31.0204082 63.2653061 32.244898 57.1428571 40.8163265 59.1836735 39.1836735 63.2653061 39.1836735 83.6734694"],
+  "abs": ["56.3265306 59.1836735 57.9591837 64.0816327 58.3673469 77.9591837 58.3673469 92.6530612 56.3265306 98.3673469 55.1020408 104.081633 51.4285714 107.755102 51.0204082 84.4897959 50.6122449 67.3469388 51.0204082 57.1428571", "43.6734694 58.7755102 48.5714286 57.1428571 48.9795918 67.3469388 48.5714286 84.4897959 48.1632653 107.346939 44.4897959 103.673469 40.8163265 91.4285714 40.8163265 78.3673469 41.2244898 64.4897959"],
+  "biceps": ["16.7346939 68.1632653 17.9591837 71.4285714 22.8571429 66.122449 28.9795918 53.877551 27.755102 49.3877551 20.4081633 55.9183673", "71.4285714 49.3877551 70.2040816 54.6938776 76.3265306 66.122449 81.6326531 71.8367347 82.8571429 68.9795918 78.7755102 55.5102041"],
+  "triceps": ["69.3877551 55.5102041 69.3877551 61.6326531 75.9183673 72.6530612 77.5510204 70.2040816 75.5102041 67.3469388", "22.4489796 69.3877551 29.7959184 55.5102041 29.7959184 60.8163265 22.8571429 73.0612245"],
+  "neck": ["55.5102041 23.6734694 50.6122449 33.4693878 50.6122449 39.1836735 61.6326531 40 70.6122449 44.8979592 69.3877551 36.7346939 63.2653061 35.1020408 58.3673469 30.6122449", "28.9795918 44.8979592 30.2040816 37.1428571 36.3265306 35.1020408 41.2244898 30.2040816 44.4897959 24.4897959 48.9795918 33.877551 48.5714286 39.1836735 37.9591837 39.5918367"],
+  "front-deltoids": ["78.3673469 53.0612245 79.5918367 47.755102 79.1836735 41.2244898 75.9183673 37.9591837 71.0204082 36.3265306 72.244898 42.8571429 71.4285714 47.3469388", "28.1632653 47.3469388 21.2244898 53.0612245 20 47.755102 20.4081633 40.8163265 24.4897959 37.1428571 28.5714286 37.1428571 26.9387755 43.2653061"],
+  "head": ["42.4489796 2.85714286 40 11.8367347 42.0408163 19.5918367 46.122449 23.2653061 49.7959184 25.3061224 54.6938776 22.4489796 57.5510204 19.1836735 59.1836735 10.2040816 57.1428571 2.44897959 49.7959184 0"],
+  "abductors": ["52.6530612 110.204082 54.2857143 124.897959 60 110.204082 62.0408163 100 64.8979592 94.2857143 60 92.6530612 56.7346939 104.489796", "47.755102 110.612245 44.8979592 125.306122 42.0408163 115.918367 40.4081633 113.061224 39.5918367 107.346939 37.9591837 102.44898 34.6938776 93.877551 39.5918367 92.244898 41.6326531 99.1836735 43.6734694 105.306122"],
+  "quadriceps": ["34.6938776 98.7755102 37.1428571 108.163265 37.1428571 127.755102 34.2857143 137.142857 31.0204082 132.653061 29.3877551 120 28.1632653 111.428571 29.3877551 100.816327 32.244898 94.6938776", "63.2653061 105.714286 64.4897959 100 66.9387755 94.6938776 70.2040816 101.22449 71.0204082 111.836735 68.1632653 133.061224 65.3061224 137.55102 62.4489796 128.571429 62.0408163 111.428571", "38.7755102 129.387755 38.3673469 112.244898 41.2244898 118.367347 44.4897959 129.387755 42.8571429 135.102041 40 146.122449 36.3265306 146.530612 35.5102041 140", "59.5918367 145.714286 55.5102041 128.979592 60.8163265 113.877551 61.2244898 130.204082 64.0816327 139.591837 62.8571429 146.530612", "32.6530612 138.367347 26.5306122 145.714286 25.7142857 136.734694 25.7142857 127.346939 26.9387755 114.285714 29.3877551 133.469388", "71.8367347 113.061224 73.877551 124.081633 73.877551 140.408163 72.6530612 145.714286 66.5306122 138.367347 70.2040816 133.469388"],
+  "knees": ["33.877551 140 34.6938776 143.265306 35.5102041 147.346939 36.3265306 151.020408 35.1020408 156.734694 29.7959184 156.734694 27.3469388 152.653061 27.3469388 147.346939 30.2040816 144.081633", "65.7142857 140 72.244898 147.755102 72.244898 152.244898 69.7959184 157.142857 64.8979592 156.734694 62.8571429 151.020408"],
+  "calves": ["71.4285714 160.408163 73.4693878 153.469388 76.7346939 161.22449 79.5918367 167.755102 78.3673469 187.755102 79.5918367 195.510204 74.6938776 195.510204", "24.8979592 194.693878 27.755102 164.897959 28.1632653 160.408163 26.122449 154.285714 24.8979592 157.55102 22.4489796 161.632653 20.8163265 167.755102 22.0408163 188.163265 20.8163265 195.510204", "72.6530612 195.102041 69.7959184 159.183673 65.3061224 158.367347 64.0816327 162.44898 64.0816327 165.306122 65.7142857 177.142857", "35.5102041 158.367347 35.9183673 162.44898 35.9183673 166.938776 35.1020408 172.244898 35.1020408 176.734694 32.244898 182.040816 30.6122449 187.346939 26.9387755 194.693878 27.3469388 187.755102 28.1632653 180.408163 28.5714286 175.510204 28.9795918 169.795918 29.7959184 164.081633 30.2040816 158.77551"],
+  "forearm": ["6.12244898 88.5714286 10.2040816 75.1020408 14.6938776 70.2040816 16.3265306 74.2857143 19.1836735 73.4693878 4.48979592 97.5510204 0 100", "84.4897959 69.7959184 83.2653061 73.4693878 80 73.0612245 95.1020408 98.3673469 100 100.408163 93.4693878 89.3877551 89.7959184 76.3265306", "77.5510204 72.244898 77.5510204 77.5510204 80.4081633 84.0816327 85.3061224 89.7959184 92.244898 101.22449 94.6938776 99.5918367", "6.93877551 101.22449 13.4693878 90.6122449 18.7755102 84.0816327 21.6326531 77.1428571 21.2244898 71.8367347 4.89795918 98.7755102"],
+};
 
-// 정면에서 보이는 부위: 가슴, 전면삼각근, 이두, 전완, 복근/옆구리, 대퇴사두, 내전근, 종아리
-const BODY_FRONT_REGIONS = `
-  <ellipse class="muscle-region" data-region="front_delt" cx="24" cy="68" rx="11" ry="13"/>
-  <ellipse class="muscle-region" data-region="front_delt" cx="136" cy="68" rx="11" ry="13"/>
-  <rect class="muscle-region" data-region="forearm" x="9" y="122" width="14" height="48" rx="7"/>
-  <rect class="muscle-region" data-region="forearm" x="137" y="122" width="14" height="48" rx="7"/>
-  <path class="muscle-region" data-region="chest" d="M52,62 Q45,62 44,72 L45,92 Q46,100 56,100 L78,100 L78,64 L64,62 Z"/>
-  <path class="muscle-region" data-region="chest" d="M108,62 Q115,62 116,72 L115,92 Q114,100 104,100 L82,100 L82,64 L96,62 Z"/>
-  <rect class="muscle-region" data-region="biceps" x="11" y="80" width="15" height="38" rx="7"/>
-  <rect class="muscle-region" data-region="biceps" x="134" y="80" width="15" height="38" rx="7"/>
-  <rect class="muscle-region" data-region="abs" x="66" y="104" width="12" height="16" rx="3"/>
-  <rect class="muscle-region" data-region="abs" x="82" y="104" width="12" height="16" rx="3"/>
-  <rect class="muscle-region" data-region="abs" x="66" y="123" width="12" height="16" rx="3"/>
-  <rect class="muscle-region" data-region="abs" x="82" y="123" width="12" height="16" rx="3"/>
-  <rect class="muscle-region" data-region="abs" x="67" y="142" width="26" height="16" rx="3"/>
-  <path class="muscle-region" data-region="obliques" d="M50,108 Q47,130 52,158 L60,158 L58,108 Z"/>
-  <path class="muscle-region" data-region="obliques" d="M110,108 Q113,130 108,158 L100,158 L102,108 Z"/>
-  <path class="muscle-region" data-region="quads" d="M50,186 C45,192 42,200 41,212 L40,272 L56,272 L58,215 Z"/>
-  <path class="muscle-region" data-region="quads" d="M110,186 C115,192 118,200 119,212 L120,272 L104,272 L102,215 Z"/>
-  <path class="muscle-region" data-region="adductor" d="M60,198 L74,198 L72,240 L64,240 Z"/>
-  <path class="muscle-region" data-region="adductor" d="M86,198 L100,198 L96,240 L88,240 Z"/>
-  <rect class="muscle-region" data-region="calf" x="36" y="278" width="19" height="62" rx="9"/>
-  <rect class="muscle-region" data-region="calf" x="105" y="278" width="19" height="62" rx="9"/>
-`;
+const POSTERIOR_MUSCLE_POLYGONS = {
+  "head": ["50.6382979 0 45.9574468 0.85106383 40.8510638 5.53191489 40.4255319 12.7659574 45.106383 20 55.7446809 20 59.1489362 13.6170213 59.5744681 4.68085106 55.7446809 1.27659574"],
+  "trapezius": ["44.6808511 21.7021277 47.6595745 21.7021277 47.2340426 38.2978723 47.6595745 64.6808511 38.2978723 53.1914894 35.3191489 40.8510638 31.0638298 36.5957447 39.1489362 33.1914894 43.8297872 27.2340426", "52.3404255 21.7021277 55.7446809 21.7021277 56.5957447 27.2340426 60.8510638 32.7659574 68.9361702 36.5957447 64.6808511 40.4255319 61.7021277 53.1914894 52.3404255 64.6808511 53.1914894 38.2978723"],
+  "back-deltoids": ["29.3617021 37.0212766 22.9787234 39.1489362 17.4468085 44.2553191 18.2978723 53.6170213 24.2553191 49.3617021 27.2340426 46.3829787", "71.0638298 37.0212766 78.2978723 39.5744681 82.5531915 44.6808511 81.7021277 53.6170213 74.893617 48.9361702 72.3404255 45.106383"],
+  "upper-back": ["31.0638298 38.7234043 28.0851064 48.9361702 28.5106383 55.3191489 34.0425532 75.3191489 47.2340426 71.0638298 47.2340426 66.3829787 36.5957447 54.0425532 33.6170213 41.2765957", "68.9361702 38.7234043 71.9148936 49.3617021 71.4893617 56.1702128 65.9574468 75.3191489 52.7659574 71.0638298 52.7659574 66.3829787 63.4042553 54.4680851 66.3829787 41.7021277"],
+  "triceps": ["26.8085106 49.787234 17.8723404 55.7446809 14.4680851 72.3404255 16.5957447 81.7021277 21.7021277 63.8297872 26.8085106 55.7446809", "73.6170213 50.212766 82.1276596 55.7446809 85.9574468 73.1914894 83.4042553 82.1276596 77.8723404 62.9787234 73.1914894 55.7446809", "26.8085106 58.2978723 26.8085106 68.5106383 22.9787234 75.3191489 19.1489362 77.4468085 22.5531915 65.5319149", "72.7659574 58.2978723 77.0212766 64.6808511 80.4255319 77.4468085 76.5957447 75.3191489 72.7659574 68.9361702"],
+  "lower-back": ["47.6595745 72.7659574 34.4680851 77.0212766 35.3191489 83.4042553 49.3617021 102.12766 46.8085106 82.9787234", "52.3404255 72.7659574 65.5319149 77.0212766 64.6808511 83.4042553 50.6382979 102.12766 53.1914894 83.8297872"],
+  "forearm": ["86.3829787 75.7446809 91.0638298 83.4042553 93.1914894 94.0425532 100 106.382979 96.1702128 104.255319 88.0851064 89.3617021 84.2553191 83.8297872", "13.6170213 75.7446809 8.93617021 83.8297872 6.80851064 93.6170213 0 106.382979 3.82978723 104.255319 12.3404255 88.5106383 15.7446809 82.9787234", "81.2765957 79.5744681 77.4468085 77.8723404 79.1489362 84.6808511 91.0638298 103.829787 93.1914894 108.93617 94.4680851 104.680851", "18.7234043 79.5744681 22.1276596 77.8723404 20.8510638 84.2553191 9.36170213 102.978723 6.80851064 108.510638 5.10638298 104.680851"],
+  "gluteal": ["44.6808511 99.5744681 30.212766 108.510638 29.787234 118.723404 31.4893617 125.957447 47.2340426 121.276596 49.3617021 114.893617", "55.3191489 99.1489362 51.0638298 114.468085 52.3404255 120.851064 68.0851064 125.957447 69.787234 119.148936 69.3617021 108.510638"],
+  "adductor": ["48.0851064 122.978723 44.6808511 122.978723 41.2765957 125.531915 45.106383 144.255319 48.5106383 135.744681 48.9361702 129.361702", "51.9148936 122.553191 55.7446809 123.404255 59.1489362 125.957447 54.893617 144.255319 51.9148936 136.170213 51.0638298 129.361702"],
+  "hamstring": ["28.9361702 122.12766 31.0638298 129.361702 36.5957447 125.957447 35.3191489 135.319149 34.4680851 150.212766 29.3617021 158.297872 28.9361702 146.808511 27.6595745 141.276596 27.2340426 131.489362", "71.4893617 121.702128 69.3617021 128.93617 63.8297872 125.957447 65.5319149 136.595745 66.3829787 150.212766 71.0638298 158.297872 71.4893617 147.659574 72.7659574 142.12766 73.6170213 131.914894", "38.7234043 125.531915 44.2553191 145.957447 40.4255319 166.808511 36.1702128 152.765957 37.0212766 135.319149", "61.7021277 125.531915 63.4042553 136.170213 64.2553191 153.191489 60 166.808511 56.1702128 146.382979"],
+  "knees": ["34.4680851 153.191489 31.0638298 159.148936 33.6170213 166.382979 37.4468085 162.553191", "66.3829787 153.617021 62.9787234 162.978723 66.8085106 166.382979 69.3617021 159.148936"],
+  "calves": ["29.3617021 160.425532 28.5106383 167.234043 24.6808511 179.574468 23.8297872 192.765957 25.5319149 197.021277 28.5106383 193.191489 29.787234 180 31.9148936 171.06383 31.9148936 166.808511", "37.4468085 165.106383 35.3191489 167.659574 33.1914894 171.914894 31.0638298 180.425532 30.212766 191.914894 34.0425532 200 38.7234043 190.638298 39.1489362 168.93617", "62.9787234 165.106383 61.2765957 168.510638 61.7021277 190.638298 66.3829787 199.574468 70.6382979 191.914894 68.9361702 179.574468 66.8085106 170.212766", "70.6382979 160.425532 72.3404255 168.510638 75.7446809 179.148936 76.5957447 192.765957 74.4680851 196.595745 72.3404255 193.617021 70.6382979 179.574468 68.0851064 168.085106"],
+  "left-soleus": ["28.5106383 195.744681 30.212766 195.744681 33.6170213 201.702128 30.6382979 220 28.5106383 213.617021 26.8085106 198.297872"],
+  "right-soleus": ["69.787234 195.744681 71.9148936 195.744681 73.6170213 198.297872 71.9148936 213.191489 70.212766 219.574468 67.2340426 202.12766"],
+};
 
-// 후면에서 보이는 부위: 승모근하부, 후면삼각근, 광배근, 등중앙, 삼두, 전완, 둔근, 햄스트링, 종아리
-const BODY_BACK_REGIONS = `
-  <path class="muscle-region" data-region="traps" d="M66,56 L94,56 L100,78 L80,90 L60,78 Z"/>
-  <ellipse class="muscle-region" data-region="rear_delt" cx="24" cy="68" rx="11" ry="13"/>
-  <ellipse class="muscle-region" data-region="rear_delt" cx="136" cy="68" rx="11" ry="13"/>
-  <path class="muscle-region" data-region="lats" d="M42,80 Q36,110 44,150 L60,160 L58,84 Z"/>
-  <path class="muscle-region" data-region="lats" d="M118,80 Q124,110 116,150 L100,160 L102,84 Z"/>
-  <rect class="muscle-region" data-region="lats" x="66" y="100" width="28" height="70" rx="6"/>
-  <rect class="muscle-region" data-region="triceps" x="11" y="80" width="15" height="38" rx="7"/>
-  <rect class="muscle-region" data-region="triceps" x="134" y="80" width="15" height="38" rx="7"/>
-  <rect class="muscle-region" data-region="forearm" x="9" y="122" width="14" height="48" rx="7"/>
-  <rect class="muscle-region" data-region="forearm" x="137" y="122" width="14" height="48" rx="7"/>
-  <path class="muscle-region" data-region="glutes" d="M48,184 Q42,192 41,206 L44,216 L74,216 L74,184 Z"/>
-  <path class="muscle-region" data-region="glutes" d="M112,184 Q118,192 119,206 L116,216 L86,216 L86,184 Z"/>
-  <path class="muscle-region" data-region="hamstrings" d="M42,220 L58,220 L56,272 L42,272 Z"/>
-  <path class="muscle-region" data-region="hamstrings" d="M118,220 L102,220 L104,272 L118,272 Z"/>
-  <rect class="muscle-region" data-region="calf" x="36" y="278" width="19" height="62" rx="9"/>
-  <rect class="muscle-region" data-region="calf" x="105" y="278" width="19" height="62" rx="9"/>
-`;
+const MUSCLE_REGION_LABELS_KO = {
+  "chest": "가슴", "obliques": "복사근", "abs": "복근", "biceps": "이두", "triceps": "삼두",
+  "neck": "목", "front-deltoids": "전면삼각근", "head": "머리", "abductors": "외전근",
+  "quadriceps": "대퇴사두", "knees": "무릎", "calves": "종아리", "forearm": "전완",
+  "trapezius": "승모근", "back-deltoids": "후면삼각근", "upper-back": "등(상부)",
+  "lower-back": "등(하부)", "gluteal": "둔근", "adductor": "내전근", "hamstring": "햄스트링",
+  "left-soleus": "종아리", "right-soleus": "종아리"
+};
 
-function buildBodySvg(regionsMarkup, label) {
+function buildMuscleSvg(polygonData, activeRegions, label) {
+  const polys = Object.entries(polygonData).map(([region, pointsList]) => {
+    const isActive = activeRegions.includes(region);
+    return pointsList.map(points =>
+      `<polygon class="muscle-region${isActive ? ' active' : ''}" data-region="${region}" points="${points}"/>`
+    ).join("");
+  }).join("");
+
   return `
-    <svg viewBox="0 0 160 400" class="body-diagram-svg">
-      <g class="body-outline">${BODY_BASE_SHAPE}</g>
-      <g>${regionsMarkup}</g>
-    </svg>
+    <svg viewBox="0 0 100 200" class="body-diagram-svg">${polys}</svg>
     <div class="body-diagram-label">${label}</div>
   `;
 }
 
 // target 문자열의 한글 부위 키워드를 스캔해서 다이어그램 부위 id 목록으로 변환
+// (부위 id는 react-body-highlighter의 표준 명칭을 그대로 사용)
 const MUSCLE_KEYWORD_MAP = [
-  ["전면 어깨", ["front_delt"]],
-  ["어깨 측면", ["front_delt", "rear_delt"]],
-  ["어깨 전체", ["front_delt", "rear_delt"]],
-  ["후면 삼각근", ["rear_delt"]],
-  ["승모근 하부", ["traps"]],
-  ["등 상부", ["traps", "lats"]],
-  ["등 전체", ["lats", "traps"]],
-  ["등 중앙", ["lats"]],
-  ["광배근", ["lats"]],
+  ["전면 어깨", ["front-deltoids"]],
+  ["어깨 측면", ["front-deltoids", "back-deltoids"]],
+  ["어깨 전체", ["front-deltoids", "back-deltoids"]],
+  ["후면 삼각근", ["back-deltoids"]],
+  ["승모근 하부", ["trapezius"]],
+  ["등 상부", ["trapezius", "upper-back"]],
+  ["등 전체", ["upper-back", "trapezius", "lower-back"]],
+  ["등 중앙", ["upper-back"]],
+  ["광배근", ["upper-back"]],
   ["가슴", ["chest"]],
   ["삼두", ["triceps"]],
   ["이두", ["biceps"]],
   ["전완", ["forearm"]],
-  ["둔근", ["glutes"]],
-  ["대퇴사두", ["quads"]],
-  ["햄스트링", ["hamstrings"]],
+  ["둔근", ["gluteal"]],
+  ["대퇴사두", ["quadriceps"]],
+  ["햄스트링", ["hamstring"]],
   ["내전근", ["adductor"]],
-  ["종아리", ["calf"]],
-  ["하체", ["quads", "hamstrings", "calf", "glutes"]],
+  ["종아리", ["calves"]],
+  ["하체", ["quadriceps", "hamstring", "calves", "gluteal"]],
   ["복사근", ["obliques"]],
   ["코어", ["abs"]],
-  ["요추", ["abs"]]
+  ["요추", ["lower-back"]]
 ];
 
 function getRegionsForTarget(target) {
@@ -446,27 +440,15 @@ function renderBodyDiagramHTML(target) {
   const regions = getRegionsForTarget(target);
   if (regions.length === 0) return "";
 
-  const frontSvg = buildBodySvg(BODY_FRONT_REGIONS, "정면");
-  const backSvg = buildBodySvg(BODY_BACK_REGIONS, "후면");
+  const frontSvg = buildMuscleSvg(ANTERIOR_MUSCLE_POLYGONS, regions, "정면");
+  const backSvg = buildMuscleSvg(POSTERIOR_MUSCLE_POLYGONS, regions, "후면");
 
   return `
-    <div class="body-diagram-wrap" data-active-regions="${regions.join(",")}">
+    <div class="body-diagram-wrap">
       <div class="body-diagram-col">${frontSvg}</div>
       <div class="body-diagram-col">${backSvg}</div>
     </div>
   `;
-}
-
-function activateBodyDiagramRegions(container) {
-  const wrap = container.querySelector(".body-diagram-wrap");
-  if (!wrap) return;
-  const activeRegions = (wrap.dataset.activeRegions || "").split(",").filter(Boolean);
-  wrap.querySelectorAll(".muscle-region").forEach(el => {
-    const region = el.dataset.region;
-    if (activeRegions.includes(region)) {
-      el.classList.add("active");
-    }
-  });
 }
 
 // ===== 보조 운동 로테이션 풀 =====
@@ -486,8 +468,8 @@ const ROTATION_POOLS_MALE = {
   "덤벨 클로즈그립 프레스": ["덤벨 클로즈그립 프레스", "밴드 트라이셉 푸시다운", "벤치 딥스"],
   "벤치 딥스": ["벤치 딥스", "밴드 트라이셉 푸시다운", "덤벨 킥백"],
   // 등 보조
-  "바벨 벤트오버 로우": ["바벨 벤트오버 로우", "덤벨 벤트오버 로우", "케이블 시티드 로우"],
-  "덤벨 원암 로우": ["덤벨 원암 로우", "케이블 시티드 로우"],
+  "바벨 벤트오버 로우": ["바벨 벤트오버 로우", "덤벨 벤트오버 로우"],
+  "덤벨 원암 로우": ["덤벨 원암 로우", "덤벨 벤트오버 로우"],
   "바벨 컬": ["바벨 컬", "덤벨 컬", "밴드 컬"],
   "덤벨 해머컬": ["덤벨 해머컬", "밴드 해머컬"],
   "덤벨 컨센트레이션 컬": ["덤벨 컨센트레이션 컬", "밴드 컬"],
@@ -505,7 +487,6 @@ const ROTATION_POOLS_MALE = {
 const ROTATION_POOLS_FEMALE = {
   "덤벨 워킹 런지": ["덤벨 워킹 런지", "덤벨 스텝업", "덤벨 스모 스쿼트"],
   "레그 익스텐션": ["레그 익스텐션"], // 여성 루틴은 헬스장 무관 참고용, 별도 확인 전까지 유지
-  "케이블 시티드 로우": ["케이블 시티드 로우", "덤벨 벤트오버 로우"],
   "사이드 레터럴 레이즈": ["사이드 레터럴 레이즈", "밴드 레터럴 레이즈"],
   "페이스풀": ["밴드 페이스풀", "덤벨 리어 델트 플라이"],
   "리어 델트 플라이": ["덤벨 리어 델트 플라이", "밴드 페이스풀"],
@@ -545,6 +526,27 @@ function clearRotationForDay(day) {
   saveRotationState(state);
 }
 
+// ===== 보조 운동 수동 새로고침 (사용자가 직접 버튼 눌러 다시 뽑기) =====
+function rerollRotationForCurrentDay() {
+  if (heroActive) {
+    alert("운동 진행 중에는 새로고침할 수 없어요. 종료 후 다시 시도해주세요.");
+    return;
+  }
+  if (currentMode === "bodyweight") {
+    alert("맨몸 운동에는 보조 운동 로테이션이 적용되지 않아요.");
+    return;
+  }
+  const hasLoggedSets = currentExercises.some(ex => (ex.completedSets || []).length > 0);
+  const msg = hasLoggedSets
+    ? "이미 기록된 세트가 있어요. 보조 운동을 다시 뽑으면 종목이 바뀔 수 있어요. 계속할까요?"
+    : "보조 운동을 다시 뽑을까요? 벤치프레스 같은 메인 운동은 그대로 유지돼요.";
+  if (!confirm(msg)) return;
+
+  clearRotationForDay(currentDay);
+  selectDay(currentDay);
+  showToast("보조 운동을 새로 뽑았어요 🔀");
+}
+
 // 이번 사이클에 쓸 운동명 맵 반환: { 원래이름: 이번에 뽑힌이름 }
 // 이미 이번 사이클에 뽑아둔 게 있으면 그대로 재사용(세션 중 안 바뀜), 없으면 새로 뽑아서 저장
 function getOrGenerateRotationPicks(day, exercises) {
@@ -556,12 +558,23 @@ function getOrGenerateRotationPicks(day, exercises) {
     return state[cycleKey];
   }
 
+  // 같은 날 다른 슬롯과 이름이 겹치지 않도록, 그날 모든 원래 종목명을 예약 집합에 먼저 넣어둠
+  // (앵커 종목명 + 아직 뽑지 않은 다른 로테이션 슬롯의 기본명 포함)
+  const usedNames = new Set(exercises.map(ex => ex.name));
   const picks = {};
+
   exercises.forEach(ex => {
     const pool = pools[ex.name];
-    if (pool && pool.length > 0) {
-      picks[ex.name] = pool[Math.floor(Math.random() * pool.length)];
-    }
+    if (!pool || pool.length === 0) return;
+
+    usedNames.delete(ex.name); // 이 슬롯 자리는 자기 자신을 다시 고를 수 있게 임시로 비워둠
+
+    let candidates = pool.filter(name => !usedNames.has(name));
+    if (candidates.length === 0) candidates = [ex.name]; // 전부 겹치면 원래 종목으로 폴백
+
+    const picked = candidates[Math.floor(Math.random() * candidates.length)];
+    picks[ex.name] = picked;
+    usedNames.add(picked); // 이번에 뽑힌 이름을 예약해서 다음 슬롯과 안 겹치게 함
   });
 
   state[cycleKey] = picks;
@@ -602,7 +615,6 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   "바벨 벤트오버 로우": 40,
   "덤벨 벤트오버 로우": 16,
   "덤벨 원암 로우": 16,
-  "케이블 시티드 로우": 35,
   "바벨 컬": 20,
   "덤벨 컬": 10,
   "덤벨 해머컬": 10,
@@ -640,7 +652,7 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   "레그 익스텐션": 14,
   // Day 2 — 등 + 직각어깨 + 팔
   "랫풀다운": 25,
-  "케이블 시티드 로우": 15,
+  "덤벨 벤트오버 로우": 14,
   "사이드 레터럴 레이즈": 3,
   "페이스풀": 8,
   "리어 델트 플라이": 4,
@@ -655,12 +667,13 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   "스텝업": 6,
   "덤벨 스모 스쿼트": 12,
   "레그컬": 14,
-  "티바 로우": 20,
   "케이블 레터럴 레이즈": 3,
   "벤트오버 레터럴 레이즈": 3,
   "이지바 컬": 10,
   "케이블 컬": 8,
-  "덤벨 킥백": 4
+  "덤벨 킥백": 4,
+  "덤벨 스텝업": 6,
+  "덤벨 리어 델트 플라이": 4
   // 플랭크·데드버그·마운틴 클라이머·스텝밀은 맨몸/유산소라 기준무게 없음
 };
 
@@ -741,7 +754,6 @@ const MASTER_EXERCISES = [
   { category: "등", name: "랫풀다운" },
   { category: "등", name: "바벨 벤트오버 로우" },
   { category: "등", name: "덤벨 원암 로우" },
-  { category: "등", name: "케이블 시티드 로우" },
   { category: "등", name: "풀업" },
   { category: "등", name: "티바 로우" },
   { category: "어깨", name: "덤벨 숄더 프레스" },
@@ -1171,6 +1183,7 @@ function init() {
   document.getElementById("close-modal-btn").addEventListener("click", closeExerciseModal);
   document.getElementById("cancel-edit-btn").addEventListener("click", cancelEditing);
   document.getElementById("fill-all-btn").addEventListener("click", fillAllExercisesQuick);
+  document.getElementById("reroll-rotation-btn").addEventListener("click", rerollRotationForCurrentDay);
   document.getElementById("exercise-search").addEventListener("input", (e) => {
     renderExerciseModalList(e.target.value);
   });
@@ -2305,29 +2318,9 @@ function initCalendarNav() {
   });
 }
 
-// ===== 표시 중인 달의 통계 (운동 횟수 / 총 시간 / 휴식일) =====
-function renderMonthStats() {
-  const container = document.getElementById("month-stats");
-  if (!container) return;
-
-  const logs = getLogs();
-  const ym = `${calYear}-${String(calMonth + 1).padStart(2, "0")}`;
-  const monthKeys = Object.keys(logs).filter(k => k.startsWith(ym));
-
-  const workoutKeys = monthKeys.filter(k => logs[k].day !== "rest");
-  const restKeys = monthKeys.filter(k => logs[k].day === "rest");
-  const workoutCount = workoutKeys.length;
-
-  container.innerHTML = `
-    <div class="stat-cell"><div class="stat-num">${workoutCount}회</div><div class="stat-label">운동</div></div>
-    <div class="stat-cell"><div class="stat-num">😴 ${restKeys.length}일</div><div class="stat-label">휴식</div></div>
-  `;
-}
-
 // ===== 월별 캘린더 렌더링 =====
 function renderHistory() {
   renderProfileSummaryCard();
-  renderMonthStats();
 
   const logs = getLogs();
   document.getElementById("calendar-title").textContent = `${calYear}년 ${calMonth + 1}월`;
@@ -2353,12 +2346,22 @@ function renderHistory() {
     cell.className = "calendar-day";
     cell.dataset.datekey = dateKey;
     if (entry) {
-      cell.classList.add("logged");
+      if (entry.day === "rest") {
+        cell.classList.add("logged-rest");
+      } else if (entry.mode === "bodyweight") {
+        cell.classList.add("logged-bw");
+      } else {
+        cell.classList.add("logged-gym");
+      }
     }
     if (dateKey === todayStr) cell.classList.add("today");
     if (dateKey === selectedCalendarDate) cell.classList.add("selected");
 
     cell.innerHTML = `<span class="cal-day-num">${d}</span>`;
+    if (entry) {
+      const label = entry.day === "rest" ? "휴식" : `D${entry.day}${entry.mode === "bodyweight" ? "🤸" : ""}`;
+      cell.innerHTML += `<span style="font-size:10px;">${label}</span>`;
+    }
 
     cell.addEventListener("click", () => showDayDetail(dateKey, entry));
     grid.appendChild(cell);
@@ -2686,7 +2689,6 @@ function openExerciseInfoModal(name) {
       <div class="info-section-label">팁</div>
       <div>${guide.tip}</div>
     `;
-    activateBodyDiagramRegions(body);
   }
 
   document.getElementById("exercise-info-modal").classList.add("open");

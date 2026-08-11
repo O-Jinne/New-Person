@@ -34,8 +34,6 @@
       <div class="history-top" id="history-profile-summary"></div>
 
       <div class="history-bottom">
-        <div id="month-stats" class="month-stats"></div>
-
         <div class="calendar-header">
           <button id="prev-month" class="cal-nav-btn">‹</button>
           <h2 id="calendar-title">운동 기록</h2>
@@ -72,7 +70,10 @@
             <button class="day-tab" data-day="4">4</button>
           </nav>
 
-          <p id="day-routine-caption" class="day-routine-caption"></p>
+          <div class="day-routine-caption-row">
+            <p id="day-routine-caption" class="day-routine-caption"></p>
+            <button id="reroll-rotation-btn" class="reroll-btn" title="보조 운동 다시 뽑기">🔀 새로고침</button>
+          </div>
 
           <div id="editing-banner" class="editing-banner">
             <span id="editing-banner-text"></span>
