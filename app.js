@@ -1,15 +1,16 @@
 // ===== 루틴 데이터: 성별(남/여) x 목표모드(벌크업/균형/감량) = 6가지 세트 =====
-// 상체/하체 교차 분할: Day1 상체A, Day2 하체A(스쿼트), Day3 상체B, Day4 하체B(힌지)
-// → 하체가 4일에 1번이 아니라 2번(Day2·Day4) 돌아오되, 세션당 운동 수를 줄여 회복 부담은 그대로 유지
-// 균형 모드가 기존 기본 루틴, 벌크업은 저반복·고중량·낮은 유산소, 감량은 고반복·서킷형·높은 유산소로 변형
+// 상체/하체 교차 분할: Day1 상체A, Day2 상체+하체A(하체 위주), Day3 상체B, Day4 상체+하체B(하체 위주)
+// 가슴/등 볼륨 보강(3종목씩), 이두/삼두는 사이클 내 다른 각도 운동으로 다양화
 const ROUTINES_MALE = {
   balance: {
     1: {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 10~12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
         { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 10~12회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "3세트 x 10~12회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
         { name: "바벨 컬", target: "3세트 x 10~12회" },
@@ -18,12 +19,13 @@ const ROUTINES_MALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "4세트 x 12~15회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "4세트 x 15~20회" }
+        { name: "카프레이즈", target: "4세트 x 15~20회" },
+        { name: "스컬크러셔", target: "3세트 x 12~15회" }
       ]
     },
     3: {
@@ -39,13 +41,13 @@ const ROUTINES_MALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+햄스트링)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "헥스바 데드리프트", target: "4세트 x 8~10회" },
-        { name: "루마니안 데드리프트", target: "3세트 x 10~12회" },
-        { name: "레그 컬", target: "3세트 x 12~15회" },
+        { name: "루마니안 데드리프트", target: "4세트 x 10~12회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
-        { name: "카프레이즈", target: "3세트 x 15~20회" }
+        { name: "카프레이즈", target: "3세트 x 15~20회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" }
       ]
     }
   },
@@ -54,8 +56,10 @@ const ROUTINES_MALE = {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "5세트 x 4~6회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 6~8회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 8~10회" },
         { name: "랫풀다운", target: "5세트 x 4~6회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 8~10회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "4세트 x 6~8회" },
         { name: "케이블 푸시다운", target: "3세트 x 8~10회" },
         { name: "바벨 컬", target: "3세트 x 8~10회" },
@@ -64,12 +68,13 @@ const ROUTINES_MALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "5세트 x 6~8회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 10~12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" }
+        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "스컬크러셔", target: "3세트 x 8~10회" }
       ]
     },
     3: {
@@ -85,13 +90,13 @@ const ROUTINES_MALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+햄스트링)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "헥스바 데드리프트", target: "5세트 x 4~6회" },
-        { name: "루마니안 데드리프트", target: "4세트 x 6~8회" },
-        { name: "레그 컬", target: "3세트 x 8~10회" },
+        { name: "루마니안 데드리프트", target: "5세트 x 6~8회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" }
+        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" }
       ]
     }
   },
@@ -100,8 +105,10 @@ const ROUTINES_MALE = {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 15회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15회" },
         { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 15회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
         { name: "바벨 컬", target: "3세트 x 15회" },
@@ -110,12 +117,13 @@ const ROUTINES_MALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "3세트 x 15~20회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" }
+        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "스컬크러셔", target: "3세트 x 15~20회" }
       ]
     },
     3: {
@@ -131,27 +139,29 @@ const ROUTINES_MALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+햄스트링)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
-        { name: "루마니안 데드리프트", target: "3세트 x 15회" },
-        { name: "레그 컬", target: "3세트 x 15~20회" },
+        { name: "루마니안 데드리프트", target: "4세트 x 15회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "3세트 x 20회" }
+        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" }
       ]
     }
   }
 };
 
-// 여성용: 하체 A에 케이블 킥백(둔근 고립), 하체 B에 힙 쓰러스트를 배치해 두 하체 세션 모두 힙 자극 포함
+// 여성용: 하체 A/B에 힙 자극 분산(A=케이블킥백, B=힙쓰러스트), 상체 A는 남성과 동일하게 가슴/등 3종목씩 보강
 const ROUTINES_FEMALE = {
   balance: {
     1: {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 10~12회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 12~15회" },
         { name: "랫풀다운", target: "3세트 x 10~12회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "3세트 x 12회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
         { name: "바벨 컬", target: "3세트 x 12회" },
@@ -160,13 +170,14 @@ const ROUTINES_FEMALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트+힙)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "4세트 x 12~15회" },
         { name: "케이블 킥백", target: "3세트 x 12~15회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "3세트 x 15~20회" }
+        { name: "카프레이즈", target: "3세트 x 15~20회" },
+        { name: "스컬크러셔", target: "3세트 x 12~15회" }
       ]
     },
     3: {
@@ -181,12 +192,12 @@ const ROUTINES_FEMALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+힙)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
-        { name: "헥스바 데드리프트", target: "3세트 x 10~12회" },
-        { name: "레그 컬", target: "3세트 x 12~15회" },
-        { name: "카프레이즈", target: "3세트 x 15~20회" }
+        { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
+        { name: "카프레이즈", target: "3세트 x 15~20회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" }
       ]
     }
   },
@@ -195,8 +206,10 @@ const ROUTINES_FEMALE = {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 8~10회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
         { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 8~10회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
         { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
         { name: "바벨 컬", target: "3세트 x 10회" },
@@ -205,13 +218,14 @@ const ROUTINES_FEMALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트+힙)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "5세트 x 8~10회" },
         { name: "케이블 킥백", target: "3세트 x 10~12회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" }
+        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "스컬크러셔", target: "3세트 x 10~12회" }
       ]
     },
     3: {
@@ -226,12 +240,12 @@ const ROUTINES_FEMALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+힙)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
-        { name: "헥스바 데드리프트", target: "4세트 x 8~10회" },
-        { name: "레그 컬", target: "3세트 x 10~12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" }
+        { name: "헥스바 데드리프트", target: "5세트 x 8~10회" },
+        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" }
       ]
     }
   },
@@ -240,8 +254,10 @@ const ROUTINES_FEMALE = {
       name: "상체 A (가슴+등)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
+        { name: "덤벨 인클라인 프레스", target: "3세트 x 15~20회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15~20회" },
         { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 15회 (좌우)" },
         { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
         { name: "바벨 컬", target: "3세트 x 15회" },
@@ -250,13 +266,14 @@ const ROUTINES_FEMALE = {
       ]
     },
     2: {
-      name: "하체 A (스쿼트+힙)",
+      name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "3세트 x 15~20회" },
         { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" }
+        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "스컬크러셔", target: "3세트 x 15~20회" }
       ]
     },
     3: {
@@ -271,17 +288,16 @@ const ROUTINES_FEMALE = {
       ]
     },
     4: {
-      name: "하체 B (힌지+힙)",
+      name: "상체+하체 B (하체 위주)",
       exercises: [
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
-        { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
-        { name: "레그 컬", target: "3세트 x 15~20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" }
+        { name: "헥스바 데드리프트", target: "4세트 x 12~15회" },
+        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" }
       ]
     }
   }
 };
-
 const ROUTINE_SETS = { male: ROUTINES_MALE, female: ROUTINES_FEMALE };
 
 const STORAGE_KEY = "monster-project-logs";
@@ -316,11 +332,11 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   "바벨 컬": 20,
   "덤벨 해머컬": 10,
   "덤벨 컨센트레이션 컬": 8,
+  "스컬크러셔": 15,
   // Day 3 — 하체
   "헥스바 데드리프트": 40,
   "레그프레스": 60,
   "루마니안 데드리프트": 40,
-  "레그 컬": 20,
   "덤벨 불가리안 스플릿 스쿼트": 10,
   "케틀벨 고블릿 스쿼트": 16,
   "레그 익스텐션": 20,
@@ -349,11 +365,11 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   "바벨 컬": 10,
   "덤벨 해머컬": 5,
   "덤벨 컨센트레이션 컬": 4,
+  "스컬크러셔": 8,
   // Day 3 — 하체/힙
   "헥스바 데드리프트": 30,
   "레그프레스": 45,
   "루마니안 데드리프트": 25,
-  "레그 컬": 14,
   "덤벨 불가리안 스플릿 스쿼트": 6,
   "케틀벨 고블릿 스쿼트": 10,
   "레그 익스텐션": 14,
@@ -498,7 +514,6 @@ const MASTER_EXERCISES = [
   { category: "하체", name: "덤벨 런지", note: "허벅지+엉덩이, 좌우 따로" },
   { category: "하체", name: "케틀벨 고블릿 스쿼트", note: "허벅지 앞 집중, 자세 배우기 좋음" },
   { category: "하체", name: "레그 익스텐션", note: "허벅지 앞(대퇴사두) 고립" },
-  { category: "하체", name: "레그 컬", note: "햄스트링(허벅지 뒤) 고립" },
   { category: "하체", name: "카프레이즈", note: "종아리 집중" },
   { category: "하체", name: "루마니안 데드리프트", note: "햄스트링+엉덩이, 스트레치 자극" },
   { category: "하체", name: "힙 쓰러스트", note: "엉덩이(둔근) 집중, 힙업에 효과적" },
@@ -1157,12 +1172,12 @@ function renderExercises() {
 }
 
 // ===== 운동 검색 모달 =====
-// ===== Day별 관련 운동 카테고리 (운동 추가 모달 필터링용) — 상체A/하체A/상체B/하체B 구조 =====
+// ===== Day별 관련 운동 카테고리 (운동 추가 모달 필터링용) — 상체A/상+하체A/상체B/상+하체B 구조 =====
 const DAY_MUSCLE_CATEGORIES = {
   1: ["가슴", "등", "팔"],
-  2: ["하체"],
+  2: ["하체", "팔"],
   3: ["어깨", "팔"],
-  4: ["하체"]
+  4: ["하체", "팔"]
 };
 
 let showAllExercisesInModal = false;
