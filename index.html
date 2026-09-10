@@ -35,6 +35,7 @@
 
       <div class="history-bottom">
         <div id="month-stats" class="month-stats"></div>
+        <button id="monthly-report-btn" class="report-link-btn">📊 이번 달 리포트 보기</button>
 
         <div class="calendar-header">
           <button id="prev-month" class="cal-nav-btn">‹</button>
@@ -204,6 +205,16 @@
         <span>운동만큼 수면과 식사도 중요해요. 잘 자고 잘 먹어야 근육이 자랍니다.</span>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="report-modal" class="modal-overlay center">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="report-title" class="modal-title">📊 월간 리포트</h3>
+      <button id="close-report-btn" class="modal-close">✕</button>
+    </div>
+    <div id="report-body" class="report-body"></div>
   </div>
 </div>
 

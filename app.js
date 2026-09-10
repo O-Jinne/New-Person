@@ -1,43 +1,45 @@
 // ===== 루틴 데이터: 성별(남/여) x 목표모드(벌크업/균형/감량) = 6가지 세트 =====
-// 상체/하체 교차 분할: Day1 상체A, Day2 상체+하체A(하체 위주), Day3 상체B, Day4 상체+하체B(하체 위주)
-// 가슴/등 볼륨 보강(3종목씩), 이두/삼두는 사이클 내 다른 각도 운동으로 다양화
+// 상체/하체 교차 분할: Day1 상체A(Push:가슴+어깨+삼두), Day2 상체+하체A(하체 위주), Day3 상체B(Pull:등+이두), Day4 상체+하체B(하체 위주)
+// Push/Pull로 나눠 Day1·Day3 볼륨을 균등하게 배분 (이전엔 가슴+등이 전부 Day1에 몰려 불균형)
 const ROUTINES_MALE = {
   balance: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 10~12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
-        { name: "랫풀다운", target: "4세트 x 8~10회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 10~12회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 10~12회" },
+        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
-        { name: "바벨 컬", target: "3세트 x 10~12회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
       name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "4세트 x 12~15회" },
+        { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "4세트 x 15~20회" },
-        { name: "스컬크러셔", target: "3세트 x 12~15회" }
+        { name: "스컬크러셔", target: "3세트 x 12~15회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 10~12회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 10회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "3세트 x 10~12회" },
         { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -47,46 +49,49 @@ const ROUTINES_MALE = {
         { name: "루마니안 데드리프트", target: "4세트 x 10~12회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   },
   bulk: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "5세트 x 4~6회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 6~8회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 8~10회" },
-        { name: "랫풀다운", target: "5세트 x 4~6회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 8~10회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "4세트 x 6~8회" },
+        { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
+        { name: "사이드 레터럴 레이즈", target: "3세트 x 10~12회" },
         { name: "케이블 푸시다운", target: "3세트 x 8~10회" },
-        { name: "바벨 컬", target: "3세트 x 8~10회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 8~10회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "200스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
       name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "5세트 x 6~8회" },
+        { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 10~12회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
-        { name: "스컬크러셔", target: "3세트 x 8~10회" }
+        { name: "스컬크러셔", target: "3세트 x 8~10회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
-        { name: "사이드 레터럴 레이즈", target: "3세트 x 10~12회" },
+        { name: "랫풀다운", target: "5세트 x 4~6회" },
+        { name: "바벨 벤트오버 로우", target: "4세트 x 6~8회" },
+        { name: "덤벨 원암 로우", target: "4세트 x 8회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 12~15회" },
+        { name: "바벨 컬", target: "3세트 x 8~10회" },
         { name: "덤벨 해머컬", target: "3세트 x 8~10회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 8~10회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "200스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -96,46 +101,49 @@ const ROUTINES_MALE = {
         { name: "루마니안 데드리프트", target: "5세트 x 6~8회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   },
   cut: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 15회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15회" },
-        { name: "랫풀다운", target: "3세트 x 12~15회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 15회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
+        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
-        { name: "바벨 컬", target: "3세트 x 15회" },
+        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15~20회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
-        { name: "스텝밀", target: "700스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
       name: "상체+하체 A (하체 위주)",
       exercises: [
         { name: "레그프레스", target: "3세트 x 15~20회" },
+        { name: "힙 쓰러스트", target: "3세트 x 15회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
-        { name: "스컬크러셔", target: "3세트 x 15~20회" }
+        { name: "스컬크러셔", target: "3세트 x 15~20회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
-        { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15~20회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
-        { name: "스텝밀", target: "700스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -145,28 +153,27 @@ const ROUTINES_MALE = {
         { name: "루마니안 데드리프트", target: "4세트 x 15회" },
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   }
 };
 
-// 여성용: 하체 A/B에 힙 자극 분산(A=케이블킥백, B=힙쓰러스트), 상체 A는 남성과 동일하게 가슴/등 3종목씩 보강
+// 여성용: 하체 A/B에 힙 자극 분산(A=케이블킥백, B=힙쓰러스트). 상체는 남성과 동일한 Push(Day1)/Pull(Day3) 구조
 const ROUTINES_FEMALE = {
   balance: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 10~12회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 12~15회" },
-        { name: "랫풀다운", target: "3세트 x 10~12회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 12회" },
+        { name: "덤벨 숄더 프레스", target: "3세트 x 10~12회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
-        { name: "바벨 컬", target: "3세트 x 12회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
@@ -177,18 +184,21 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
-        { name: "스컬크러셔", target: "3세트 x 12~15회" }
+        { name: "스컬크러셔", target: "3세트 x 12~15회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "3세트 x 10~12회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "랫풀다운", target: "3세트 x 10~12회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 12회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 10회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "3세트 x 12회" },
         { name: "덤벨 해머컬", target: "3세트 x 12~15회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
-        { name: "스텝밀", target: "400스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -196,25 +206,25 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
         { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   },
   bulk: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "4세트 x 8~10회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 8~10회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
-        { name: "랫풀다운", target: "4세트 x 8~10회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 8~10회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
+        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
-        { name: "바벨 컬", target: "3세트 x 10회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "250스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
@@ -225,18 +235,21 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
-        { name: "스컬크러셔", target: "3세트 x 10~12회" }
+        { name: "스컬크러셔", target: "3세트 x 10~12회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "랫풀다운", target: "4세트 x 8~10회" },
+        { name: "바벨 벤트오버 로우", target: "4세트 x 8~10회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 8회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 15회" },
+        { name: "바벨 컬", target: "3세트 x 10회" },
         { name: "덤벨 해머컬", target: "3세트 x 10~12회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
-        { name: "스텝밀", target: "250스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -244,25 +257,25 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
         { name: "헥스바 데드리프트", target: "5세트 x 8~10회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   },
   cut: {
     1: {
-      name: "상체 A (가슴+등)",
+      name: "상체 A (Push: 가슴+어깨+삼두)",
       exercises: [
         { name: "바벨 벤치프레스", target: "3세트 x 12~15회" },
         { name: "덤벨 인클라인 프레스", target: "3세트 x 15~20회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15~20회" },
-        { name: "랫풀다운", target: "3세트 x 12~15회" },
-        { name: "덤벨 원암 로우", target: "3세트 x 15회 (좌우)" },
-        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
+        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
-        { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
-        { name: "스텝밀", target: "800스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     2: {
@@ -273,18 +286,21 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
-        { name: "스컬크러셔", target: "3세트 x 15~20회" }
+        { name: "스컬크러셔", target: "3세트 x 15~20회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     3: {
-      name: "상체 B (어깨+팔)",
+      name: "상체 B (Pull: 등+이두)",
       exercises: [
-        { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "랫풀다운", target: "3세트 x 12~15회" },
+        { name: "바벨 벤트오버 로우", target: "3세트 x 15회" },
+        { name: "덤벨 원암 로우", target: "3세트 x 12회 (좌우)" },
         { name: "페이스풀", target: "3세트 x 20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "덤벨 해머컬", target: "3세트 x 15~20회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
-        { name: "스텝밀", target: "800스텝" }
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
     4: {
@@ -292,8 +308,10 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
         { name: "헥스바 데드리프트", target: "4세트 x 12~15회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
-        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" }
+        { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
+        { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
   }
@@ -341,6 +359,7 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   "케틀벨 고블릿 스쿼트": 16,
   "레그 익스텐션": 20,
   "카프레이즈": 40,
+  "힙 쓰러스트": 60,
   // Day 4 — 어깨/팔
   "덤벨 숄더 프레스": 12,
   "사이드 레터럴 레이즈": 6,
@@ -523,8 +542,9 @@ const MASTER_EXERCISES = [
   { category: "코어", name: "케이블 크런치", note: "복근 전체, 서서/무릎꿇고 가능해 공간 적게 씀" },
   { category: "코어", name: "케틀벨 러시안 트위스트", note: "복근 옆(옆구리) 회전근 자극" },
   { category: "유산소", name: "스텝밀", note: "하체+심폐, 계단 오르기 형태" },
-  { category: "유산소", name: "트레드밀", note: "심폐지구력, 경사 조절 가능" },
-  { category: "유산소", name: "사이클", note: "하체 부담 적은 심폐 운동" }
+  { category: "유산소", name: "러닝", note: "심폐지구력, 시간+거리 입력하면 페이스·속도 자동 계산" },
+  { category: "유산소", name: "트레드밀", note: "심폐지구력, 시간+거리 입력하면 페이스·속도 자동 계산" },
+  { category: "유산소", name: "사이클", note: "하체 부담 적은 심폐 운동, 시간+거리 입력하면 페이스·속도 자동 계산" }
 ];
 
 // ===== 맨몸 운동 루틴 =====
@@ -609,6 +629,27 @@ const BODYWEIGHT_MASTER_EXERCISES = [
   { category: "유산소", name: "버피", note: "전신+심폐, 고강도" },
   { category: "유산소", name: "제자리 뛰기", note: "심폐지구력, 기구 없이 어디서나" }
 ];
+
+// ===== 거리 기반 유산소 운동 (시간+거리 입력 → 페이스/속도 자동 계산) =====
+const CARDIO_DISTANCE_EXERCISES = ["러닝", "트레드밀", "사이클"];
+
+function isCardioDistanceExercise(name) {
+  return CARDIO_DISTANCE_EXERCISES.includes(name);
+}
+
+function formatPace(durationMin, distanceKm) {
+  if (!distanceKm || distanceKm <= 0 || !durationMin || durationMin <= 0) return "-";
+  const paceMinPerKm = durationMin / distanceKm;
+  const min = Math.floor(paceMinPerKm);
+  const sec = Math.round((paceMinPerKm - min) * 60);
+  return `${min}'${String(sec).padStart(2, "0")}"/km`;
+}
+
+function formatSpeed(durationMin, distanceKm) {
+  if (!durationMin || durationMin <= 0 || !distanceKm || distanceKm <= 0) return "-";
+  const speedKmh = distanceKm / (durationMin / 60);
+  return `${speedKmh.toFixed(1)}km/h`;
+}
 
 function getGender() {
   const p = getProfile();
@@ -928,6 +969,8 @@ function init() {
 
   document.getElementById("tip-btn").addEventListener("click", openTipModal);
   document.getElementById("close-tip-btn").addEventListener("click", closeTipModal);
+  document.getElementById("monthly-report-btn").addEventListener("click", openReportModal);
+  document.getElementById("close-report-btn").addEventListener("click", closeReportModal);
   document.getElementById("theme-toggle-btn").addEventListener("click", toggleTheme);
 
   document.getElementById("export-data-btn").addEventListener("click", exportData);
@@ -1009,6 +1052,7 @@ function selectDay(day) {
       checked: false,
       weight: baseWeight !== null ? baseWeight : "",
       completedSets: [],
+      cardioLog: null,
       currentReps: parseSuggestedReps(ex.target),
       custom: false
     };
@@ -1025,8 +1069,17 @@ function renderExercises() {
   view.innerHTML = "";
 
   const isBodyweight = currentMode === "bodyweight";
+  let cardioHeaderInserted = false;
 
   currentExercises.forEach((ex, idx) => {
+    if (isCardioDistanceExercise(ex.name) && !cardioHeaderInserted) {
+      const sectionHeader = document.createElement("div");
+      sectionHeader.className = "exercise-section-header";
+      sectionHeader.textContent = "💨 유산소";
+      view.appendChild(sectionHeader);
+      cardioHeaderInserted = true;
+    }
+
     const isOpen = openExerciseIndex === idx;
     const completedSets = ex.completedSets || [];
     const targetSetCount = parseTargetSetCount(ex.target);
@@ -1053,7 +1106,12 @@ function renderExercises() {
     row.appendChild(checkBtn);
     row.appendChild(nameSpan);
 
-    if (completedSets.length > 0) {
+    if (ex.cardioLog) {
+      const badge = document.createElement("span");
+      badge.className = "set-progress-badge";
+      badge.textContent = `${ex.cardioLog.distanceKm}km`;
+      row.appendChild(badge);
+    } else if (completedSets.length > 0) {
       const badge = document.createElement("span");
       badge.className = "set-progress-badge";
       badge.textContent = targetSetCount ? `${completedSets.length}/${targetSetCount}` : `${completedSets.length}세트`;
@@ -1082,7 +1140,7 @@ function renderExercises() {
       targetLine.textContent = ex.target;
       detail.appendChild(targetLine);
 
-      if (!isBodyweight) {
+      if (!isBodyweight && !isCardioDistanceExercise(ex.name)) {
         const weightControl = document.createElement("div");
         weightControl.className = "weight-control";
 
@@ -1174,9 +1232,9 @@ function renderExercises() {
 // ===== 운동 검색 모달 =====
 // ===== Day별 관련 운동 카테고리 (운동 추가 모달 필터링용) — 상체A/상+하체A/상체B/상+하체B 구조 =====
 const DAY_MUSCLE_CATEGORIES = {
-  1: ["가슴", "등", "팔"],
+  1: ["가슴", "어깨", "팔"],
   2: ["하체", "팔"],
-  3: ["어깨", "팔"],
+  3: ["등", "팔"],
   4: ["하체", "팔"]
 };
 
@@ -1262,6 +1320,7 @@ function selectExerciseFromModal(name) {
     checked: false,
     weight: baseWeight !== null ? baseWeight : "",
     completedSets: [],
+    cardioLog: null,
     currentReps: "",
     custom: true
   });
@@ -1362,6 +1421,94 @@ function setupHeroSwipe() {
   }, { passive: true });
 }
 
+// ===== 거리 기반 유산소 카드 (시간+거리 입력, 완료 후 페이스/속도 표시) =====
+function renderCardioCard(card, ex) {
+  const cardio = ex.cardioLog;
+
+  if (cardio) {
+    const summary = document.createElement("div");
+    summary.className = "cardio-summary";
+    summary.innerHTML = `
+      <div class="cardio-summary-row"><span>시간</span><span>${cardio.durationMin}분</span></div>
+      <div class="cardio-summary-row"><span>거리</span><span>${cardio.distanceKm}km</span></div>
+      <div class="cardio-summary-row"><span>페이스</span><span>${formatPace(cardio.durationMin, cardio.distanceKm)}</span></div>
+      <div class="cardio-summary-row"><span>속도</span><span>${formatSpeed(cardio.durationMin, cardio.distanceKm)}</span></div>
+    `;
+    card.appendChild(summary);
+
+    const editBtn = document.createElement("button");
+    editBtn.className = "secondary-btn";
+    editBtn.textContent = "다시 입력";
+    editBtn.addEventListener("click", () => {
+      ex.cardioLog = null;
+      ex.checked = false;
+      persistActiveSession();
+      renderHeroSession();
+    });
+    card.appendChild(editBtn);
+    return;
+  }
+
+  const inputRow = document.createElement("div");
+  inputRow.className = "cardio-input-row";
+
+  const durationWrap = document.createElement("div");
+  durationWrap.className = "cardio-input-group";
+  durationWrap.innerHTML = `<label>시간 (분)</label>`;
+  const durationInput = document.createElement("input");
+  durationInput.type = "number";
+  durationInput.inputMode = "decimal";
+  durationInput.placeholder = "예: 25";
+  durationWrap.appendChild(durationInput);
+
+  const distanceWrap = document.createElement("div");
+  distanceWrap.className = "cardio-input-group";
+  distanceWrap.innerHTML = `<label>거리 (km)</label>`;
+  const distanceInput = document.createElement("input");
+  distanceInput.type = "number";
+  distanceInput.inputMode = "decimal";
+  distanceInput.placeholder = "예: 2.5";
+  distanceWrap.appendChild(distanceInput);
+
+  inputRow.appendChild(durationWrap);
+  inputRow.appendChild(distanceWrap);
+  card.appendChild(inputRow);
+
+  const previewEl = document.createElement("div");
+  previewEl.className = "cardio-preview";
+  previewEl.textContent = "시간과 거리를 입력하면 페이스·속도가 계산돼요";
+  card.appendChild(previewEl);
+
+  const updatePreview = () => {
+    const d = parseFloat(durationInput.value);
+    const dist = parseFloat(distanceInput.value);
+    if (d > 0 && dist > 0) {
+      previewEl.textContent = `페이스 ${formatPace(d, dist)} · 속도 ${formatSpeed(d, dist)}`;
+    } else {
+      previewEl.textContent = "시간과 거리를 입력하면 페이스·속도가 계산돼요";
+    }
+  };
+  durationInput.addEventListener("input", updatePreview);
+  distanceInput.addEventListener("input", updatePreview);
+
+  const completeBtn = document.createElement("button");
+  completeBtn.className = "hero-complete-btn";
+  completeBtn.textContent = "기록 완료";
+  completeBtn.addEventListener("click", () => {
+    const d = parseFloat(durationInput.value);
+    const dist = parseFloat(distanceInput.value);
+    if (!d || !dist || d <= 0 || dist <= 0) {
+      alert("시간과 거리를 정확히 입력해주세요.");
+      return;
+    }
+    ex.cardioLog = { durationMin: d, distanceKm: dist };
+    ex.checked = true;
+    persistActiveSession();
+    renderHeroSession();
+  });
+  card.appendChild(completeBtn);
+}
+
 function renderHeroSession() {
   setupHeroSwipe();
   const chipStrip = document.getElementById("hero-chip-strip");
@@ -1419,6 +1566,11 @@ function renderHeroSession() {
     lastEl.className = "hero-last-record";
     lastEl.textContent = `지난 기록 · ${lastRecord.date.slice(5).replace("-", "/")} · ${lastRecord.text}`;
     card.appendChild(lastEl);
+  }
+
+  if (isCardioDistanceExercise(ex.name)) {
+    renderCardioCard(card, ex);
+    return;
   }
 
   const ringWrap = document.createElement("div");
@@ -1591,12 +1743,20 @@ function getLastRecordForExercise(name) {
   const logs = getLogs();
   const todayKey = getLocalDateKey();
   const dates = Object.keys(logs).filter(k => k !== todayKey).sort().reverse();
+  const isCardio = isCardioDistanceExercise(name);
 
   for (const dateKey of dates) {
     const entry = logs[dateKey];
     if (!entry || entry.day === "rest" || !Array.isArray(entry.exercises)) continue;
     const match = entry.exercises.find(e => e.name === name);
-    if (match && Array.isArray(match.sets) && match.sets.length > 0) {
+
+    if (isCardio && match && match.cardio) {
+      const c = match.cardio;
+      const text = `${c.distanceKm}km · ${c.durationMin}분 · ${formatPace(c.durationMin, c.distanceKm)}`;
+      return { date: dateKey, text: text };
+    }
+
+    if (!isCardio && match && Array.isArray(match.sets) && match.sets.length > 0) {
       const best = match.sets[match.sets.length - 1];
       const text = currentMode === "bodyweight"
         ? `${best.reps || "-"}회 × ${match.sets.length}세트`
@@ -1630,9 +1790,10 @@ function saveLog(explicitDurationMinutes) {
     durationMinutes: durationMinutes,
     exercises: currentExercises.map(ex => ({
       name: ex.name,
-      checked: ex.checked || (ex.completedSets && ex.completedSets.length > 0),
+      checked: ex.checked || (ex.completedSets && ex.completedSets.length > 0) || !!ex.cardioLog,
       weight: ex.weight,
-      sets: ex.completedSets || []
+      sets: ex.completedSets || [],
+      cardio: ex.cardioLog || null
     })),
     timestamp: new Date().toISOString()
   };
@@ -1688,6 +1849,7 @@ function loadEntryForEditing(dateKey, entry) {
       checked: ex.checked,
       weight: lastSet ? lastSet.weight : ex.weight,
       completedSets: restoredSets,
+      cardioLog: ex.cardio || null,
       currentReps: lastSet ? String(lastSet.reps) : parseSuggestedReps(target),
       custom: !routineMatch
     };
@@ -1812,6 +1974,92 @@ function initCalendarNav() {
 }
 
 // ===== 표시 중인 달의 통계 (운동 횟수 / 총 시간 / 휴식일) =====
+// ===== 운동명 → 카테고리 조회 (월간 리포트 부위별 집계용) =====
+function getExerciseCategory(name) {
+  const found = MASTER_EXERCISES.find(e => e.name === name) || BODYWEIGHT_MASTER_EXERCISES.find(e => e.name === name);
+  return found ? found.category : "기타";
+}
+
+// ===== 월간 리포트 생성 =====
+function generateMonthlyReport(year, month) {
+  const logs = getLogs();
+  const ym = `${year}-${String(month + 1).padStart(2, "0")}`;
+  const monthKeys = Object.keys(logs).filter(k => k.startsWith(ym)).sort();
+
+  const workoutEntries = monthKeys.map(k => logs[k]).filter(e => e.day !== "rest");
+  const restCount = monthKeys.length - workoutEntries.length;
+
+  // 완료율
+  let totalEx = 0, doneEx = 0;
+  workoutEntries.forEach(e => {
+    (e.exercises || []).forEach(ex => {
+      totalEx++;
+      if (ex.checked) doneEx++;
+    });
+  });
+  const completionRate = totalEx > 0 ? Math.round((doneEx / totalEx) * 100) : 0;
+
+  // 평균 세션 시간
+  const durations = workoutEntries.map(e => toValidMinutes(e.durationMinutes)).filter(Boolean);
+  const avgDuration = durations.length ? Math.round(durations.reduce((a, b) => a + b, 0) / durations.length) : null;
+
+  // 부위별 세트 볼륨
+  const categorySets = {};
+  workoutEntries.forEach(e => {
+    (e.exercises || []).forEach(ex => {
+      if (ex.cardio || !Array.isArray(ex.sets) || ex.sets.length === 0) return;
+      const cat = getExerciseCategory(ex.name);
+      categorySets[cat] = (categorySets[cat] || 0) + ex.sets.length;
+    });
+  });
+  const topCategories = Object.entries(categorySets).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const maxCatSets = topCategories.length ? topCategories[0][1] : 1;
+
+  // 운동별 무게 향상 (이 달 첫 기록 vs 마지막 기록)
+  const exerciseFirstLast = {};
+  workoutEntries.forEach(e => {
+    (e.exercises || []).forEach(ex => {
+      if (ex.cardio || !Array.isArray(ex.sets) || ex.sets.length === 0) return;
+      const maxWeightSet = ex.sets.reduce((max, s) => (parseFloat(s.weight) > parseFloat(max.weight) ? s : max), ex.sets[0]);
+      const w = parseFloat(maxWeightSet.weight);
+      if (isNaN(w)) return;
+      if (!exerciseFirstLast[ex.name]) {
+        exerciseFirstLast[ex.name] = { first: w, last: w };
+      } else {
+        exerciseFirstLast[ex.name].last = w;
+      }
+    });
+  });
+  const improvements = Object.entries(exerciseFirstLast)
+    .map(([name, v]) => ({ name, delta: v.last - v.first, first: v.first, last: v.last }))
+    .filter(v => v.delta > 0)
+    .sort((a, b) => b.delta - a.delta)
+    .slice(0, 3);
+
+  // 유산소 합계
+  let cardioDistance = 0, cardioMinutes = 0;
+  workoutEntries.forEach(e => {
+    (e.exercises || []).forEach(ex => {
+      if (ex.cardio) {
+        cardioDistance += parseFloat(ex.cardio.distanceKm) || 0;
+        cardioMinutes += parseFloat(ex.cardio.durationMin) || 0;
+      }
+    });
+  });
+
+  return {
+    workoutCount: workoutEntries.length,
+    restCount,
+    completionRate,
+    avgDuration,
+    topCategories,
+    maxCatSets,
+    improvements,
+    cardioDistance,
+    cardioMinutes
+  };
+}
+
 function renderMonthStats() {
   const container = document.getElementById("month-stats");
   if (!container) return;
@@ -1958,8 +2206,13 @@ function showDayDetail(dateKey, entry) {
   const exLines = entry.exercises.map((ex, i) => {
     const statusClass = ex.checked ? "done" : "missed";
     const mark = ex.checked ? "✓" : "✗";
-    const setsDetail = formatSetsDetail(ex.sets);
-    const detailStr = setsDetail ? ` — ${setsDetail}` : (ex.weight ? ` — ${ex.weight}kg` : "");
+    let detailStr = "";
+    if (ex.cardio) {
+      detailStr = ` — ${ex.cardio.distanceKm}km · ${ex.cardio.durationMin}분 · ${formatPace(ex.cardio.durationMin, ex.cardio.distanceKm)}`;
+    } else {
+      const setsDetail = formatSetsDetail(ex.sets);
+      detailStr = setsDetail ? ` — ${setsDetail}` : (ex.weight ? ` — ${ex.weight}kg` : "");
+    }
     return `<div class="h-ex-line ${statusClass}"><span class="h-mark">${mark}</span><span class="h-ex-name">${i + 1}. ${ex.name}${detailStr}</span></div>`;
   }).join("");
 
@@ -2201,6 +2454,66 @@ function openTipModal() {
 
 function closeTipModal() {
   document.getElementById("tip-modal").classList.remove("open");
+}
+
+// ===== 월간 리포트 모달 =====
+function openReportModal() {
+  const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+  document.getElementById("report-title").textContent = `📊 ${calYear}년 ${monthNames[calMonth]} 리포트`;
+
+  const r = generateMonthlyReport(calYear, calMonth);
+  const body = document.getElementById("report-body");
+
+  if (r.workoutCount === 0) {
+    body.innerHTML = `<div class="report-empty">이번 달 아직 운동 기록이 없어요.</div>`;
+  } else {
+    const catBars = r.topCategories.map(([cat, sets]) => `
+      <div class="report-bar-row">
+        <span class="report-bar-label">${cat}</span>
+        <div class="report-bar-track"><div class="report-bar-fill" style="width:${Math.round((sets / r.maxCatSets) * 100)}%"></div></div>
+        <span class="report-bar-value">${sets}세트</span>
+      </div>
+    `).join("");
+
+    const improvementLines = r.improvements.length
+      ? r.improvements.map(v => `<div class="report-improve-row">💪 ${v.name} — ${v.first}kg → ${v.last}kg <span class="report-improve-delta">(+${(v.last - v.first).toFixed(1)}kg)</span></div>`).join("")
+      : `<div class="report-empty-small">이번 달엔 무게가 늘어난 운동이 아직 없어요.</div>`;
+
+    const cardioSection = r.cardioMinutes > 0
+      ? `<div class="report-section">
+          <div class="report-section-title">🏃 유산소 합계</div>
+          <div class="report-cardio-summary">총 ${r.cardioDistance.toFixed(1)}km · ${Math.round(r.cardioMinutes)}분 · 평균 페이스 ${formatPace(r.cardioMinutes, r.cardioDistance)}</div>
+        </div>`
+      : "";
+
+    body.innerHTML = `
+      <div class="report-stat-row">
+        <div class="report-stat-cell"><div class="report-stat-num">${r.workoutCount}회</div><div class="report-stat-label">운동</div></div>
+        <div class="report-stat-cell"><div class="report-stat-num">${r.restCount}일</div><div class="report-stat-label">휴식</div></div>
+        <div class="report-stat-cell"><div class="report-stat-num">${r.completionRate}%</div><div class="report-stat-label">완료율</div></div>
+      </div>
+
+      ${r.avgDuration ? `<div class="report-avg-time">평균 세션 시간 ⏱ ${r.avgDuration}분</div>` : ""}
+
+      <div class="report-section">
+        <div class="report-section-title">📈 부위별 훈련 볼륨</div>
+        ${catBars}
+      </div>
+
+      <div class="report-section">
+        <div class="report-section-title">🏆 이번 달 무게 향상</div>
+        ${improvementLines}
+      </div>
+
+      ${cardioSection}
+    `;
+  }
+
+  document.getElementById("report-modal").classList.add("open");
+}
+
+function closeReportModal() {
+  document.getElementById("report-modal").classList.remove("open");
 }
 
 // ===== 토스트 알림 =====

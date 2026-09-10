@@ -425,6 +425,13 @@ header p {
   color: white;
 }
 
+.exercise-section-header {
+  font-size: 12px;
+  color: var(--ink-dim);
+  font-weight: 700;
+  margin: 14px 2px 6px;
+}
+
 .exercise-card {
   background: var(--surface);
   border-radius: var(--r-md);
@@ -788,6 +795,71 @@ header p {
   gap: 4px;
 }
 
+/* ---- 거리 기반 유산소 입력 카드 ---- */
+.cardio-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 18px 0 14px;
+}
+
+.cardio-input-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.cardio-input-group input {
+  width: 100%;
+  background: var(--surface-2);
+  border: none;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  padding: 14px 12px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.cardio-preview {
+  text-align: center;
+  font-size: 13px;
+  color: var(--accent-ink);
+  font-weight: 700;
+  margin-bottom: 16px;
+  min-height: 18px;
+}
+
+.cardio-summary {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  margin: 18px 0 14px;
+}
+
+.cardio-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.cardio-summary-row:last-child {
+  border-bottom: none;
+}
+
+.cardio-summary-row span:first-child {
+  color: var(--ink-dim);
+  font-weight: 600;
+}
+
+.cardio-summary-row span:last-child {
+  font-weight: 800;
+}
+
 .set-progress-badge {
   font-size: 11px;
   color: var(--accent);
@@ -1124,10 +1196,14 @@ header p {
 }
 
 .modal-cat-label {
-  font-size: 12px;
-  color: var(--ink-faint);
-  font-weight: 700;
-  padding: 10px 4px 4px;
+  font-size: 13px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  font-weight: 800;
+  padding: 7px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 12px 0 6px;
 }
 
 .modal-item {
@@ -1389,4 +1465,135 @@ header p {
   font-size: 12px;
   font-weight: 800;
   flex-shrink: 0;
+}
+
+/* ---- 월간 리포트 ---- */
+.report-link-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  padding: 4px 0 10px;
+  cursor: pointer;
+}
+
+.report-body {
+  overflow-y: auto;
+}
+
+.report-empty, .report-empty-small {
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 20px 0;
+}
+
+.report-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.report-stat-cell {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 12px 6px;
+  text-align: center;
+}
+
+.report-stat-num {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.report-stat-label {
+  font-size: 11px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.report-avg-time {
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.report-section {
+  margin-bottom: 18px;
+}
+
+.report-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.report-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.report-bar-label {
+  font-size: 12px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.report-bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.report-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 6px;
+}
+
+.report-bar-value {
+  font-size: 12px;
+  font-weight: 700;
+  width: 44px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.report-improve-row {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.report-improve-row:last-child {
+  border-bottom: none;
+}
+
+.report-improve-delta {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.report-cardio-summary {
+  background: var(--surface-2);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
 }
