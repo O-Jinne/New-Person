@@ -23,8 +23,9 @@ const ROUTINES_MALE = {
         { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "4세트 x 15~20회" },
+        { name: "카프레이즈", target: "3세트 x 15~20회" },
         { name: "스컬크러셔", target: "3세트 x 12~15회" },
+        { name: "바벨 컬", target: "3세트 x 10~12회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -46,10 +47,11 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "헥스바 데드리프트", target: "4세트 x 8~10회" },
         { name: "루마니안 데드리프트", target: "4세트 x 10~12회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "리어 델트 플라이", target: "3세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -75,8 +77,9 @@ const ROUTINES_MALE = {
         { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 10~12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "카프레이즈", target: "3세트 x 12~15회" },
         { name: "스컬크러셔", target: "3세트 x 8~10회" },
+        { name: "바벨 컬", target: "3세트 x 8~10회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -98,10 +101,11 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "헥스바 데드리프트", target: "5세트 x 4~6회" },
         { name: "루마니안 데드리프트", target: "5세트 x 6~8회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
         { name: "사이드 레터럴 레이즈", target: "3세트 x 10~12회" },
+        { name: "리어 델트 플라이", target: "3세트 x 10~12회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -127,8 +131,9 @@ const ROUTINES_MALE = {
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "카프레이즈", target: "2세트 x 20회" },
         { name: "스컬크러셔", target: "3세트 x 15~20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -150,10 +155,11 @@ const ROUTINES_MALE = {
       exercises: [
         { name: "헥스바 데드리프트", target: "3세트 x 12~15회" },
         { name: "루마니안 데드리프트", target: "4세트 x 15회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "리어 델트 플라이", target: "3세트 x 15~20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -182,8 +188,9 @@ const ROUTINES_FEMALE = {
         { name: "케이블 킥백", target: "3세트 x 12~15회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 10회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 15회" },
-        { name: "카프레이즈", target: "3세트 x 15~20회" },
+        { name: "카프레이즈", target: "2세트 x 15~20회" },
         { name: "스컬크러셔", target: "3세트 x 12~15회" },
+        { name: "바벨 컬", target: "3세트 x 12회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -205,10 +212,11 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "4세트 x 10~12회" },
         { name: "헥스바 데드리프트", target: "4세트 x 10~12회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "리어 델트 플라이", target: "3세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -233,8 +241,9 @@ const ROUTINES_FEMALE = {
         { name: "케이블 킥백", target: "3세트 x 10~12회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "4세트 x 8회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 12회" },
-        { name: "카프레이즈", target: "4세트 x 12~15회" },
+        { name: "카프레이즈", target: "3세트 x 12~15회" },
         { name: "스컬크러셔", target: "3세트 x 10~12회" },
+        { name: "바벨 컬", target: "3세트 x 10회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -256,10 +265,11 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "5세트 x 6~8회" },
         { name: "헥스바 데드리프트", target: "5세트 x 8~10회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
+        { name: "리어 델트 플라이", target: "3세트 x 10~12회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -284,8 +294,9 @@ const ROUTINES_FEMALE = {
         { name: "케이블 킥백", target: "3세트 x 15회 (좌우)" },
         { name: "덤벨 불가리안 스플릿 스쿼트", target: "3세트 x 12회 (좌우)" },
         { name: "레그 익스텐션", target: "3세트 x 20회" },
-        { name: "카프레이즈", target: "3세트 x 20회" },
+        { name: "카프레이즈", target: "2세트 x 20회" },
         { name: "스컬크러셔", target: "3세트 x 15~20회" },
+        { name: "바벨 컬", target: "3세트 x 15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     },
@@ -307,10 +318,11 @@ const ROUTINES_FEMALE = {
       exercises: [
         { name: "힙 쓰러스트", target: "3세트 x 15회" },
         { name: "헥스바 데드리프트", target: "4세트 x 12~15회" },
-        { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
+        { name: "케틀벨 고블릿 스쿼트", target: "2세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
         { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
+        { name: "리어 델트 플라이", target: "3세트 x 15~20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -363,6 +375,7 @@ const DEFAULT_BASE_WEIGHTS_MALE = {
   // Day 4 — 어깨/팔
   "덤벨 숄더 프레스": 12,
   "사이드 레터럴 레이즈": 6,
+  "리어 델트 플라이": 6,
   "페이스풀": 15,
   "덤벨 컬 21s": 8,
   // 코어
@@ -398,6 +411,7 @@ const DEFAULT_BASE_WEIGHTS_FEMALE = {
   // Day 4 — 어깨/팔
   "덤벨 숄더 프레스": 6,
   "사이드 레터럴 레이즈": 3,
+  "리어 델트 플라이": 3,
   "페이스풀": 8,
   "덤벨 컬 21s": 4,
   // 코어
