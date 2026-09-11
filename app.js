@@ -10,7 +10,6 @@ const ROUTINES_MALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 10~12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
         { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 10~12회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
@@ -50,6 +49,7 @@ const ROUTINES_MALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -62,7 +62,6 @@ const ROUTINES_MALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 6~8회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 8~10회" },
         { name: "덤벨 숄더 프레스", target: "5세트 x 6~8회" },
-        { name: "사이드 레터럴 레이즈", target: "3세트 x 10~12회" },
         { name: "케이블 푸시다운", target: "3세트 x 8~10회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 8~10회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
@@ -102,6 +101,7 @@ const ROUTINES_MALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
+        { name: "사이드 레터럴 레이즈", target: "3세트 x 10~12회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -114,7 +114,6 @@ const ROUTINES_MALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 15회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15회" },
         { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
         { name: "덤벨 오버헤드 익스텐션", target: "3세트 x 15~20회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
@@ -154,6 +153,7 @@ const ROUTINES_MALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -170,7 +170,6 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 12회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 12~15회" },
         { name: "덤벨 숄더 프레스", target: "3세트 x 10~12회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 12~15회" },
         { name: "케이블 크런치", target: "3세트 x 15~20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
@@ -209,6 +208,7 @@ const ROUTINES_FEMALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 12회" },
         { name: "카프레이즈", target: "3세트 x 15~20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 12회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -221,7 +221,6 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 8~10회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 10~12회" },
         { name: "덤벨 숄더 프레스", target: "4세트 x 8~10회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "케이블 푸시다운", target: "3세트 x 10~12회" },
         { name: "케이블 크런치", target: "3세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
@@ -260,6 +259,7 @@ const ROUTINES_FEMALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 10회" },
         { name: "카프레이즈", target: "4세트 x 12~15회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 10회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 12~15회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -272,7 +272,6 @@ const ROUTINES_FEMALE = {
         { name: "덤벨 인클라인 프레스", target: "3세트 x 15~20회" },
         { name: "머신/덤벨 플라이", target: "3세트 x 15~20회" },
         { name: "덤벨 숄더 프레스", target: "3세트 x 12~15회" },
-        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "케이블 푸시다운", target: "3세트 x 15~20회" },
         { name: "케이블 크런치", target: "3세트 x 20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
@@ -311,6 +310,7 @@ const ROUTINES_FEMALE = {
         { name: "케틀벨 고블릿 스쿼트", target: "3세트 x 15회" },
         { name: "카프레이즈", target: "3세트 x 20회" },
         { name: "덤벨 컨센트레이션 컬", target: "3세트 x 15회" },
+        { name: "사이드 레터럴 레이즈", target: "4세트 x 15~20회" },
         { name: "러닝", target: "자유 (시간+거리 기록)" }
       ]
     }
@@ -1235,7 +1235,7 @@ const DAY_MUSCLE_CATEGORIES = {
   1: ["가슴", "어깨", "팔"],
   2: ["하체", "팔"],
   3: ["등", "팔"],
-  4: ["하체", "팔"]
+  4: ["하체", "어깨", "팔"]
 };
 
 let showAllExercisesInModal = false;
